@@ -1,73 +1,268 @@
 <!DOCTYPE HTML>
+<!--
+    中商达祺科技集团 - 深圳公司注册页面
+    基于 HTML5 UP Telephasic 模板二次定制
+-->
 <html>
 <head>
-	<title>深圳公司注册 - 中商达祺科技集团</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+    <title>深圳公司注册 | 中商达祺科技集团</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        /* 侧边导航样式（暖色系，主色调选温暖的橙色系，这里用 #F58220 示例） */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background: #F58220;
+            color: #ffffff;
+            z-index: 1000;
+            padding: 2rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        #sidebar .logo {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        #sidebar .logo a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #sidebar nav ul {
+            list-style: none;
+            padding: 0 1rem;
+            margin: 0;
+        }
+
+        #sidebar nav ul li {
+            margin-bottom: 1rem;
+        }
+
+        #sidebar nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        #sidebar nav ul li a:hover,
+        #sidebar nav ul li a.active {
+            background: #e07210;
+            color: #ffffff;
+        }
+
+        /* 主内容区域调整 */
+        #page-wrapper {
+            margin-left: 250px;
+            transition: margin-left 0.3s ease;
+            background-color: #fff8f0; /* 暖色系背景，浅橙色调 */
+        }
+
+        /* 移动端适配 */
+        @media screen and (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+                width: 220px;
+            }
+
+            #sidebar.active {
+                transform: translateX(0);
+            }
+
+            #page-wrapper {
+                margin-left: 0;
+            }
+
+            /* 移动端菜单按钮 */
+            .menu-toggle {
+                display: block !important;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 1001;
+                background: #F58220;
+                color: white;
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        }
+
+        /* 菜单按钮样式 */
+        .menu-toggle {
+            display: none;
+        }
+
+        /* 页面内容样式，暖色系调整 */
+        h2, h3 {
+            color: #F58220;
+        }
+
+        .button {
+            background-color: #F58220;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #e07210;
+        }
+
+        .feature {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(245, 130, 32, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
-<body class="left-sidebar">
-	<div id="page-wrapper">
+<body class="is-preload">
+    <!-- 侧边导航 -->
+    <div id="sidebar">
+        <div class="logo">
+            <a href="index.html">中商达祺科技集团</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="left-sidebar.html" class="active">深圳公司注册</a></li>
+                <li><a href="right-sidebar.html">香港公司注册</a></li>
+                <li><a href="no-sidebar.html">全球知产布局</a></li>
+                <li><a href="#footer">联系我们</a></li>
+            </ul>
+        </nav>
+    </div>
 
-		<!-- Header -->
-		<div id="header-wrapper">
-			<div id="header" class="container">
-				<h1 id="logo"><a href="index.html">中商达祺科技集团</a></h1>
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html">首页</a></li>
-						<li class="current"><a href="left-sidebar.html">深圳注册</a></li>
-						<li><a href="right-sidebar.html">香港注册</a></li>
-						<li><a href="no-sidebar.html">知产布局</a></li>
-						<li><a href="service.html">代理记账</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+    <!-- 移动端菜单按钮 -->
+    <button class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-		<!-- Main -->
-		<div id="main-wrapper">
-			<div class="container">
-				<div class="row gtr-200">
-					<div class="col-8 col-12-narrower">
-						<section>
-							<header>
-								<h2>深圳公司注册全流程服务</h2>
-							</header>
-							<p><img src="https://source.unsplash.com/collection/175083/800x400" alt="" /></p>
-							<h3>1. 核名 → 2. 网提 → 3. 电子签 → 4. 领证 → 5. 刻章 → 6. 银行开户</h3>
-							<ul>
-								<li>✅ 全程电子化，法人无需到场</li>
-								<li>✅ 免费提供龙岗/前海挂靠地址</li>
-								<li>✅ 赠送公章、财务章、发票章、私章</li>
-								<li>✅ 1-3 个工作日拿营业执照正副本</li>
-							</ul>
-						</section>
-					</div>
-					<div class="col-4 col-12-narrower">
-						<section>
-							<h2>立即咨询</h2>
-							<p>专业顾问 7×12 小时在线，30 分钟内响应。</p>
-							<ul class="actions">
-								<li><a href="tel:13265597317" class="button">132-6559-7317</a></li>
-							</ul>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div id="page-wrapper">
+        <section class="container" style="padding: 2rem;">
+            <header class="major">
+                <h2>深圳公司注册服务</h2>
+                <p>专业高效，助力企业扎根深圳，拓展华南市场</p>
+            </header>
+            <div class="feature">
+                <h3>注册优势</h3>
+                <p>深圳作为中国改革开放的前沿阵地，营商环境优越。在深圳注册公司，可享受一系列政策扶持，如税收优惠、人才补贴等，还能借助深圳完善的产业链和便捷的交通物流，快速打开市场。</p>
+            </div>
+            <div class="feature">
+                <h3>服务流程</h3>
+                <ol>
+                    <li>咨询沟通：了解企业需求，确定注册方案。</li>
+                    <li>材料准备：协助准备公司注册所需的各类材料，如股东身份证明、公司章程等。</li>
+                    <li>提交申请：全程电子化办理，快速提交注册申请至工商部门。</li>
+                    <li>领取执照：最快1天即可领取营业执照，效率行业领先。</li>
+                    <li>后续服务：免费提供注册地址，赠送印章，协助银行开户等。</li>
+                </ol>
+            </div>
+            <ul class="actions">
+                <li><a href="#footer" class="button">立即咨询深圳注册</a></li>
+            </ul>
+        </section>
 
-		<!-- Footer -->
-		<div id="footer-wrapper">
-			<div id="copyright" class="container">
-				<ul class="menu">
-					<li>&copy; 2024 中商达祺科技（深圳）有限公司</li>
-				</ul>
-			</div>
-		</div>
+        <!-- Footer，可保持与首页一致的暖色系风格 -->
+        <div id="footer-wrapper">
+            <div id="footer" class="container">
+                <header class="major">
+                    <h2>联系中商达祺</h2>
+                    <p>专业顾问7×12小时在线，最快30分钟响应<br />
+                    免费获取公司注册与财税定制方案</p>
+                </header>
+                <div class="row">
+                    <section class="col-6 col-12-narrower">
+                        <form method="post" action="#">
+                            <div class="row gtr-50">
+                                <div class="col-6 col-12-mobile">
+                                    <input name="name" placeholder="姓名/企业名" type="text" required />
+                                </div>
+                                <div class="col-6 col-12-mobile">
+                                    <input name="phone" placeholder="电话" type="text" required />
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="message" placeholder="需求描述（可选）"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><input type="submit" value="提交咨询" class="button" /></li>
+                                        <li><input type="reset" value="清空" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    <section class="col-6 col-12-narrower">
+                        <div class="row gtr-0">
+                            <ul class="divided icons col-6 col-12-mobile">
+                                <li class="icon brands fa-weixin"><a href="#">微信同号：13265597317</a></li>
+                                <li class="icon solid fa-phone"><a href="tel:13265597317">13265597317</a></li>
+                                <li class="icon solid fa-envelope"><a href="mailto:1687879340@qq.com">1687879340@qq.com</a></li>
+                            </ul>
+                            <ul class="divided icons col-6 col-12-mobile">
+                                <li class="icon solid fa-map-marker-alt">深圳市龙岗区平湖街道<br />恒路E时代大厦402</li>
+                                <li class="icon brands fa-whatsapp"><a href="https://wa.me/8613265597317">WhatsApp咨询</a></li>
+                                <li class="icon brands fa-telegram"><a href="https://t.me/csdaq2024">Telegram咨询</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div id="copyright" class="container">
+                <ul class="menu">
+                    <li>&copy; 2024 中商达祺科技（深圳）有限公司 版权所有 | 粤ICP备2023047775号-1</li>
+                    <li>Design: <a href="http://html5up.net">HTML5 UP</a> 二次定制</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-	</div>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // 侧边栏菜单切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+
+            // 移动端菜单切换
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+
+            // 导航链接点击后在移动端自动关闭菜单
+            const navLinks = document.querySelectorAll('#sidebar nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
