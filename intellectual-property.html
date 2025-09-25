@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球知识产权布局 - 中商达祺科技集团</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 - 橙色主题 */
+        :root {
+            --primary-color: #E67E22;
+            --primary-dark: #D35400;
+            --primary-light: #F39C12;
+            --secondary-color: #2C3E50;
+            --accent-color: #E74C3C;
+            --light-color: #f8f9fa;
+            --dark-color: #2C3E50;
+            --text-color: #34495E;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(230, 126, 34, 0.2);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(230, 126, 34, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* 页面特定样式 */
+        .page-hero {
+            background: var(--gradient);
+            color: white;
+            padding: 160px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-detail {
+            padding: 80px 0;
+        }
+        
+        .detail-content {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .detail-text {
+            flex: 2;
+        }
+        
+        .detail-sidebar {
+            flex: 1;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid #eee;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-table:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pricing-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .pricing-body {
+            padding: 2rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .price-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .features-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li:before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(230, 126, 34, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .strategy-section {
+            background: var(--light-color);
+            padding: 4rem 0;
+        }
+        
+        .strategy-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .strategy-tab {
+            padding: 1rem 2rem;
+            background: white;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 0.5rem 1rem;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .strategy-tab.active {
+            background: var(--primary-color);
+            color: white;
+            border-bottom: 3px solid var(--primary-dark);
+        }
+        
+        .strategy-content {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .strategy-content.active {
+            display: block;
+        }
+        
+        .comparison-section {
+            background: var(--light-color);
+            padding: 4rem 0;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .comparison-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .comparison-row:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .faq-section {
+            background: var(--light-color);
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .logo-text .company {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            position: relative;
+            margin-left: 1.8rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .detail-content {
+                flex-direction: column;
+            }
+            
+            .comparison-header, .comparison-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .strategy-tabs {
+                flex-direction: column;
+            }
+            
+            .strategy-tab {
+                margin: 0.25rem 0;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active ul {
+                flex-direction: column;
+            }
+            
+            nav.active li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            nav.active a {
+                display: block;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">
+                    <div class="brand">中商达祺科技集团</div>
+                    <div class="company">中商达祺科技（深圳）有限公司</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="active">业务领域</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
+                            <li><a href="accounting.html">代理记账</a></li>
+                            <li><a href="global-registration.html">全球公司注册</a></li>
+                            <li><a href="trademark.html">全球商标注册</a></li>
+                            <li><a href="intellectual-property.html" class="active">全球知产布局</a></li>
+                            <li><a href="hongkong-registration.html">香港公司注册</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="solutions.html">解决方案</a></li>
+                    <li><a href="cases.html">成功案例</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面英雄区域 -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>全球知识产权布局</h1>
+            <p>战略性知识产权规划与布局，保护企业核心技术与品牌价值，构建竞争壁垒</p>
+        </div>
+    </section>
+
+    <!-- 服务详情 -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="detail-content">
+                <div class="detail-text">
+                    <h2>为什么需要全球知识产权布局？</h2>
+                    <p>在知识经济时代，知识产权已成为企业最核心的资产之一。通过系统的全球知识产权布局，企业可以有效保护创新成果，防止技术被侵权，提升市场竞争力，并为未来融资、并购和上市创造价值。</p>
+                    
+                    <h3>知识产权服务内容</h3>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>专利布局</h4>
+                            <p>发明专利、实用新型、外观设计专利的全球申请与保护</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-trademark"></i>
+                            </div>
+                            <h4>商标战略</h4>
+                            <p>品牌商标的全球注册、监测、维权与价值评估</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-copyright"></i>
+                            </div>
+                            <h4>版权保护</h4>
+                            <p>软件、文学、艺术作品的著作权登记与保护</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>商业秘密</h4>
+                            <p>技术秘密、经营信息的保护方案设计与实施</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                            <h4>知识产权管理</h4>
+                            <p>知识产权资产盘点、评估、交易与运营</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h4>维权诉讼</h4>
+                            <p>知识产权侵权调查、行政投诉与司法诉讼</p>
+                        </div>
+                    </div>
+                    
+                    <h3>布局流程</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h4>知识产权审计</h4>
+                            <p>全面盘点企业现有知识产权资产，评估价值与风险</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h4>战略规划</h4>
+                            <p>根据企业发展战略，制定知识产权布局路线图</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h4>技术分析</h4>
+                            <p>进行专利检索与分析，确定技术创新点和保护范围</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h4>申请实施</h4>
+                            <p>在全球目标市场提交知识产权申请，建立保护网络</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <h4>监测维护</h4>
+                            <p>持续监测知识产权状态，及时进行维护和续展</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">6</div>
+                            <h4>价值实现</h4>
+                            <p>通过许可、转让、融资等方式实现知识产权价值</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-sidebar">
+                    <div class="pricing-table">
+                        <div class="pricing-header">
+                            <h3>基础布局套餐</h3>
+                            <p>适合初创企业</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price">¥15,800起</div>
+                            <div class="price-note">包含3个国家布局</div>
+                            <ul class="features-list">
+                                <li>知识产权现状评估</li>
+                                <li>基础战略规划</li>
+                                <li>3个国家专利申请</li>
+                                <li>5个类别商标注册</li>
+                                <li>基础监测服务（6个月）</li>
+                                <li>基础维权咨询</li>
+                                <li>知识产权培训一次</li>
+                            </ul>
+                            <a href="contact.html" class="btn" style="width: 100%; text-align: center; display: block;">立即咨询</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-table">
+                        <div class="pricing-header">
+                            <h3>全面布局套餐</h3>
+                            <p>适合成长型企业</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price">¥38,800起</div>
+                            <div class="price-note">包含全球主要市场</div>
+                            <ul class="features-list">
+                                <li>深度知识产权审计</li>
+                                <li>全面战略规划</li>
+                                <li>8个国家专利申请</li>
+                                <li>全球商标布局</li>
+                                <li>全方位监测服务（12个月）</li>
+                                <li>专业维权支持</li>
+                                <li>知识产权价值评估</li>
+                                <li>专属顾问服务</li>
+                            </ul>
+                            <a href="contact.html" class="btn" style="width: 100%; text-align: center; display: block;">立即咨询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 战略方案 -->
+    <section class="strategy-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>知识产权战略方案</h2>
+                <p>根据不同企业需求定制专属知识产权解决方案</p>
+            </div>
+            
+            <div class="strategy-tabs">
+                <button class="strategy-tab active" data-tab="tech">技术型企业</button>
+                <button class="strategy-tab" data-tab="brand">品牌型企业</button>
+                <button class="strategy-tab" data-tab="content">内容型企业</button>
+                <button class="strategy-tab" data-tab="startup">初创企业</button>
+            </div>
+            
+            <div class="strategy-content active" id="tech-content">
+                <h3>技术型企业知识产权战略</h3>
+                <p>针对以技术创新为核心竞争力的企业，我们提供：</p>
+                <ul>
+                    <li><strong>专利布局：</strong>通过核心专利、防御专利和竞争专利构建专利池</li>
+                    <li><strong>技术秘密保护：</strong>建立完善的技术秘密保护体系和员工保密协议</li>
+                    <li><strong>标准必要专利：</strong>参与行业标准制定，争取标准必要专利地位</li>
+                    <li><strong>专利运营：</strong>通过专利许可、转让实现技术价值变现</li>
+                    <li><strong>风险防控：</strong>进行FTO（自由实施）分析，避免侵权风险</li>
+                </ul>
+            </div>
+            
+            <div class="strategy-content" id="brand-content">
+                <h3>品牌型企业知识产权战略</h3>
+                <p>针对以品牌价值为核心的企业，我们提供：</p>
+                <ul>
+                    <li><strong>商标全球布局：</strong>在主营业市场和潜在市场进行商标注册</li>
+                    <li><strong>品牌保护体系：</strong>建立商标监测、异议、维权一体化体系</li>
+                    <li><strong>域名保护：</strong>注册相关域名，防止品牌被抢注</li>
+                    <li><strong>外观设计保护：</strong>保护产品包装、装潢等视觉元素</li>
+                    <li><strong>品牌价值评估：</strong>定期评估品牌价值，为融资并购提供依据</li>
+                </ul>
+            </div>
+            
+            <div class="strategy-content" id="content-content">
+                <h3>内容型企业知识产权战略</h3>
+                <p>针对以内容创作为核心的企业，我们提供：</p>
+                <ul>
+                    <li><strong>著作权登记：</strong>对软件、文学、艺术等作品进行著作权登记</li>
+                    <li><strong>版权管理：</strong>建立数字版权管理系统，防止内容被盗用</li>
+                    <li><strong>许可协议：</strong>制定内容使用许可协议，规范授权行为</li>
+                    <li><strong>维权支持：</strong>对侵权行为进行调查取证和法律诉讼</li>
+                    <li><strong>IP衍生开发：</strong>协助进行IP衍生品开发和授权管理</li>
+                </ul>
+            </div>
+            
+            <div class="strategy-content" id="startup-content">
+                <h3>初创企业知识产权战略</h3>
+                <p>针对初创企业特点，我们提供经济高效的解决方案：</p>
+                <ul>
+                    <li><strong>IP优先规划：</strong>在创业初期即进行知识产权规划</li>
+                    <li><strong>成本优化：</strong>通过PCT、马德里体系等降低国际注册成本</li>
+                    <li><strong>融资支持：</strong>完善IP资产，提升融资估值</li>
+                    <li><strong>风险规避：</strong>避免早期IP失误导致的未来发展障碍</li>
+                    <li><strong>成长路径：</strong>制定随企业成长而扩展的IP发展路径</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 知识产权类型对比 -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>知识产权类型对比</h2>
+                <p>了解不同类型知识产权的特点与适用场景</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>比较项目</div>
+                    <div>专利</div>
+                    <div>商标</div>
+                    <div>著作权</div>
+                </div>
+                <div class="comparison-row">
+                    <div>保护对象</div>
+                    <div>技术创新、发明创造</div>
+                    <div>品牌标识、商业标志</div>
+                    <div>文学、艺术、软件作品</div>
+                </div>
+                <div class="comparison-row">
+                    <div>保护期限</div>
+                    <div>发明专利20年，实用新型10年</div>
+                    <div>10年，可无限续展</div>
+                    <div>作者终生加50年</div>
+                </div>
+                <div class="comparison-row">
+                    <div>获取方式</div>
+                    <div>需要申请和审查</div>
+                    <div>需要注册和审查</div>
+                    <div>自动产生，登记非必须</div>
+                </div>
+                <div class="comparison-row">
+                    <div>地域性</div>
+                    <div>国家/地区范围内有效</div>
+                    <div>国家/地区范围内有效</div>
+                    <div>伯尔尼公约成员国有效</div>
+                </div>
+                <div class="comparison-row">
+                    <div>维护成本</div>
+                    <div>年费较高</div>
+                    <div>续展费用适中</div>
+                    <div>无维护费用</div>
+                </div>
+                <div class="comparison-row">
+                    <div>保护强度</div>
+                    <div>强，排他性权利</div>
+                    <div>强，在注册类别内排他</div>
+                    <div>中等，禁止复制但不禁止独立创作</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题</h2>
+                <p>关于全球知识产权布局的常见问题解答</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>什么时候开始知识产权布局最合适？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>知识产权布局越早开始越好。理想时机包括：1) 产品研发阶段，确保技术创新得到保护；2) 品牌创立初期，防止商标被抢注；3) 进入新市场前，提前进行知识产权排查和注册；4) 融资或并购前，完善知识产权资产提升估值。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何确定需要在哪些国家进行知识产权布局？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>选择布局国家应考虑：1) 当前和未来的目标市场；2) 主要竞争对手所在国家；3) 制造和生产基地；4) 知识产权保护力度强的国家；5) 通过PCT、马德里体系等国际条约覆盖多个国家。我们的专业顾问会为您制定最优的国别选择策略。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>知识产权布局的预算应该如何规划？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>知识产权预算应考虑：1) 申请费用（官方费用+代理费）；2) 维护费用（年费、续展费）；3) 监测和维权费用；4) 管理软件或系统费用。通常建议企业将营业收入的1-5%投入知识产权工作，具体比例取决于行业和企业发展阶段。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如果发现知识产权被侵权，应该怎么办？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>发现侵权后应采取：1) 收集证据（侵权产品、销售记录等）；2) 发送警告函要求停止侵权；3) 向行政执法部门投诉；4) 提起司法诉讼；5) 申请海关保护措施。我们提供全程维权服务，包括调查、取证和法律行动。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如何评估知识产权的价值？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>知识产权价值评估可采用：1) 成本法（基于开发成本）；2) 市场法（参考类似交易）；3) 收益法（预测未来收益）。评估时需考虑技术先进性、市场前景、法律稳定性、剩余保护期等因素。我们提供专业的IP价值评估服务。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>中商达祺科技集团</h3>
+                    <p>专业企业服务提供商，助力企业全球业务拓展。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="services.html">业务领域</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>我们的服务</h3>
+                    <ul>
+                        <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
+                        <li><a href="accounting.html">代理记账</a></li>
+                        <li><a href="global-registration.html">全球公司注册</a></li>
+                        <li><a href="trademark.html">全球商标注册</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
+                        <li><i class="fas fa-phone"></i> 13265597317</li>
+                        <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 中商达祺科技（深圳）有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // 移动端菜单切换
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+            
+            // 切换菜单图标动画
+            const spans = this.querySelectorAll('span');
+            if (nav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // FAQ切换
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // 战略方案标签切换
+        document.querySelectorAll('.strategy-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有标签的active类
+                document.querySelectorAll('.strategy-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // 隐藏所有内容
+                document.querySelectorAll('.strategy-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // 激活当前标签
+                tab.classList.add('active');
+                
+                // 显示对应内容
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
