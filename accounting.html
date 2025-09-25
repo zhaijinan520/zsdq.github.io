@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代理记账 - 中商达祺科技集团</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 - 橙白配色方案 */
+        :root {
+            --primary-color: #FF7A00; /* 主橙色 */
+            --primary-dark: #E66A00; /* 深橙色 */
+            --primary-light: #FFE0CC; /* 浅橙色 */
+            --secondary-color: #FF9500; /* 次要橙色 */
+            --accent-color: #FFB74D; /* 强调色 */
+            --light-color: #FAFAFA; /* 浅色背景 */
+            --white-color: #FFFFFF; /* 白色 */
+            --dark-color: #333333; /* 深色文字 */
+            --text-color: #444444; /* 常规文字 */
+            --shadow: 0 5px 15px rgba(255, 122, 0, 0.1); /* 阴影带橙色调 */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 122, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* 页面特定样式 */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 160px 0 80px;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .service-detail {
+            padding: 80px 0;
+            background-color: var(--white-color);
+        }
+        
+        .detail-content {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .detail-text {
+            flex: 2;
+        }
+        
+        .detail-sidebar {
+            flex: 1;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .process-step {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+        }
+        
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 122, 0, 0.15);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .pricing-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-table:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 122, 0, 0.15);
+        }
+        
+        .pricing-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .pricing-body {
+            padding: 2rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .price-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .features-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li:before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .service-comparison {
+            background: var(--light-color);
+            padding: 4rem 0;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .comparison-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .comparison-row:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .faq-section {
+            background: var(--light-color);
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--dark-color);
+        }
+        
+        .faq-question i {
+            color: var(--primary-color);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 122, 0, 0.15);
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .logo-text .company {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            position: relative;
+            margin-left: 1.8rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dropdown-menu a:hover {
+            background: var(--light-color);
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .footer-column i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .detail-content {
+                flex-direction: column;
+            }
+            
+            .comparison-header, .comparison-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active ul {
+                flex-direction: column;
+            }
+            
+            nav.active li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            nav.active a {
+                display: block;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">
+                    <div class="brand">中商达祺科技集团</div>
+                    <div class="company">中商达祺科技（深圳）有限公司</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="active">业务领域</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
+                            <li><a href="accounting.html" class="active">代理记账</a></li>
+                            <li><a href="global-registration.html">全球公司注册</a></li>
+                            <li><a href="trademark.html">全球商标注册</a></li>
+                            <li><a href="intellectual-property.html">全球知产布局</a></li>
+                            <li><a href="hongkong-registration.html">香港公司注册</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="solutions.html">解决方案</a></li>
+                    <li><a href="cases.html">成功案例</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面英雄区域 -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>代理记账</h1>
+            <p>专业财务团队提供精准记账报税服务，确保企业财税合规，让您专注于核心业务发展</p>
+        </div>
+    </section>
+
+    <!-- 服务详情 -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="detail-content">
+                <div class="detail-text">
+                    <h2>为什么选择我们的代理记账服务？</h2>
+                    <p>专业的代理记账服务可以帮助企业规范财务管理，降低税务风险，提高经营效率。我们的专业团队拥有丰富的财税经验，能够为企业提供全方位的财务解决方案。</p>
+                    
+                    <h3>服务优势</h3>
+                    <ul>
+                        <li><strong>专业团队：</strong>拥有注册会计师、税务师等专业资质</li>
+                        <li><strong>精准高效：</strong>采用专业财务软件，确保数据准确无误</li>
+                        <li><strong>合规保障：</strong>严格遵循财税法规，降低企业税务风险</li>
+                        <li><strong>成本节约：</strong>相比专职会计，可节省60%以上人力成本</li>
+                        <li><strong>及时响应：</strong>7×24小时咨询服务，及时解决财税问题</li>
+                    </ul>
+                    
+                    <h3>服务内容</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <h4>原始凭证处理</h4>
+                            <p>审核、整理原始凭证，确保票据合规合法</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h4>记账凭证编制</h4>
+                            <p>根据会计准则编制记账凭证，规范账务处理</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h4>账簿登记报表</h4>
+                            <p>登记各类账簿，编制财务报表，反映经营状况</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <h4>纳税申报缴纳</h4>
+                            <p>按时完成各项税种申报，确保税务合规</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-comments-dollar"></i>
+                            </div>
+                            <h4>财税咨询规划</h4>
+                            <p>提供财税政策咨询，进行税务筹划优化</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <h4>年度审计协助</h4>
+                            <p>协助完成年度审计工作，准备相关财务资料</p>
+                        </div>
+                    </div>
+                    
+                    <h3>服务流程</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h4>需求沟通</h4>
+                            <p>了解企业基本情况，确定服务内容和需求</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h4>签订协议</h4>
+                            <p>明确服务范围、费用和责任，签订服务协议</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h4>资料交接</h4>
+                            <p>客户提供原始凭证，我们进行审核和整理</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h4>账务处理</h4>
+                            <p>专业会计进行记账、核算和报表编制</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <h4>纳税申报</h4>
+                            <p>按时完成各项税种的申报和缴纳工作</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">6</div>
+                            <h4>反馈归档</h4>
+                            <p>向客户反馈财税情况，整理归档相关资料</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-sidebar">
+                    <div class="pricing-table">
+                        <div class="pricing-header">
+                            <h3>小规模纳税人套餐</h3>
+                            <p>适合年营业额500万以下企业</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price">¥300/月起</div>
+                            <div class="price-note">按年付费享8折优惠</div>
+                            <ul class="features-list">
+                                <li>月度记账报税服务</li>
+                                <li>原始凭证整理审核</li>
+                                <li>财务报表编制</li>
+                                <li>增值税申报</li>
+                                <li>企业所得税申报</li>
+                                <li>个人所得税申报</li>
+                                <li>财税政策咨询</li>
+                                <li>年度汇算清缴</li>
+                            </ul>
+                            <a href="contact.html" class="btn" style="width: 100%; text-align: center; display: block;">立即咨询</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-table">
+                        <div class="pricing-header">
+                            <h3>一般纳税人套餐</h3>
+                            <p>适合年营业额500万以上企业</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price">¥600/月起</div>
+                            <div class="price-note">按年付费享8折优惠</div>
+                            <ul class="features-list">
+                                <li>全套餐服务内容</li>
+                                <li>进项发票认证</li>
+                                <li>销项发票管理</li>
+                                <li>成本核算分析</li>
+                                <li>税务筹划建议</li>
+                                <li>财务分析报告</li>
+                                <li>银行对账服务</li>
+                                <li>专用会计顾问</li>
+                            </ul>
+                            <a href="contact.html" class="btn" style="width: 100%; text-align: center; display: block;">立即咨询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务对比 -->
+    <section class="service-comparison">
+        <div class="container">
+            <div class="section-title">
+                <h2>服务对比</h2>
+                <p>代理记账与专职会计的成本效益分析</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>项目</div>
+                    <div>代理记账</div>
+                    <div>专职会计</div>
+                </div>
+                <div class="comparison-row">
+                    <div>月均成本</div>
+                    <div>300-1000元</div>
+                    <div>5000-8000元+</div>
+                </div>
+                <div class="comparison-row">
+                    <div>专业水平</div>
+                    <div>团队专业，经验丰富</div>
+                    <div>个人能力有限</div>
+                </div>
+                <div class="comparison-row">
+                    <div>服务范围</div>
+                    <div>全面财税服务</div>
+                    <div>基础会计核算</div>
+                </div>
+                <div class="comparison-row">
+                    <div>风险控制</div>
+                    <div>专业团队审核，风险低</div>
+                    <div>个人判断，风险较高</div>
+                </div>
+                <div class="comparison-row">
+                    <div>连续性</div>
+                    <div>团队服务，不受人员变动影响</div>
+                    <div>人员离职影响工作连续性</div>
+                </div>
+                <div class="comparison-row">
+                    <div>附加价值</div>
+                    <div>财税咨询、税务筹划等增值服务</div>
+                    <div>仅限于基础核算工作</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题</h2>
+                <p>关于代理记账的常见问题解答</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>代理记账是否合法可靠？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>代理记账是合法合规的财税服务方式，根据《中华人民共和国会计法》规定，不具备设置会计机构或会计人员条件的单位，应当委托经批准设立从事会计代理记账业务的中介机构代理记账。我们拥有财政局颁发的代理记账许可证，服务完全合法可靠。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>代理记账的服务周期是多久？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>我们的代理记账服务通常按月进行，每月完成上一个月的账务处理和纳税申报。具体时间安排为：每月1-10日接收客户上月原始凭证，10-15日完成账务处理，15日前完成纳税申报。年度汇算清缴在次年1-5月进行。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>需要提供哪些资料给代理记账公司？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>通常需要提供以下资料：1) 收入类：销售发票、收款凭证等；2) 成本费用类：采购发票、费用发票、银行付款凭证等；3) 银行资料：银行对账单、回单等；4) 员工资料：工资表、社保缴纳明细等；5) 资产资料：固定资产发票、折旧明细等。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>如果出现税务问题，代理记账公司负责吗？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>根据代理记账服务协议，因我们工作失误导致的税务问题，我们将承担相应责任。但如果是客户提供资料不真实、不完整或故意隐瞒信息导致的税务问题，责任由客户承担。我们会在服务过程中及时提示税务风险，并提供专业的税务建议。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>代理记账能否帮助企业进行税务筹划？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>是的，专业的代理记账服务包含税务筹划内容。我们会根据企业的实际情况，在合法合规的前提下，通过合理的业务安排、费用结构优化等方式，帮助企业降低税负。但需要明确的是，税务筹划必须在税法允许的范围内进行，不能涉及偷税漏税等违法行为。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>中商达祺科技集团</h3>
+                    <p>专业企业服务提供商，助力企业全球业务拓展。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="services.html">业务领域</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>我们的服务</h3>
+                    <ul>
+                        <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
+                        <li><a href="accounting.html">代理记账</a></li>
+                        <li><a href="global-registration.html">全球公司注册</a></li>
+                        <li><a href="trademark.html">全球商标注册</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
+                        <li><i class="fas fa-phone"></i> 13265597317</li>
+                        <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 中商达祺科技（深圳）有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // 移动端菜单切换
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+            
+            // 切换菜单图标动画
+            const spans = this.querySelectorAll('span');
+            if (nav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // FAQ切换
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                // 切换箭头方向
+                const icon = question.querySelector('i');
+                if (item.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
