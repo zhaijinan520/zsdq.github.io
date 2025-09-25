@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港公司注册 - 中商达祺科技集团</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 - 橙色主题 */
+        :root {
+            --primary-color: #E67E22;
+            --primary-dark: #D35400;
+            --primary-light: #F39C12;
+            --secondary-color: #2C3E50;
+            --accent-color: #E74C3C;
+            --light-color: #f8f9fa;
+            --dark-color: #2C3E50;
+            --text-color: #34495E;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(230, 126, 34, 0.2);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(230, 126, 34, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* 页面特定样式 */
+        .page-hero {
+            background: var(--gradient);
+            color: white;
+            padding: 160px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-detail {
+            padding: 80px 0;
+        }
+        
+        .detail-content {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .detail-text {
+            flex: 2;
+        }
+        
+        .detail-sidebar {
+            flex: 1;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid #eee;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-table:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pricing-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .pricing-body {
+            padding: 2rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .price-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .features-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li:before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .advantage-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(230, 126, 34, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .comparison-section {
+            background: var(--light-color);
+            padding: 4rem 0;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .comparison-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .comparison-row:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .faq-section {
+            background: var(--light-color);
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .logo-text .company {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            position: relative;
+            margin-left: 1.8rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .detail-content {
+                flex-direction: column;
+            }
+            
+            .comparison-header, .comparison-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active ul {
+                flex-direction: column;
+            }
+            
+            nav.active li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            nav.active a {
+                display: block;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">
+                    <div class="brand">中商达祺科技集团</div>
+                    <div class="company">中商达祺科技（深圳）有限公司</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="active">业务领域</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
+                            <li><a href="accounting.html">代理记账</a></li>
+                            <li><a href="global-registration.html">全球公司注册</a></li>
+                            <li><a href="trademark.html">全球商标注册</a></li>
+                            <li><a href="intellectual-property.html">全球知产布局</a></li>
+                            <li><a href="hongkong-registration.html" class="active">香港公司注册</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="solutions.html">解决方案</a></li>
+                    <li><a href="cases.html">成功案例</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面英雄区域 -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>香港公司注册</h1>
+            <p>专业的香港公司注册服务，利用香港优势拓展国际市场，享受低税率和国际化营商环境</p>
+        </div>
+    </section>
+
+    <!-- 服务详情 -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="detail-content">
+                <div class="detail-text">
+                    <h2>为什么选择在香港注册公司？</h2>
+                    <p>香港作为国际金融中心，拥有完善的法律体系、自由的贸易政策和极具竞争力的税收制度。注册香港公司是企业走向国际化的理想选择。</p>
+                    
+                    <h3>香港公司优势</h3>
+                    <div class="advantages-grid">
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <h4>低税率政策</h4>
+                            <p>香港实行地域来源征税原则，海外利得免税，企业所得税率仅16.5%</p>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h4>国际声誉</h4>
+                            <p>香港公司国际认可度高，有利于建立国际品牌形象</p>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-unlock"></i>
+                            </div>
+                            <h4>资金自由</h4>
+                            <p>无外汇管制，资金进出自由，方便国际贸易</p>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <h4>注册简便</h4>
+                            <p>注册流程简单快捷，无需验资，注册资本无限制</p>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>隐私保护</h4>
+                            <p>股东董事资料相对保密，不公开查询</p>
+                        </div>
+                        <div class="advantage-card">
+                            <div class="advantage-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h4>一带一路优势</h4>
+                            <p>作为一带一路重要节点，享受政策红利</p>
+                        </div>
+                    </div>
+                    
+                    <h3>注册流程</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h4>公司名称查册</h4>
+                            <p>查询拟用名称是否可用，确保名称符合香港公司注册处要求</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h4>准备申请文件</h4>
+                            <p>准备注册申请表、公司章程、董事股东身份证明等文件</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h4>提交注册申请</h4>
+                            <p>向香港公司注册处提交注册申请，通常1-2个工作日完成</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h4>领取证书文件</h4>
+                            <p>领取公司注册证书、商业登记证等全套注册文件</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <h4>刻制公司印章</h4>
+                            <p>刻制公司法定印章、签字章等必要印章</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">6</div>
+                            <h4>银行开户协助</h4>
+                            <p>协助开设香港银行账户，完成公司设立全部流程</p>
+                        </div>
+                    </div>
+                    
+                    <h3>注册所需资料</h3>
+                    <ul>
+                        <li>公司名称（中英文或纯英文）</li>
+                        <li>注册资本（通常1万港币起，无需验资）</li>
+                        <li>股东、董事身份证明（身份证/护照复印件）</li>
+                        <li>股东、董事住址证明（近3个月水电费单或银行账单）</li>
+                        <li>公司经营范围（中文或英文，字符限制28个）</li>
+                        <li>注册地址（可由我司提供）</li>
+                        <li>法定秘书（可由我司担任）</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-sidebar">
+                    <div class="pricing-table">
+                        <div class="pricing-header">
+                            <h3>标准注册套餐</h3>
+                            <p>适合大多数企业需求</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price">¥4,800</div>
+                            <div class="price-note">全包价格，无隐藏费用</div>
+                            <ul class="features-list">
+                                <li>公司名称查册</li>
+                                <li>注册地址提供（一年）</li>
+                                <li>法定秘书服务（一年）</li>
+                                <li>公司注册证书</li>
+                                <li>商业登记证</li>
+                                <li>公司章程</li>
+                                <li>公司印章一套</li>
+                                <li>股票本、会议记录册</li>
+                                <li>绿色公文盒</li>
+                            </ul>
+                            <a href="contact.html" class="btn" style="width: 100%; text-align: center; display: block;">立即咨询</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-table">
+                        <div class="pricing-header">
+                            <h3>尊贵注册套餐</h3>
+                            <p>包含银行开户服务</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price">¥8,800</div>
+                            <div class="price-note">包含银行开户指导</div>
+                            <ul class="features-list">
+                                <li>标准套餐全部服务</li>
+                                <li>银行开户文件准备</li>
+                                <li>银行预约及陪同服务</li>
+                                <li>银行开户指导</li>
+                                <li>网银设置协助</li>
+                                <li>税务咨询一次</li>
+                                <li>年度审计咨询</li>
+                                <li>优先客服通道</li>
+                            </ul>
+                            <a href="contact.html" class="btn" style="width: 100%; text-align: center; display: block;">立即咨询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 香港与内地公司对比 -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>香港公司与内地公司对比</h2>
+                <p>了解香港公司的独特优势</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>比较项目</div>
+                    <div>香港公司</div>
+                    <div>内地公司</div>
+                </div>
+                <div class="comparison-row">
+                    <div>税率</div>
+                    <div>16.5%（利得税），海外收入免税</div>
+                    <div>25%（企业所得税），全球收入征税</div>
+                </div>
+                <div class="comparison-row">
+                    <div>注册资本</div>
+                    <div>无最低要求，无需验资</div>
+                    <div>认缴制，但有行业最低要求</div>
+                </div>
+                <div class="comparison-row">
+                    <div>外汇管制</div>
+                    <div>无外汇管制，资金自由流动</div>
+                    <div>严格外汇管制，资金进出需审批</div>
+                </div>
+                <div class="comparison-row">
+                    <div>经营范围</div>
+                    <div>除需要牌照业务外，基本无限制</div>
+                    <div>需按营业执照核准范围经营</div>
+                </div>
+                <div class="comparison-row">
+                    <div>税务申报</div>
+                    <div>每年一次，可申请延期</div>
+                    <div>每月/季度申报，较为频繁</div>
+                </div>
+                <div class="comparison-row">
+                    <div>国际认可度</div>
+                    <div>高，便于国际贸易</div>
+                    <div>相对较低，受国际环境影响</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题</h2>
+                <p>关于香港公司注册的常见问题解答</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>香港公司注册需要多长时间？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>香港公司注册通常需要7-10个工作日。具体时间取决于公司名称是否需要特别审批以及文件准备的完整性。加急服务可在1-2个工作日内完成注册。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>注册香港公司需要多少注册资本？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>香港公司注册资本通常为1万港币，无需验资。注册资本代表股东承担的责任上限，可根据实际需要设定，但要注意注册资本过高可能增加印花税成本。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>内地居民可以注册香港公司吗？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>可以。香港允许任何国家或地区的居民或法人在香港注册公司。内地居民只需提供有效身份证明和住址证明即可注册香港公司。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>香港公司每年需要做什么维护？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>香港公司每年需要：1) 更新商业登记证；2) 提交周年申报表；3) 进行账务审计（如达到审计标准）；4) 报税。我司可提供全套年度维护服务。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>注册后如何开设香港银行账户？</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>开设香港银行账户需要：1) 全套公司注册文件；2) 董事股东身份证明；3) 业务证明（如合同、发票等）；4) 银行要求的其他资料。我司可提供银行开户指导和预约服务。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>中商达祺科技集团</h3>
+                    <p>专业企业服务提供商，助力企业全球业务拓展。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="services.html">业务领域</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>我们的服务</h3>
+                    <ul>
+                        <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
+                        <li><a href="accounting.html">代理记账</a></li>
+                        <li><a href="global-registration.html">全球公司注册</a></li>
+                        <li><a href="trademark.html">全球商标注册</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
+                        <li><i class="fas fa-phone"></i> 13265597317</li>
+                        <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 中商达祺科技（深圳）有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // 移动端菜单切换
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+            
+            // 切换菜单图标动画
+            const spans = this.querySelectorAll('span');
+            if (nav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // FAQ切换
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
