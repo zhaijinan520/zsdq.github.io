@@ -93,7 +93,7 @@
         
         /* 页面特定样式 */
         .page-hero {
-            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             color: white;
             padding: 160px 0 80px;
             text-align: center;
@@ -280,9 +280,20 @@
             align-items: center;
         }
         
-        .logo img {
-            height: 45px;
+        /* 新增logo大小控制类 */
+        .logo-size-small img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo-size-medium img {
+            height: 50px;
             margin-right: 15px;
+        }
+        
+        .logo-size-large img {
+            height: 60px;
+            margin-right: 20px;
         }
         
         .logo-text {
@@ -496,6 +507,22 @@
                 margin-bottom: 2rem;
                 padding-right: 0;
             }
+            
+            /* 移动端调整logo大小 */
+            .logo-size-small img {
+                height: 35px;
+                margin-right: 8px;
+            }
+            
+            .logo-size-medium img {
+                height: 40px;
+                margin-right: 10px;
+            }
+            
+            .logo-size-large img {
+                height: 45px;
+                margin-right: 12px;
+            }
         }
     </style>
 </head>
@@ -503,7 +530,7 @@
     <!-- 导航栏 - 添加logo -->
     <header>
         <div class="container header-container">
-            <div class="logo">
+            <div class="logo logo-size-medium">
                 <img src="logo.png" alt="中商达祺科技集团Logo">
                 <div class="logo-text">
                     <div class="brand">中商达祺科技集团</div>
@@ -572,7 +599,7 @@
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-globe-americas"></i>
-                    </div>
+                    </极简代码>
                     <h3>全球公司注册</h3>
                     <p>覆盖全球主要国家的公司注册服务，助力企业国际化布局</p>
                     <a href="global-registration.html" class="btn">了解详情</a>
@@ -765,6 +792,13 @@
                 spans[2].style.transform = 'none';
             }
         });
+        
+        // Logo大小调整功能
+        function adjustLogoSize(size) {
+            const logo = document.querySelector('.logo');
+            logo.classList.remove('logo-size-small', 'logo-size-medium', 'logo-size-large');
+            logo.classList.add(`logo-size-${size}`);
+        }
     </script>
 </body>
 </html>
