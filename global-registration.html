@@ -1,121 +1,1098 @@
-<div class="footer-content">
-    <div class="footer-column">
-        <h3>中商达祺科技集团</h3>
-        <div class="company-list">
-            <div class="company-item">中商达祺科技（深圳）有限公司</div>
-            <div class="company-item">中商达祺科技（佛山）有限公司</div>
-            <div class="company-item">中商达祺科技（深圳）有限公司河南分公司</div>
-            <div class="company-item">一点阳光企业管理（深圳）有限公司</div>
-            <div class="company-item">一点阳光知识产权（深圳）有限公司</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球公司注册 - 中商达祺科技集团</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 - 与主页一致的橙色主题 */
+        :root {
+            --primary-color: #E67E22; /* 主橙色 */
+            --primary-dark: #D35400;  /* 深橙色 */
+            --primary-light: #F39C12; /* 浅橙色 */
+            --secondary-color: #34495E; /* 深蓝灰色作为辅助色 */
+            --accent-color: #F1C40F; /* 金色作为强调色 */
+            --light-color: #f8f9fa;
+            --dark-color: #333;
+            --text-color: #444;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* 导航栏样式 - 与主页一致 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 45px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .logo-text .company {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            position: relative;
+            margin-left: 1.8rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* 英雄区域样式 - 调整为橙色渐变 */
+        .hero {
+            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+            color: white;
+            padding: 160px 0 100px;
+            display: flex;
+            align-items: center;
+            min-height: 60vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        /* 国家卡片样式 */
+        .country-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .country-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .country-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .country-flag {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .country-flag::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+        }
+        
+        .country-info {
+            padding: 25px;
+        }
+        
+        .country-name {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .country-desc {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .country-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        /* 注册流程样式 */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 0 15px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .step-desc {
+            color: #666;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -30px;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        /* 优势部分样式 */
+        .advantages {
+            background: var(--light-color);
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .advantage-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: #FFF3E0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .advantage-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* 联系我们样式 */
+        .contact-section {
+            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+            color: white;
+        }
+        
+        .contact-section .section-title h2,
+        .contact-section .section-title p {
+            color: white;
+        }
+        
+        .contact-section .section-title::after {
+            background: var(--accent-color);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 页脚样式 - 与主页一致 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                margin-bottom: 40px;
+            }
+            
+            .step:not(:last-child)::after {
+                top: auto;
+                bottom: -20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active ul {
+                flex-direction: column;
+            }
+            
+            nav.active li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            nav.active a {
+                display: block;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 2rem;
+                padding-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 - 与主页一致 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">
+                    <div class="brand">中商达祺科技集团</div>
+                    <div class="company">中商达祺科技（深圳）有限公司</div>
+                    <div class="company">一点阳光企业管理（深圳）有限公司</div>
+                    <div class="company">一点阳光知识产权（深圳）有限公司</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="active">业务领域</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
+                            <li><a href="accounting.html">代理记账</a></li>
+                            <li><a href="global-registration.html">全球公司注册</a></li>
+                            <li><a href="trademark.html">全球商标注册</a></li>
+                            <li><a href="intellectual-property.html">全球知产布局</a></li>
+                            <li><a href="hongkong-registration.html">香港公司注册</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="solutions.html">解决方案</a></li>
+                    <li><a href="cases.html">成功案例</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </div>
-    <div class="footer-column">
-        <h3>快速链接</h3>
-        <ul>
-            <li><a href="index.html">首页</a></li>
-            <li><a href="about.html">关于我们</a></li>
-            <li><a href="services.html">业务领域</a></li>
-            <li><a href="contact.html">联系我们</a></li>
-        </ul>
-    </div>
-</div>
+    </header>
 
-<style>
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>全球公司注册服务</h1>
+                <p>中商达祺科技集团为您提供全球100+国家/地区的公司注册服务，简化国际业务拓展流程，降低跨境经营风险</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn">免费咨询</a>
+                    <a href="#countries" class="btn btn-secondary">热门注册地</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.footer-column {
-    flex: 1;
-    min-width: 250px;
-    padding-right: 2rem;
-    margin-bottom: 2rem;
-}
+    <!-- 热门注册国家 -->
+    <section id="countries" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>热门注册国家/地区</h2>
+                <p>我们精选了全球最受欢迎的注册地，满足不同企业的国际化需求</p>
+            </div>
+            <div class="country-cards">
+                <div class="country-card">
+                    <div class="country-flag" style="background-image: url('https://flagcdn.com/w320/hk.png')"></div>
+                    <div class="country-info">
+                        <h3 class="country-name">中国香港</h3>
+                        <p class="country-desc">亚洲金融中心，税率低，注册流程简便</p>
+                        <div class="country-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">3-5</div>
+                                <div class="stat-label">工作日</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">16.5%</div>
+                                <div class="stat-label">利得税率</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$0</div>
+                                <div class="stat-label">注册资本</div>
+                            </div>
+                        </div>
+                        <a href="hongkong-registration.html" class="btn btn-secondary">了解详情</a>
+                    </div>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag" style="background-image: url('https://flagcdn.com/w320/sg.png')"></div>
+                    <div class="country-info">
+                        <h3 class="country-name">新加坡</h3>
+                        <p class="country-desc">全球营商环境最佳，东盟市场门户</p>
+                        <div class="country-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">1-2</div>
+                                <div class="stat-label">工作日</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">17%</div>
+                                <div class="stat-label">企业所得税</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$1</div>
+                                <div class="stat-label">注册资本</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">了解详情</a>
+                    </div>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag" style="background-image: url('https://flagcdn.com/w320/us.png')"></div>
+                    <div class="country-info">
+                        <h3 class="country-name">美国特拉华州</h3>
+                        <p class="country-desc">全球企业首选注册地，法律体系完善</p>
+                        <div class="country-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">3-7</div>
+                                <div class="stat-label">工作日</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0%</div>
+                                <div class="stat-label">州销售税</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">灵活</div>
+                                <div class="stat-label">注册资本</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">了解详情</a>
+                    </div>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag" style="background-image: url('https://flagcdn.com/w320/gb.png')"></div>
+                    <div class="country-info">
+                        <h3 class="country-name">英国</h3>
+                        <p class="country-desc">欧洲商业中心，国际品牌背书</p>
+                        <div class="country-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">24h</div>
+                                <div class="stat-label">最快注册</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">19%</div>
+                                <div class="stat-label">企业所得税</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">£1</div>
+                                <div class="stat-label">注册资本</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">了解详情</a>
+                    </div>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag" style="background-image: url('https://flagcdn.com/w320/ae.png')"></div>
+                    <div class="country-info">
+                        <h3 class="country-name">阿联酋</h3>
+                        <p class="country-desc">中东商业枢纽，免税政策优厚</p>
+                        <div class="country-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">7-14</div>
+                                <div class="stat-label">工作日</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0%</div>
+                                <div class="stat-label">企业所得税</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">灵活</div>
+                                <div class="stat-label">注册资本</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">了解详情</a>
+                    </div>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag" style="background-image: url('https://flagcdn.com/w320/cy.png')"></div>
+                    <div class="country-info">
+                        <h3 class="country-name">塞浦路斯</h3>
+                        <p class="country-desc">欧盟成员国，税收优惠显著</p>
+                        <div class="country-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">10-15</div>
+                                <div class="stat-label">工作日</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">12.5%</div>
+                                <div class="stat-label">企业所得税</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">€1,000</div>
+                                <div class="stat-label">注册资本</div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary">了解详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.footer-column h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-    white-space: nowrap;
-}
+    <!-- 注册流程 -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>全球公司注册流程</h2>
+                <p>我们简化的注册流程让您无需亲临当地，即可完成全球公司注册，平均节省70%的时间和成本</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">需求评估</h3>
+                    <p class="step-desc">根据您的业务需求，推荐最适合的注册地和公司类型</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">材料准备</h3>
+                    <p class="step-desc">协助准备所有必要文件，包括公司章程、股东资料等</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">政府审批</h3>
+                    <p class="step-desc">提交申请并跟进审批流程，处理可能的问题</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">公司成立</h3>
+                    <p class="step-desc">领取注册证书，开设银行账户，完成税务登记</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">后续服务</h3>
+                    <p class="step-desc">提供年审、报税、法律咨询等一站式服务</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.company-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
+    <!-- 我们的优势 -->
+    <section class="section advantages">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的优势</h2>
+                <p>选择中商达祺科技集团，享受专业、高效的全球公司注册服务</p>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>全球覆盖</h3>
+                    <p>覆盖全球100+国家/地区的公司注册服务，满足不同企业的国际化需求</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>高效快捷</h3>
+                    <p>专业团队熟悉各国注册流程，最快24小时内完成公司注册</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>合规保障</h3>
+                    <p>严格遵循各国法律法规，确保公司注册和运营完全合规</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>本地化服务</h3>
+                    <p>各国本地专业团队支持，提供母语服务，消除语言障碍</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>成本优化</h3>
+                    <p>通过专业规划，帮助企业优化全球税务结构和运营成本</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>一站式服务</h3>
+                    <p>从公司注册到银行开户、税务登记，提供全方位服务</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.company-item {
-    color: #ccc;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    padding: 0.3rem 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 0.5rem;
-}
+    <!-- 联系我们 -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>开启您的全球业务布局</h2>
+                <p>无论您是想拓展国际市场、优化税务结构还是建立国际品牌，我们都能为您提供专业的全球公司注册解决方案</p>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">您的姓名</label>
+                        <input type="text" id="name" placeholder="请输入您的姓名">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">联系电话</label>
+                        <input type="text" id="phone" placeholder="请输入您的联系电话">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">感兴趣的国家/地区</label>
+                        <select id="country">
+                            <option value="">请选择国家/地区</option>
+                            <option value="hk">中国香港</option>
+                            <option value="sg">新加坡</option>
+                            <option value="us">美国</option>
+                            <option value="uk">英国</option>
+                            <option value="ae">阿联酋</option>
+                            <option value="cy">塞浦路斯</option>
+                            <option value="other">其他国家</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">具体需求</label>
+                        <textarea id="message" rows="4" placeholder="请简要描述您的业务需求"></textarea>
+                    </div>
+                    <button type="submit" class="btn">提交咨询</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-.company-item:last-child {
-    border-bottom: none;
-}
+    <!-- 页脚 - 与主页一致 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>中商达祺科技集团</h3>
+                    <p>中商达祺科技（深圳）有限公司</p>
+                    <p>中商达祺科技（佛山）有限公司</p>
+                    <p>中商达祺科技（深圳）有限公司河南分公司</p>
+                    <p>一点阳光企业管理（深圳）有限公司。</p>
+                    <p>一点阳光知识产权（深圳）有限公司。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="services.html">业务领域</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>我们的服务</h3>
+                    <ul>
+                        <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
+                        <li><a href="accounting.html">代理记账</a></li>
+                        <li><a href="global-registration.html">全球公司注册</a></li>
+                        <li><a href="trademark.html">全球商标注册</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
+                        <li><i class="fas fa-phone"></i> 13265597317</li>
+                        <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 中商达祺科技（深圳）有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
 
-.footer-column ul {
-    list-style: none;
-}
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
 
-.footer-column ul li {
-    margin-bottom: 0.8rem;
-}
+        // 移动端菜单切换
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+            
+            // 切换菜单图标动画
+            const spans = this.querySelectorAll('span');
+            if (nav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
 
-.footer-column ul li a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s;
-    white-space: nowrap;
-    display: block;
-    padding: 0.3rem 0;
-}
-
-.footer-column ul li a:hover {
-    color: var(--primary-color);
-    padding-left: 5px;
-    transition: all 0.3s ease;
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-    }
-    
-    .footer-column {
-        padding-right: 0;
-        margin-bottom: 2rem;
-    }
-    
-    .company-item {
-        white-space: normal;
-        text-overflow: clip;
-    }
-    
-    .footer-column h3 {
-        white-space: normal;
-    }
-}
-
-@media (max-width: 480px) {
-    .company-item {
-        font-size: 0.9rem;
-        line-height: 1.3;
-    }
-    
-    .footer-column {
-        min-width: 100%;
-    }
-}
-</style>
+        // 平滑滚动（仅用于页面内锚点）
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#') && 
+                    this.getAttribute('href').length > 1) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    // 关闭移动端菜单
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('nav').classList.remove('active');
+                        document.querySelector('.mobile-menu-toggle span:nth-child(1)').style.transform = 'none';
+                        document.querySelector('.mobile-menu-toggle span:nth-child(2)').style.opacity = '1';
+                        document.querySelector('.mobile-menu-toggle span:nth-child(3)').style.transform = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
