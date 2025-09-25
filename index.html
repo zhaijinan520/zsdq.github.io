@@ -1,321 +1,1034 @@
-<!DOCTYPE HTML>
-<!--
-	中商达祺科技集团官网首页
-	基于
--->
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-	<title>中商达祺科技集团 | 全球企业一站式服务平台</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<style>
-		/* 侧边导航样式 */
-		#sidebar {
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 250px;
-			background: #1a1a1a;
-			color: #ffffff;
-			z-index: 1000;
-			padding: 2rem 0;
-			transition: transform 0.3s ease;
-		}
-		
-		#sidebar .logo {
-			text-align: center;
-			margin-bottom: 3rem;
-			padding: 0 1rem;
-		}
-		
-		#sidebar .logo a {
-			color: #ffffff;
-			font-size: 1.5rem;
-			font-weight: bold;
-			text-decoration: none;
-		}
-		
-		#sidebar nav ul {
-			list-style: none;
-			padding: 0 1rem;
-			margin: 0;
-		}
-		
-		#sidebar nav ul li {
-			margin-bottom: 1rem;
-		}
-		
-		#sidebar nav ul li a {
-			color: #ccc;
-			text-decoration: none;
-			display: block;
-			padding: 0.8rem 1rem;
-			border-radius: 4px;
-			transition: all 0.3s ease;
-		}
-		
-		#sidebar nav ul li a:hover,
-		#sidebar nav ul li a.active {
-			background: #2c2c2c;
-			color: #ffffff;
-		}
-		
-		/* 主内容区域调整 */
-		#page-wrapper {
-			margin-left: 250px;
-			transition: margin-left 0.3s ease;
-		}
-		
-		/* 移动端适配 */
-		@media screen and (max-width: 768px) {
-			#sidebar {
-				transform: translateX(-100%);
-				width: 220px;
-			}
-			
-			#sidebar.active {
-				transform: translateX(0);
-			}
-			
-			#page-wrapper {
-				margin-left: 0;
-			}
-			
-			/* 移动端菜单按钮 */
-			.menu-toggle {
-				display: block !important;
-				position: fixed;
-				top: 1rem;
-				left: 1rem;
-				z-index: 1001;
-				background: #1a1a1a;
-				color: white;
-				border: none;
-				width: 40px;
-				height: 40px;
-				border-radius: 4px;
-				cursor: pointer;
-			}
-		}
-		
-		/* 隐藏默认顶部导航 */
-		#header {
-			display: none;
-		}
-		
-		/* 菜单按钮样式 */
-		.menu-toggle {
-			display: none;
-		}
-		
-		/* 调整Hero区域位置 */
-		#hero {
-			padding: 4rem 0;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中商达祺科技集团 - 专业企业服务与全球业务布局</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary-color: #1a3a5f;
+            --secondary-color: #4CAF50;
+            --accent-color: #2196F3;
+            --light-color: #f8f9fa;
+            --dark-color: #333;
+            --text-color: #444;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 45px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .logo-text .company {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            position: relative;
+            margin-left: 1.8rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* 英雄区域样式 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
+            color: white;
+            padding: 160px 0 100px;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            width: 60%;
+            padding-right: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .hero-animation {
+            width: 40%;
+            height: 400px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .floating-elements {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .element-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .element-2 {
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+        
+        .element-3 {
+            width: 120px;
+            height: 120px;
+            top: 40%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* 业务区域样式 */
+        .services {
+            background: var(--light-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-color);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+        
+        .service-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        /* 关于我们样式 */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .about-image {
+            flex: 1;
+            background: var(--light-color);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--accent-color);
+        }
+        
+        /* 联系方式样式 */
+        .contact {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
+            color: white;
+        }
+        
+        .contact .section-title h2, .contact .section-title p {
+            color: white;
+        }
+        
+        .contact .section-title::after {
+            background: var(--secondary-color);
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 140px 0 80px;
+            }
+            
+            .hero-content, .hero-animation {
+                width: 100%;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active ul {
+                flex-direction: column;
+            }
+            
+            nav.active li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            nav.active a {
+                display: block;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 2rem;
+                padding-right: 0;
+            }
+        }
+    </style>
 </head>
-<body class="homepage is-preload">
-	<!-- 侧边导航 -->
-	<div id="sidebar">
-		<div class="logo">
-			<a href="index.html">中商达祺科技集团</a>
-		</div>
-		<nav>
-			<ul>
-				<li><a href="#" class="active">首页</a></li>
-				<li><a href="left-sidebar.html">深圳公司注册</a></li>
-				<li><a href="right-sidebar.html">香港公司注册</a></li>
-				<li><a href="no-sidebar.html">全球知产布局</a></li>
-				<li><a href="#footer">联系我们</a></li>
-			</ul>
-		</nav>
-	</div>
-	
-	<!-- 移动端菜单按钮 -->
-	<button class="menu-toggle">
-		<span></span>
-		<span></span>
-		<span></span>
-	</button>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">
+                    <div class="brand">中商达祺科技集团</div>
+                    <div class="company">中商达祺科技（深圳）有限公司</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li class="dropdown">
+                        <a href="#services">业务领域</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#service-1">深圳公司注册</a></li>
+                            <li><a href="#service-2">代理记账</a></li>
+                            <li><a href="#service-3">全球公司注册</a></li>
+                            <li><a href="#service-4">全球商标注册</a></li>
+                            <li><a href="#service-5">全球知产布局</a></li>
+                            <li><a href="#service-6">香港公司注册</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#solutions">解决方案</a></li>
+                    <li><a href="#cases">成功案例</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
 
-	<div id="page-wrapper">
-		<!-- Header -->
-		<div id="header-wrapper" style="background: url('https://images.unsplash.com/photo-1543349689-9a4d426bee8e?auto=format&fit=crop&w=1950&q=80') center center / cover no-repeat; position: relative; height: 500px;">
-			<!-- 黑色渐变遮罩 -->
-			<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)); z-index: 1;"></div>
-		</div>
+    <!-- 首页英雄区域 -->
+    <section id="home" class="hero">
+        <div class="container" style="display: flex; align-items: center;">
+            <div class="hero-content">
+                <h1>专业企业服务，全球业务布局</h1>
+                <p>中商达祺科技集团致力于为企业提供全方位的商务服务，从公司注册到知识产权保护，助力企业在全球市场取得成功。</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn">了解我们的服务</a>
+                    <a href="#contact" class="btn btn-secondary">免费咨询</a>
+                </div>
+            </div>
+            <div class="hero-animation">
+                <div class="floating-elements">
+                    <div class="floating-element element-1">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="floating-element element-2">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="floating-element element-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<!-- Hero -->
-		<section id="hero" class="container">
-			<header>
-				<h2>全球企业一站式服务平台<br />
-				<em>专业 · 高效 · 安全</em></h2>
-			</header>
-			<p>深耕企业服务领域，提供深圳公司注册、代理记账、香港公司注册及全球知识产权布局等全方位解决方案，<br />
-			助力企业低成本、高效率拓展国际市场，实现全球化战略布局。</p>
-			<ul class="actions">
-				<li><a href="#footer" class="button">立即咨询</a></li>
-			</ul>
-		</section>
+    <!-- 业务领域 -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>核心业务领域</h2>
+                <p>我们提供全方位的企业服务，助力您的业务从起步到全球化发展</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>深圳公司注册</h3>
+                    <p>专业高效的深圳公司注册服务，一站式解决企业设立所有流程</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>代理记账</h3>
+                    <p>专业财务团队提供精准记账报税服务，确保企业财税合规</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>全球公司注册</h3>
+                    <p>覆盖全球主要国家的公司注册服务，助力企业国际化布局</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-trademark"></i>
+                    </div>
+                    <h3>全球商标注册</h3>
+                    <p>专业知识产权团队，为企业提供全球商标注册与保护服务</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>全球知产布局</h3>
+                    <p>战略性知识产权规划与布局，保护企业核心技术与品牌价值</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>香港公司注册</h3>
+                    <p>专业的香港公司注册服务，利用香港优势拓展国际市场</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<!-- Features 1 -->
-		<div class="wrapper">
-			<div class="container">
-				<div class="row">
-					<section class="col-6 col-12-narrower feature">
-						<div class="image-wrapper first">
-							<a href="#" class="image featured first"><img src="images/pic01.jpg" alt="深圳公司注册服务" /></a>
-						</div>
-						<header>
-							<h2>深圳公司注册<br />最快1天完成审批</h2>
-						</header>
-						<p>全程电子化办理，无需法人到场；免费提供商务注册地址与全套印章，专属顾问协助银行开户，让您省心省力。</p>
-						<ul class="actions">
-							<li><a href="#footer" class="button">免费咨询</a></li>
-						</ul>
-					</section>
-					<section class="col-6 col-12-narrower feature">
-						<div class="image-wrapper">
-							<a href="#" class="image featured"><img src="images/pic02.jpg" alt="香港公司注册服务" /></a>
-						</div>
-						<header>
-							<h2>香港公司注册<br />境外开户全程协助</h2>
-						</header>
-						<p>包含公司注册、SCR建册、法定秘书及绿盒全套文件；专业团队协助预约香港、新加坡及瑞士等国际银行开户。</p>
-						<ul class="actions">
-							<li><a href="#footer" class="button">了解详情</a></li>
-						</ul>
-					</section>
-				</div>
-			</div>
-		</div>
+    <!-- 关于我们 -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我们</h2>
+                <p>中商达祺科技集团，专业的企业服务提供商</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>专业企业服务，助力全球业务拓展</h3>
+                    <p>中商达祺科技（深圳）有限公司是一家专业的企业服务提供商，专注于为国内外企业提供全方位的商务解决方案。我们的团队由资深的企业服务专家、律师和会计师组成，拥有丰富的行业经验。</p>
+                    <p>我们致力于帮助企业简化复杂的商务流程，从公司注册到知识产权保护，从财务管理到全球业务布局，为客户提供一站式解决方案。</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>专业团队</h4>
+                                <p>资深企业服务专家</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>全球网络</h4>
+                                <p>覆盖主要国家和地区</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>高效服务</h4>
+                                <p>快速响应客户需求</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>合理价格</h4>
+                                <p>透明化收费体系</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<!-- Promo -->
-		<div id="promo-wrapper">
-			<section id="promo">
-				<h2>全球商标 & 知识产权布局</h2>
-				<a href="#footer" class="button">获取定制方案与报价</a>
-			</section>
-		</div>
+    <!-- 联系我们 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>联系我们</h2>
+                <p>有任何问题或需要咨询我们的服务，请随时与我们联系</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>获取专业咨询</h3>
+                    <p>我们的专业团队随时准备为您提供个性化的企业服务解决方案。</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>公司地址</h4>
+                                <p>深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>联系电话</h4>
+                                <p>13265597317</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>电子邮箱</h4>
+                                <p>1687879340@qq.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>发送消息</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">您的姓名</label>
+                            <input type="text" id="name" placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系电话</label>
+                            <input type="text" id="phone" placeholder="请输入您的联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">感兴趣的服务</label>
+                            <input type="text" id="service" placeholder="请选择您感兴趣的服务">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言内容</label>
+                            <textarea id="message" rows="4" placeholder="请输入您的具体需求"></textarea>
+                        </div>
+                        <button type="submit" class="btn">提交咨询</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<!-- Features 2 -->
-		<div class="wrapper">
-			<section class="container">
-				<header class="major">
-					<h2>一站式财税合规服务</h2>
-					<p>专业会计团队 · 智能做账系统 · 实时风险预警</p>
-				</header>
-				<div class="row features">
-					<section class="col-4 col-12-narrower feature">
-						<div class="image-wrapper first">
-							<a href="#" class="image featured"><img src="images/pic03.jpg" alt="财税服务" /></a>
-						</div>
-						<p>代理记账、汇算清缴、工商年报全流程托管，资深会计师团队为企业提供专业财税支持，让企业专注核心业务发展。</p>
-					</section>
-					<section class="col-4 col-12-narrower feature">
-						<div class="image-wrapper">
-							<a href="#" class="image featured"><img src="images/pic04.jpg" alt="海外公司注册" /></a>
-						</div>
-						<p>美国、英国、BVI、开曼、新加坡等全球主要经济体公司注册服务，助力企业跨境融资、上市及全球化业务拓展。</p>
-					</section>
-					<section class="col-4 col-12-narrower feature">
-						<div class="image-wrapper">
-							<a href="#" class="image featured"><img src="images/pic05.jpg" alt="知识产权服务" /></a>
-						</div>
-						<p>全球商标、专利、版权申请与维权服务，为企业品牌出海保驾护航，构建完善的知识产权保护体系。</p>
-					</section>
-				</div>
-				<ul class="actions major">
-					<li><a href="#footer" class="button">立即咨询</a></li>
-				</ul>
-			</section>
-		</div>
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>中商达祺科技集团</h3>
+                    <p>专业企业服务提供商，助力企业全球业务拓展。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#services">业务领域</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>我们的服务</h3>
+                    <ul>
+                        <li><a href="#service-1">深圳公司注册</a></li>
+                        <li><a href="#service-2">代理记账</a></li>
+                        <li><a href="#service-3">全球公司注册</a></li>
+                        <li><a href="#service-4">全球商标注册</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
+                        <li><i class="fas fa-phone"></i> 13265597317</li>
+                        <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 中商达祺科技（深圳）有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
 
-		<!-- Footer -->
-		<div id="footer-wrapper">
-			<div id="footer" class="container">
-				<header class="major">
-					<h2>联系中商达祺</h2>
-					<p>专业顾问7×12小时在线，最快30分钟响应<br />
-					免费获取公司注册与财税定制方案</p>
-				</header>
-				<div class="row">
-					<section class="col-6 col-12-narrower">
-						<form method="post" action="#">
-							<div class="row gtr-50">
-								<div class="col-6 col-12-mobile">
-									<input name="name" placeholder="姓名/企业名" type="text" required />
-								</div>
-								<div class="col-6 col-12-mobile">
-									<input name="phone" placeholder="电话" type="text" required />
-								</div>
-								<div class="col-12">
-									<textarea name="message" placeholder="需求描述（可选）"></textarea>
-								</div>
-								<div class="col-12">
-									<ul class="actions">
-										<li><input type="submit" value="提交咨询" /></li>
-										<li><input type="reset" value="清空" /></li>
-									</ul>
-								</div>
-							</div>
-						</form>
-					</section>
-					<section class="col-6 col-12-narrower">
-						<div class="row gtr-0">
-							<ul class="divided icons col-6 col-12-mobile">
-								<li class="icon brands fa-weixin"><a href="#">微信同号：13265597317</a></li>
-								<li class="icon solid fa-phone"><a href="tel:13265597317">13265597317</a></li>
-								<li class="icon solid fa-envelope"><a href="mailto:1687879340@qq.com">1687879340@qq.com</a></li>
-							</ul>
-							<ul class="divided icons col-6 col-12-mobile">
-								<li class="icon solid fa-map-marker-alt">深圳市龙岗区平湖街道<br />恒路E时代大厦402</li>
-								<li class="icon brands fa-whatsapp"><a href="https://wa.me/8613265597317">WhatsApp咨询</a></li>
-								<li class="icon brands fa-telegram"><a href="https://t.me/csdaq2024">Telegram咨询</a></li>
-							</ul>
-						</div>
-					</section>
-				</div>
-			</div>
-			<div id="copyright" class="container">
-				<ul class="menu">
-					<li>&copy; 2024 中商达祺科技（深圳）有限公司 版权所有 | 粤ICP备2023047775号-1</li>
-					<li>Design: <a href="http://html5up.net">HTML5 UP</a> 二次定制</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script>
-		// 侧边栏菜单切换功能
-		document.addEventListener('DOMContentLoaded', function() {
-			const menuToggle = document.querySelector('.menu-toggle');
-			const sidebar = document.getElementById('sidebar');
-			
-			// 移动端菜单切换
-			menuToggle.addEventListener('click', function() {
-				sidebar.classList.toggle('active');
-			});
-			
-			// 导航链接点击后在移动端自动关闭菜单
-			const navLinks = document.querySelectorAll('#sidebar nav a');
-			navLinks.forEach(link => {
-				link.addEventListener('click', function() {
-					if (window.innerWidth <= 768) {
-						sidebar.classList.remove('active');
-					}
-				});
-			});
-		});
-	</script>
+        // 移动端菜单切换
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+            
+            // 切换菜单图标动画
+            const spans = this.querySelectorAll('span');
+            if (nav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // 关闭移动端菜单
+                if (window.innerWidth <= 768) {
+                    document.querySelector('nav').classList.remove('active');
+                    document.querySelector('.mobile-menu-toggle span:nth-child(1)').style.transform = 'none';
+                    document.querySelector('.mobile-menu-toggle span:nth-child(2)').style.opacity = '1';
+                    document.querySelector('.mobile-menu-toggle span:nth-child(3)').style.transform = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
