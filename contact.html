@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>联系我们 - 中商达祺科技集团</title>
+    <title>业务领域 - 中商达祺科技集团</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 基础样式 - 橙色主题 */
+        /* 基础样式 - 调整为橙色主题，与主页保持一致 */
         :root {
-            --primary-color: #E67E22;
-            --primary-dark: #D35400;
-            --primary-light: #F39C12;
-            --secondary-color: #2C3E50;
-            --accent-color: #E74C3C;
+            --primary-color: #E67E22; /* 主橙色 */
+            --primary-dark: #D35400;  /* 深橙色 */
+            --primary-light: #F39C12; /* 浅橙色 */
+            --secondary-color: #34495E; /* 深蓝灰色作为辅助色 */
+            --accent-color: #F1C40F; /* 金色作为强调色 */
             --light-color: #f8f9fa;
-            --dark-color: #2C3E50;
-            --text-color: #34495E;
+            --dark-color: #333;
+            --text-color: #444;
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
         }
         
         * {
@@ -51,9 +50,8 @@
         
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--dark-color);
+            color: var(--primary-color);
             margin-bottom: 15px;
-            font-weight: 600;
         }
         
         .section-title p {
@@ -85,29 +83,17 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            box-shadow: 0 4px 6px rgba(230, 126, 34, 0.2);
         }
         
         .btn:hover {
             background: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(230, 126, 34, 0.3);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         /* 页面特定样式 */
         .page-hero {
-            background: var(--gradient);
+            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
             color: white;
             padding: 160px 0 80px;
             text-align: center;
@@ -143,33 +129,45 @@
             z-index: 1;
         }
         
-        /* 联系信息样式 */
-        .contact-info {
+        .services-overview {
+            background: var(--light-color);
+        }
+        
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-bottom: 4rem;
         }
         
-        .info-card {
+        .service-card {
             background: white;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border-radius: 10px;
             box-shadow: var(--shadow);
             text-align: center;
             transition: transform 0.3s;
-            border-top: 4px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
         }
         
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-color);
         }
         
-        .info-icon {
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
             width: 80px;
             height: 80px;
-            background: rgba(230, 126, 34, 0.1);
+            background: #FFF3E0; /* 浅橙色背景 */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -179,209 +177,84 @@
             color: var(--primary-color);
         }
         
-        /* 联系表单样式 */
-        .contact-form-section {
-            background: var(--light-color);
-            padding: 4rem 0;
-        }
-        
-        .form-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        
-        .form-info {
-            background: var(--gradient);
-            color: white;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .form-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-info ul {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-        
-        .form-info li {
+        .service-card h3 {
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .form-info li i {
-            margin-right: 10px;
-            width: 20px;
-        }
-        
-        .form-content {
-            padding: 3rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border 0.3s;
-        }
-        
-        .form-group input:focus, 
-        .form-group select:focus, 
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.1);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        /* 地图样式 */
-        .map-section {
-            padding: 4rem 0;
-        }
-        
-        .map-container {
-            height: 400px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        
-        .map-placeholder {
-            height: 100%;
-            background: var(--light-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             color: var(--primary-color);
+            font-size: 1.4rem;
         }
         
-        .map-placeholder i {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        .service-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
         }
         
-        /* 常见问题样式 */
-        .faq-section {
-            background: var(--light-color);
+        .service-features {
+            margin: 3rem 0;
         }
         
-        .faq-item {
-            background: white;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-        }
-        
-        .faq-item:hover {
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .faq-question {
-            padding: 1.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            transition: background 0.3s;
-        }
-        
-        .faq-question:hover {
-            background: #f8f9fa;
-        }
-        
-        .faq-answer {
-            padding: 0 1.5rem 1.5rem;
-            display: none;
-        }
-        
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-        
-        /* 团队联系样式 */
-        .team-contact {
-            padding: 4rem 0;
-        }
-        
-        .team-grid {
+        .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
         
-        .team-member {
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: #FFF3E0; /* 浅橙色背景 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        /* 服务流程样式 */
+        .service-process {
+            background: var(--light-color);
+            padding: 80px 0;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .process-step {
             background: white;
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
             box-shadow: var(--shadow);
-            transition: transform 0.3s;
+            position: relative;
         }
         
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .member-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+        .step-number {
+            width: 50px;
+            height: 50px;
             background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 2.5rem;
-            margin: 0 auto 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
         }
         
-        .member-contact {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #f0f0f0;
-        }
-        
-        .member-contact a {
+        .process-step h3 {
             color: var(--primary-color);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
         
         /* 导航栏样式 */
@@ -405,6 +278,11 @@
         .logo {
             display: flex;
             align-items: center;
+        }
+        
+        .logo img {
+            height: 45px;
+            margin-right: 15px;
         }
         
         .logo-text {
@@ -512,21 +390,57 @@
             transition: 0.3s;
         }
         
-        /* 响应式设计 */
-        @media (max-width: 992px) {
-            .form-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-info {
-                order: 2;
-            }
-            
-            .form-content {
-                order: 1;
-            }
+        /* 页脚样式 - 与主页保持一致的橙色主题 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
         }
         
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
         @media (max-width: 768px) {
             nav {
                 display: none;
@@ -574,26 +488,33 @@
                 font-size: 2.2rem;
             }
             
-            .form-row {
-                grid-template-columns: 1fr;
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 2rem;
+                padding-right: 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 导航栏 - 添加logo -->
     <header>
         <div class="container header-container">
             <div class="logo">
+                <img src="logo.png" alt="中商达祺科技集团Logo">
                 <div class="logo-text">
                     <div class="brand">中商达祺科技集团</div>
+                    <div class="company">中商达祺科技（深圳）有限公司</div>
                 </div>
             </div>
             <nav>
                 <ul>
                     <li><a href="index.html">首页</a></li>
                     <li class="dropdown">
-                        <a href="services.html">业务领域</a>
+                        <a href="services.html" class="active">业务领域</a>
                         <ul class="dropdown-menu">
                             <li><a href="shenzhen-registration.html">深圳公司注册</a></li>
                             <li><a href="accounting.html">代理记账</a></li>
@@ -605,7 +526,7 @@
                     </li>
                     <li><a href="cases.html">成功案例</a></li>
                     <li><a href="about.html">关于我们</a></li>
-                    <li><a href="contact.html" class="active">联系我们</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-toggle">
@@ -619,235 +540,156 @@
     <!-- 页面英雄区域 -->
     <section class="page-hero">
         <div class="container">
-            <h1>联系我们</h1>
-            <p>有任何问题或需要咨询我们的服务，请随时与我们联系，专业团队为您提供个性化解决方案</p>
+            <h1>业务领域</h1>
+            <p>全方位企业服务解决方案，助力您的业务从起步到全球化发展</p>
         </div>
     </section>
 
-    <!-- 联系信息 -->
-    <section class="contact-section">
+    <!-- 业务总览 -->
+    <section class="services-overview">
         <div class="container">
             <div class="section-title">
-                <h2>联系信息</h2>
-                <p>多种联系方式，随时为您提供专业服务</p>
+                <h2>我们的服务</h2>
+                <p>专业的企业服务，覆盖企业发展的各个阶段</p>
             </div>
-            
-            <div class="contact-info">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
                     </div>
-                    <h3>公司地址</h3>
-                    <p>深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</p>
-                    <a href="#map" class="btn-secondary" style="margin-top: 1rem;">查看地图</a>
+                    <h3>深圳公司注册</h3>
+                    <p>专业高效的深圳公司注册服务，一站式解决企业设立所有流程</p>
+                    <a href="shenzhen-registration.html" class="btn">了解详情</a>
                 </div>
-                
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-phone"></i>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
                     </div>
-                    <h3>联系电话</h3>
-                    <p>13265597317</p>
-                    <p>工作日 9:00-18:00</p>
-                    <a href="tel:13265597317" class="btn" style="margin-top: 1rem;">立即拨打</a>
+                    <h3>代理记账</h3>
+                    <p>专业财务团队提供精准记账报税服务，确保企业财税合规</p>
+                    <a href="accounting.html" class="btn">了解详情</a>
                 </div>
-                
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-envelope"></i>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-americas"></i>
                     </div>
-                    <h3>电子邮箱</h3>
-                    <p>1687879340@qq.com</p>
-                    <p>24小时内回复</p>
-                    <a href="mailto:1687879340@qq.com" class="btn" style="margin-top: 1rem;">发送邮件</a>
+                    <h3>全球公司注册</h3>
+                    <p>覆盖全球主要国家的公司注册服务，助力企业国际化布局</p>
+                    <a href="global-registration.html" class="btn">了解详情</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 联系表单 -->
-    <section class="contact-form-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>在线咨询</h2>
-                <p>填写以下表单，我们的专业顾问会尽快与您联系</p>
-            </div>
-            
-            <div class="form-container">
-                <div class="form-info">
-                    <h3>为什么选择我们？</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> 专业团队，10年以上行业经验</li>
-                        <li><i class="fas fa-check"></i> 一对一专属顾问服务</li>
-                        <li><i class="fas fa-check"></i> 全程跟进，确保服务质量</li>
-                        <li><i class="fas fa-check"></i> 价格透明，无隐藏费用</li>
-                        <li><i class="fas fa-check"></i> 高效办理，节省您的时间</li>
-                    </ul>
-                    <p>提交表单后，我们将在1小时内与您联系，为您提供专业的咨询服务。</p>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-trademark"></i>
+                    </div>
+                    <h3>全球商标注册</h3>
+                    <p>专业知识产权团队，为企业提供全球商标注册与保护服务</p>
+                    <a href="trademark.html" class="btn">了解详情</a>
                 </div>
-                
-                <div class="form-content">
-                    <form id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">您的姓名 *</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">联系电话 *</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">电子邮箱</label>
-                            <input type="email" id="email" name="email">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">感兴趣的服务 *</label>
-                            <select id="service" name="service" required>
-                                <option value="">请选择服务类型</option>
-                                <option value="shenzhen-registration">深圳公司注册</option>
-                                <option value="accounting">代理记账</option>
-                                <option value="global-registration">全球公司注册</option>
-                                <option value="trademark">全球商标注册</option>
-                                <option value="intellectual-property">全球知产布局</option>
-                                <option value="hongkong-registration">香港公司注册</option>
-                                <option value="other">其他服务</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">具体需求 *</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="请详细描述您的需求，以便我们为您提供更精准的服务"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn" style="width: 100%;">提交咨询</button>
-                    </form>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>全球知产布局</h3>
+                    <p>战略性知识产权规划与布局，保护企业核心技术与品牌价值</p>
+                    <a href="intellectual-property.html" class="btn">了解详情</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>香港公司注册</h3>
+                    <p>专业的香港公司注册服务，利用香港优势拓展国际市场</p>
+                    <a href="hongkong-registration.html" class="btn">了解详情</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 地图 -->
-    <section class="map-section" id="map">
+    <!-- 服务特色 -->
+    <section class="service-features">
         <div class="container">
             <div class="section-title">
-                <h2>我们的位置</h2>
-                <p>欢迎莅临公司参观咨询</p>
+                <h2>服务特色</h2>
+                <p>为什么选择中商达祺科技集团</p>
             </div>
-            
-            <div class="map-container">
-                <div class="map-placeholder">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h3>深圳市龙岗区平湖街道禾花社区平吉大道北159号</h3>
-                    <p>恒路E时代大厦402</p>
-                    <p style="margin-top: 1rem;">附近交通：平湖地铁站D出口，步行约10分钟</p>
-                </div>
-                <!-- 实际项目中这里可以嵌入真实的地图API -->
-            </div>
-        </div>
-    </section>
-
-    <!-- 团队联系 -->
-    <section class="team-contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>专属顾问团队</h2>
-                <p>直接联系我们的专业顾问，获得个性化服务</p>
-            </div>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-tie"></i>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <h3>张经理</h3>
-                    <p>企业服务总监</p>
-                    <p>10年企业服务经验，精通各类公司注册流程</p>
-                    <div class="member-contact">
-                        <a href="tel:13265597317"><i class="fas fa-phone"></i> 13265597317</a>
-                        <a href="mailto:zhang@zsdq.com"><i class="fas fa-envelope"></i> zhang@zsdq.com</a>
+                    <div class="feature-content">
+                        <h3>高效快捷</h3>
+                        <p>优化服务流程，缩短办理时间，提高工作效率</p>
                     </div>
                 </div>
-                
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-user-graduate"></i>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>李会计</h3>
-                    <p>财务顾问</p>
-                    <p>注册会计师，8年财税服务经验</p>
-                    <div class="member-contact">
-                        <a href="tel:13265597317"><i class="fas fa-phone"></i> 13265597317</a>
-                        <a href="mailto:li@zsdq.com"><i class="fas fa-envelope"></i> li@zsdq.com</a>
+                    <div class="feature-content">
+                        <h3>专业可靠</h3>
+                        <p>资深专业团队，确保服务质量和服务合规性</p>
                     </div>
                 </div>
-                
-                <div class="team-member">
-                    <div class="member-avatar">
-                        <i class="fas fa-globe"></i>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
                     </div>
-                    <h3>王顾问</h3>
-                    <p>国际业务专家</p>
-                    <p>精通全球公司注册和知识产权保护</p>
-                    <div class="member-contact">
-                        <a href="tel:13265597317"><i class="fas fa-phone"></i> 13265597317</a>
-                        <a href="mailto:wang@zsdq.com"><i class="fas fa-envelope"></i> wang@zsdq.com</a>
+                    <div class="feature-content">
+                        <h3>价格透明</h3>
+                        <p>明码标价，无隐藏费用，让客户放心选择</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>全程服务</h3>
+                        <p>从咨询到售后，提供一站式全程服务支持</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 常见问题 -->
-    <section class="faq-section">
+    <!-- 服务流程 -->
+    <section class="service-process">
         <div class="container">
             <div class="section-title">
-                <h2>常见问题</h2>
-                <p>关于联系我们和服务的常见问题解答</p>
+                <h2>服务流程</h2>
+                <p>清晰的服务流程，让您全程无忧</p>
             </div>
-            
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>咨询需要收费吗？</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>初次咨询完全免费。我们的专业顾问会详细了解您的需求，并提供初步的方案建议。只有在您确认委托我们办理具体业务后，才会产生相应的服务费用。</p>
-                    </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>需求沟通</h3>
+                    <p>详细了解客户需求，提供专业建议</p>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>一般多久会回复咨询？</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>工作时间内，我们承诺在1小时内响应您的咨询。非工作时间提交的咨询，我们会在下一个工作日上午10点前与您联系。紧急情况请直接拨打我们的联系电话。</p>
-                    </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>方案制定</h3>
+                    <p>根据需求制定个性化服务方案</p>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>可以上门服务吗？</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>可以的。对于深圳地区的客户，我们可以提供上门服务。外地客户我们可以通过线上会议的方式进行详细沟通，确保服务质量和效率。</p>
-                    </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>协议签订</h3>
+                    <p>明确服务内容和费用，签订服务协议</p>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>需要准备哪些材料进行咨询？</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>初次咨询不需要准备特定材料。我们的顾问会引导您提供必要的信息。如果您已经有相关业务资料，可以提前准备好，这样有助于我们提供更精准的建议。</p>
-                    </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>服务执行</h3>
+                    <p>专业团队高效执行服务内容</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>进度反馈</h3>
+                    <p>定期向客户反馈服务进度</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3>完成交付</h3>
+                    <p>完成服务并交付成果，提供后续支持</p>
                 </div>
             </div>
         </div>
@@ -866,7 +708,7 @@
                     <ul>
                         <li><a href="index.html">首页</a></li>
                         <li><a href="services.html">业务领域</a></li>
-                        <li><a href="about.html">关于我们</a></li>
+                         <li><a href="about.html">关于我们</a></li>
                         <li><a href="contact.html">联系我们</a></li>
                     </ul>
                 </div>
@@ -912,7 +754,6 @@
             const nav = document.querySelector('nav');
             nav.classList.toggle('active');
             
-            // 切换菜单图标动画
             const spans = this.querySelectorAll('span');
             if (nav.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -924,45 +765,6 @@
                 spans[2].style.transform = 'none';
             }
         });
-
-        // FAQ切换
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                item.classList.toggle('active');
-            });
-        });
-
-        // 表单提交处理
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 获取表单数据
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const phone = formData.get('phone');
-            
-            // 简单验证
-            if (!name || !phone) {
-                alert('请填写必填字段');
-                return;
-            }
-            
-            // 模拟提交成功
-            alert(`感谢 ${name} 的咨询！我们的顾问会尽快联系您（${phone}）。`);
-            this.reset();
-        });
-
-        // 平滑滚动到地图
-        document.querySelector('a[href="#map"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('map').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
     </script>
 </body>
-
 </html>
-
-
