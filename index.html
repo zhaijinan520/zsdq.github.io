@@ -1,70 +1,971 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中商达祺科技集团 - 专业企业服务与全球业务布局</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 - 调整为橙色主题 */
+        :root {
+            --primary-color: #E67E22; /* 主橙色 */
+            --primary-dark: #D35400;  /* 深橙色 */
+            --primary-light: #F39C12; /* 浅橙色 */
+            --secondary-color: #34495E; /* 深蓝灰色作为辅助色 */
+            --accent-color: #F1C40F; /* 金色作为强调色 */
+            --light-color: #f8f9fa;
+            --dark-color: #333;
+            --text-color: #444;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 45px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text .brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .logo-text .company {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            position: relative;
+            margin-left: 1.8rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* 英雄区域样式 - 调整为橙色渐变 */
+        .hero {
+            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+            color: white;
+            padding: 160px 0 100px;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            width: 60%;
+            padding-right: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .hero-animation {
+            width: 40%;
+            height: 400px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .floating-elements {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .element-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .element-2 {
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+        
+        .element-3 {
+            width: 120px;
+            height: 120px;
+            top: 40%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* 业务区域样式 - 调整为橙色主题 */
+        .services {
+            background: var(--light-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-color);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: #FFF3E0; /* 浅橙色背景 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+        
+        .service-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        /* 关于我们样式 */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: #FFF3E0; /* 浅橙色背景 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .about-image {
+            flex: 1;
+            background: var(--light-color);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--primary-color);
+        }
+        
+        /* 联系方式样式 - 调整为橙色主题 */
+        .contact {
+            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+            color: white;
+        }
+        
+        .contact .section-title h2, .contact .section-title p {
+            color: white;
+        }
+        
+        .contact .section-title::after {
+            background: var(--accent-color);
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 页脚样式 - 调整为橙色主题 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 140px 0 80px;
+            }
+            
+            .hero-content, .hero-animation {
+                width: 100%;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active ul {
+                flex-direction: column;
+            }
+            
+            nav.active li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            nav.active a {
+                display: block;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 2rem;
+                padding-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">
+                    <div class="brand">中商达祺科技集团</div>
+                    <div class="company">中商达祺科技（深圳）有限公司</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li class="dropdown">
+                        <a href="#services">业务领域</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#service-1">深圳公司注册</a></li>
+                            <li><a href="#service-2">代理记账</a></li>
+                            <li><a href="#service-3">全球公司注册</a></li>
+                            <li><a href="#service-4">全球商标注册</a></li>
+                            <li><a href="#service-5">全球知产布局</a></li>
+                            <li><a href="#service-6">香港公司注册</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#solutions">解决方案</a></li>
+                    <li><a href="#cases">成功案例</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
 
-* {margin: 0; padding: 0; box-sizing: border-box;}
-body {font-family: 'Segoe UI','Microsoft YaHei',Arial,sans-serif; line-height: 1.6; color: var(--text-color); background: var(--light-color);}
-.container {width: 90%; max-width: 1200px; margin: 0 auto;}
-section {padding: 80px 0;}
-.section-title {text-align: center; margin-bottom: 50px; position: relative;}
-.section-title h2 {font-size: 2.5rem; color: var(--dark-color); margin-bottom: 15px;}
-.section-title p {font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto;}
-.section-title::after {content: ''; display: block; width: 80px; height: 4px; background: var(--primary-color); margin: 15px auto; border-radius: 2px;}
-.btn {display: inline-block; padding: 12px 30px; background: var(--primary-color); color: white; border: none; border-radius: 5px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all .3s ease; text-decoration: none;}
-.btn:hover {background: #e55a00; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,107,0,.25);}
-.btn-secondary {background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);}
-.btn-secondary:hover {background: var(--primary-color); color: white;}
+    <!-- 首页英雄区域 -->
+    <section id="home" class="hero">
+        <div class="container" style="display: flex; align-items: center;">
+            <div class="hero-content">
+                <h1>专业企业服务，全球业务布局</h1>
+                <p>中商达祺科技集团致力于为企业提供全方位的商务服务，从公司注册到知识产权保护，助力企业在全球市场取得成功。</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn">了解我们的服务</a>
+                    <a href="#contact" class="btn btn-secondary">免费咨询</a>
+                </div>
+            </div>
+            <div class="hero-animation">
+                <div class="floating-elements">
+                    <div class="floating-element element-1">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="floating-element element-2">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="floating-element element-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* 导航栏 */
-header {background: rgba(255,255,255,.95); box-shadow: 0 2px 10px rgba(0,0,0,.1); position: fixed; width: 100%; top: 0; z-index: 1000; transition: all .3s ease;}
-.header-container {display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;}
-.logo-text .brand {font-size: 1.4rem; font-weight: 700; color: var(--dark-color); line-height: 1.2;}
-.logo-text .company {font-size: .85rem; color: var(--text-color);}
-nav a {color: var(--dark-color); font-weight: 500; transition: color .3s;}
-nav a::after {background: var(--primary-color);}
-nav a:hover, nav a.active {color: var(--primary-color);}
-.dropdown-menu {background: white; box-shadow: var(--shadow);}
+    <!-- 业务领域 -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>核心业务领域</h2>
+                <p>我们提供全方位的企业服务，助力您的业务从起步到全球化发展</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>深圳公司注册</h3>
+                    <p>专业高效的深圳公司注册服务，一站式解决企业设立所有流程</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>代理记账</h3>
+                    <p>专业财务团队提供精准记账报税服务，确保企业财税合规</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>全球公司注册</h3>
+                    <p>覆盖全球主要国家的公司注册服务，助力企业国际化布局</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-trademark"></i>
+                    </div>
+                    <h3>全球商标注册</h3>
+                    <p>专业知识产权团队，为企业提供全球商标注册与保护服务</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>全球知产布局</h3>
+                    <p>战略性知识产权规划与布局，保护企业核心技术与品牌价值</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>香港公司注册</h3>
+                    <p>专业的香港公司注册服务，利用香港优势拓展国际市场</p>
+                    <a href="#contact" class="btn btn-secondary">立即咨询</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* Hero 区域 */
-.hero {background: linear-gradient(135deg, var(--dark-color) 0%, #2c2c2c 100%); color: white;}
-.hero h1 {color: white;}
-.hero p {opacity: .9;}
-.hero-buttons .btn {background: var(--primary-color);}
-.hero-buttons .btn-secondary {border-color: var(--primary-color); color: var(--primary-color);}
-.hero-buttons .btn-secondary:hover {background: var(--primary-color); color: white;}
-.floating-element {background: rgba(255,255,255,.1); color: white;}
+    <!-- 关于我们 -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我们</h2>
+                <p>中商达祺科技集团，专业的企业服务提供商</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>专业企业服务，助力全球业务拓展</h3>
+                    <p>中商达祺科技（深圳）有限公司是一家专业的企业服务提供商，专注于为国内外企业提供全方位的商务解决方案。我们的团队由资深的企业服务专家、律师和会计师组成，拥有丰富的行业经验。</p>
+                    <p>我们致力于帮助企业简化复杂的商务流程，从公司注册到知识产权保护，从财务管理到全球业务布局，为客户提供一站式解决方案。</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>专业团队</h4>
+                                <p>资深企业服务专家</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>全球网络</h4>
+                                <p>覆盖主要国家和地区</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>高效服务</h4>
+                                <p>快速响应客户需求</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>合理价格</h4>
+                                <p>透明化收费体系</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* 业务卡片 */
-.services {background: var(--light-color);}
-.service-card {background: white; box-shadow: var(--shadow);}
-.service-card::before {background: var(--primary-color);}
-.service-icon {background: #fff3e0; color: var(--primary-color);}
-.service-card h3 {color: var(--dark-color);}
-.service-card p {color: var(--text-color);}
-.btn-secondary {border-color: var(--primary-color); color: var(--primary-color);}
-.btn-secondary:hover {background: var(--primary-color); color: white;}
+    <!-- 联系我们 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>联系我们</h2>
+                <p>有任何问题或需要咨询我们的服务，请随时与我们联系</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>获取专业咨询</h3>
+                    <p>我们的专业团队随时准备为您提供个性化的企业服务解决方案。</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>公司地址</h4>
+                                <p>深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>联系电话</h4>
+                                <p>13265597317</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>电子邮箱</h4>
+                                <p>1687879340@qq.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>发送消息</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">您的姓名</label>
+                            <input type="text" id="name" placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系电话</label>
+                            <input type="text" id="phone" placeholder="请输入您的联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">感兴趣的服务</label>
+                            <input type="text" id="service" placeholder="请选择您感兴趣的服务">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言内容</label>
+                            <textarea id="message" rows="4" placeholder="请输入您的具体需求"></textarea>
+                        </div>
+                        <button type="submit" class="btn">提交咨询</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* 关于我们 */
-.about-text h3 {color: var(--dark-color);}
-.about-image {background: var(--light-color); color: var(--primary-color);}
-.feature-icon {background: var(--light-color); color: var(--primary-color);}
-
-/* 联系我们 */
-.contact {background: linear-gradient(135deg, var(--dark-color) 0%, #2c2c2c 100%); color: white;}
-.contact .section-title h2, .contact .section-title p {color: white;}
-.contact .section-title::after {background: var(--primary-color);}
-.contact-form {background: rgba(255,255,255,.1); backdrop-filter: blur(10px);}
-.contact-icon {background: rgba(255,255,255,.1); color: white;}
-.contact-form input, .contact-form textarea {border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.1); color: white;}
-.contact-form input::placeholder, .contact-form textarea::placeholder {color: rgba(255,255,255,.7);}
-.btn[type="submit"] {background: var(--primary-color);}
-
-/* 页脚 */
-footer {background: var(--dark-color); color: white;}
-.footer-column h3 {color: var(--primary-color);}
-.footer-column ul li a {color: #ccc;}
-.footer-column ul li a:hover {color: var(--primary-color);}
-.footer-bottom {border-top: 1px solid #444; color: #999;}
-
-/* 响应式不变 */
-@media (max-width: 992px) {...}
-@media (max-width: 768px) {...}
-</style>
-
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>中商达祺科技集团</h3>
+                    <p>专业企业服务提供商，助力企业全球业务拓展。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#services">业务领域</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>我们的服务</h3>
+                    <ul>
+                        <li><a href="#service-1">深圳公司注册</a></li>
+                        <li><a href="#service-2">代理记账</a></li>
+                        <li><a href="#service-3">全球公司注册</a></li>
+                        <li><a href="#service-4">全球商标注册</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
+                        <li><i class="fas fa-phone"></i> 13265597317</li>
+                        <li>
