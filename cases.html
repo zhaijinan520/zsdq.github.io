@@ -358,7 +358,7 @@
             display: block;
         }
         
-        /* 导航栏样式 - 添加logo样式 */
+        /* 导航栏样式 - 修正LOGO大小和样式 */
         header {
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -381,9 +381,10 @@
             align-items: center;
         }
         
+        /* 修正LOGO大小 - 与其他页面统一 */
         .logo img {
-            height: 45px;
-            margin-right: 15px;
+            height: 60px; /* 统一LOGO大小 */
+            margin-right: 10px;
         }
         
         .logo-text {
@@ -392,7 +393,7 @@
         }
         
         .logo-text .brand {
-            font-size: 1.8rem;
+            font-size: 1.8rem; /* 统一品牌名称大小 */
             font-weight: 700;
             color: var(--primary-color);
             line-height: 1.2;
@@ -420,13 +421,14 @@
             transition: color 0.3s;
             padding: 0.5rem 0;
             position: relative;
+            font-size: 1.05rem; /* 统一导航文字大小 */
         }
         
         nav a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 3px; /* 统一导航栏下划线高度 */
             bottom: 0;
             left: 0;
             background-color: var(--primary-color);
@@ -471,6 +473,7 @@
             display: block;
             padding: 0.8rem 1.5rem;
             border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem; /* 统一下拉菜单文字大小 */
         }
         
         .dropdown-menu a:hover {
@@ -489,6 +492,78 @@
             background: var(--dark-color);
             margin: 3px 0;
             transition: 0.3s;
+        }
+        
+        /* QQ链接样式 */
+        .qq-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .qq-link:hover {
+            color: var(--accent-color);
+        }
+        
+        /* 页脚QQ链接样式 */
+        .footer-column ul li a.qq-link {
+            color: #ccc;
+        }
+        
+        .footer-column ul li a.qq-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* 页脚样式 - 与其他页面统一 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem; /* 统一页脚标题大小 */
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem; /* 统一页脚文字大小 */
+            white-space: nowrap; /* 防止文字换行 */
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
         }
         
         /* 响应式设计 */
@@ -557,18 +632,40 @@
             .cases-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 2rem;
+                padding-right: 0;
+            }
+            
+            .footer-column ul li {
+                white-space: normal; /* 在移动设备上允许换行 */
+            }
+            
+            /* 移动端调整logo大小 */
+            .logo img {
+                height: 45px;
+                margin-right: 8px;
+            }
+            
+            .logo-text .brand {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 - 添加logo -->
+    <!-- 导航栏 - 修正LOGO显示 -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="logo.png" alt="中商达祺科技集团Logo">
+                <img src="logo.png" alt="中商达祺科技集团">
                 <div class="logo-text">
                     <div class="brand">中商达祺科技集团</div>
-                    <div class="company">中商达祺科技（深圳）有限公司</div>
                 </div>
             </div>
             <nav>
@@ -663,14 +760,13 @@
                                 <div class="stat-label">完成注册</div>
                             </div>
                             <div class="stat-item">
-                                <极简代码>
                                 <div class="stat-value">3国</div>
                                 <div class="stat-label">业务布局</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-value">50%</div>
                                 <div class="stat-label">成本节约</div>
-                            </极简代码>
+                            </div>
                         </div>
                         <a href="#" class="btn-secondary" style="width: 100%; text-align: center; display: block;">查看详情</a>
                     </div>
@@ -733,7 +829,7 @@
                 <!-- 案例4 -->
                 <div class="case-card" data-category="global">
                     <div class="case-image">
-                        <i class="fas fa-mobile-alt"></极简代码>
+                        <i class="fas fa-mobile-alt"></i>
                         <div class="case-category">国际业务</div>
                     </div>
                     <div class="case-content">
@@ -932,6 +1028,13 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>中商达祺科技集团</h3>
+                    <ul>
+                        <li>中商达祺科技（深圳）有限公司</li>
+                        <li>中商达祺科技（佛山）有限公司</li>
+                        <li>中商达祺科技（深圳）有限公司河南分公司</li>
+                        <li>一点阳光企业管理（深圳）有限公司</li>
+                        <li>一点阳光知识产权（深圳）有限公司</li>
+                    </ul>
                     <p>专业企业服务提供商，助力企业全球业务拓展。</p>
                 </div>
                 <div class="footer-column">
@@ -957,7 +1060,15 @@
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
                         <li><i class="fas fa-phone"></i> 13265597317</li>
-                        <li><i class="fas fa-envelope"></i> 1687879340@qq.com</极简代码>
+                        <li>
+                            <i class="fab fa-qq"></i> 
+                            <a href="http://wpa.qq.com/msgrd?v=3&uin=1687879340&site=qq&menu=yes" 
+                               target="_blank" class="qq-link">
+                                QQ: 1687879340
+                            </a>
+                        </li>
+                        <li><i class="fas fa-comment"></i> 企业微信: 扫描二维码添加</li>
+                        <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
                     </ul>
                 </div>
             </div>
@@ -1041,6 +1152,14 @@
                 // 显示对应内容
                 const industry = this.getAttribute('data-industry');
                 document.getElementById(`${industry}-content`).classList.add('active');
+            });
+        });
+
+        // 添加QQ链接点击统计（可选）
+        document.querySelectorAll('.qq-link').forEach(link => {
+            link.addEventListener('click', function() {
+                // 这里可以添加统计代码，如Google Analytics事件跟踪
+                console.log('QQ咨询链接被点击');
             });
         });
     </script>
