@@ -17,6 +17,7 @@
             --dark-color: #333;
             --text-color: #444;
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
         }
         
         * {
@@ -52,6 +53,7 @@
             font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 15px;
+            font-weight: 600;
         }
         
         .section-title p {
@@ -83,17 +85,29 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
+            box-shadow: 0 4px 6px rgba(230, 126, 34, 0.2);
         }
         
         .btn:hover {
             background: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 12px rgba(230, 126, 34, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
         }
         
         /* 页面特定样式 */
         .page-hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            background: var(--gradient);
             color: white;
             padding: 160px 0 80px;
             text-align: center;
@@ -162,6 +176,7 @@
         
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .service-icon {
@@ -257,7 +272,7 @@
             margin-bottom: 1rem;
         }
         
-        /* 导航栏样式 */
+        /* 导航栏样式 - 修正LOGO大小问题 */
         header {
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -280,20 +295,10 @@
             align-items: center;
         }
         
-        /* 新增logo大小控制类 */
-        .logo-size-small img {
-            height: 40px;
+        /* 修正LOGO大小控制 */
+        .logo img {
+            height: 60px; /* 统一LOGO大小，与主页一致 */
             margin-right: 10px;
-        }
-        
-        .logo-size-medium img {
-            height: 50px;
-            margin-right: 15px;
-        }
-        
-        .logo-size-large img {
-            height: 60px;
-            margin-right: 20px;
         }
         
         .logo-text {
@@ -330,13 +335,14 @@
             transition: color 0.3s;
             padding: 0.5rem 0;
             position: relative;
+            font-size: 1.05rem;
         }
         
         nav a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 3px;
             bottom: 0;
             left: 0;
             background-color: var(--primary-color);
@@ -381,6 +387,7 @@
             display: block;
             padding: 0.8rem 1.5rem;
             border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
         }
         
         .dropdown-menu a:hover {
@@ -420,7 +427,7 @@
         }
         
         .footer-column h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
             color: var(--primary-color);
         }
@@ -431,6 +438,7 @@
         
         .footer-column ul li {
             margin-bottom: 0.8rem;
+            font-size: 0.85rem;
         }
         
         .footer-column ul li a {
@@ -509,31 +517,25 @@
             }
             
             /* 移动端调整logo大小 */
-            .logo-size-small img {
-                height: 35px;
+            .logo img {
+                height: 45px;
                 margin-right: 8px;
             }
             
-            .logo-size-medium img {
-                height: 40px;
-                margin-right: 10px;
-            }
-            
-            .logo-size-large img {
-                height: 45px;
-                margin-right: 12px;
+            .logo-text .brand {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 - 添加logo -->
+    <!-- 导航栏 - 修正LOGO显示 -->
     <header>
         <div class="container header-container">
             <div class="logo">
-               <img src="logo.png" alt="中商达祺科技集团">
-                 <div class="logo-text">
-                 <div class="brand">中商达祺科技集团</div>
+                <img src="logo.png" alt="中商达祺科技集团">
+                <div class="logo-text">
+                    <div class="brand">中商达祺科技集团</div>
                 </div>
             </div>
             <nav>
@@ -598,7 +600,7 @@
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-globe-americas"></i>
-                    </极简代码>
+                    </div>
                     <h3>全球公司注册</h3>
                     <p>覆盖全球主要国家的公司注册服务，助力企业国际化布局</p>
                     <a href="global-registration.html" class="btn">了解详情</a>
@@ -791,14 +793,6 @@
                 spans[2].style.transform = 'none';
             }
         });
-        
-        // Logo大小调整功能
-        function adjustLogoSize(size) {
-            const logo = document.querySelector('.logo');
-            logo.classList.remove('logo-size-small', 'logo-size-medium', 'logo-size-large');
-            logo.classList.add(`logo-size-${size}`);
-        }
     </script>
 </body>
 </html>
-
