@@ -238,6 +238,26 @@
             transition: 0.3s;
         }
         
+        /* QQ链接样式 */
+        .qq-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .qq-link:hover {
+            color: var(--accent-color);
+        }
+        
+        /* 页脚QQ链接样式 */
+        .footer-column ul li a.qq-link {
+            color: #ccc;
+        }
+        
+        .footer-column ul li a.qq-link:hover {
+            color: var(--primary-color);
+        }
+        
         /* 英雄区域样式 - 调整为橙色渐变 */
         .hero {
             background: var(--gradient);
@@ -543,6 +563,23 @@
             color: rgba(255, 255, 255, 0.7);
         }
         
+        /* QQ和企业微信样式 */
+        .contact-qq {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .qywx-qr {
+            margin-top: 1rem;
+        }
+        
+        .qywx-qr img {
+            width: 120px;
+            height: 120px;
+            border-radius: 5px;
+        }
+        
         /* 页脚样式 - 调整为橙色主题 */
         footer {
             background: var(--dark-color);
@@ -593,23 +630,6 @@
             border-top: 1px solid #444;
             color: #999;
             font-size: 0.9rem;
-        }
-        
-        /* QQ和企业微信样式 */
-        .contact-qq {
-            display: flex;
-            align-items: center;
-            margin-top: 1rem;
-        }
-        
-        .qywx-qr {
-            margin-top: 1rem;
-        }
-        
-        .qywx-qr img {
-            width: 120px;
-            height: 120px;
-            border-radius: 5px;
         }
         
         /* 响应式设计 */
@@ -929,20 +949,16 @@
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>电子邮箱</h4>
-                                <p>1687879340@qq.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
                                 <i class="fab fa-qq"></i>
                             </div>
                             <div class="contact-text">
                                 <h4>QQ咨询</h4>
-                                <p>1687879340</p>
+                                <p>
+                                    <a href="http://wpa.qq.com/msgrd?v=3&uin=1687879340&site=qq&menu=yes" 
+                                       target="_blank" class="qq-link">
+                                        1687879340 (点击咨询)
+                                    </a>
+                                </p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1023,7 +1039,13 @@
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
                         <li><i class="fas fa-phone"></i> 13265597317</li>
-                        <li><i class="fab fa-qq"></i> QQ: 1687879340</li>
+                        <li>
+                            <i class="fab fa-qq"></i> 
+                            <a href="http://wpa.qq.com/msgrd?v=3&uin=1687879340&site=qq&menu=yes" 
+                               target="_blank" class="qq-link">
+                                QQ: 1687879340
+                            </a>
+                        </li>
                         <li><i class="fas fa-comment"></i> 企业微信: 扫描二维码添加</li>
                         <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
                     </ul>
@@ -1091,6 +1113,14 @@
                         document.querySelector('.mobile-menu-toggle span:nth-child(3)').style.transform = 'none';
                     }
                 }
+            });
+        });
+
+        // 添加QQ链接点击统计（可选）
+        document.querySelectorAll('.qq-link').forEach(link => {
+            link.addEventListener('click', function() {
+                // 这里可以添加统计代码，如Google Analytics事件跟踪
+                console.log('QQ咨询链接被点击');
             });
         });
     </script>
