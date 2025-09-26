@@ -128,8 +128,9 @@
             align-items: center;
         }
         
+        /* 调整LOGO大小 - 从45px增加到60px */
         .logo img {
-            height: 45px;
+            height: 60px; /* 调整为60px */
             margin-right: 10px;
         }
         
@@ -285,6 +286,17 @@
         .hero-buttons {
             display: flex;
             gap: 1rem;
+        }
+        
+        /* 调整免费咨询按钮样式 - 移除透明效果 */
+        .btn-secondary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-dark);
         }
         
         .hero-animation {
@@ -486,7 +498,7 @@
         }
         
         .contact-info h3 {
-            font-size: 1.8rem;
+            font极简代码>
             margin-bottom: 1.5rem;
         }
         
@@ -514,7 +526,7 @@
         
         .contact-form {
             flex: 1;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 极简代码);
             padding: 2rem;
             border-radius: 10px;
             backdrop-filter: blur(10px);
@@ -562,7 +574,7 @@
         }
         
         .footer-column h3 {
-            font-size:0.8rem;
+            font-size: 1.3rem;
             margin-bottom: 1.5rem;
             color: var(--primary-color);
         }
@@ -583,6 +595,13 @@
         
         .footer-column ul li a:hover {
             color: var(--primary-color);
+        }
+        
+        /* 调整页脚字体大小 */
+        .footer-column p {
+            font-size: 0.9rem; /* 减小字体大小 */
+            line-height: 1.4; /* 调整行高 */
+            margin-bottom: 0.5rem; /* 减小间距 */
         }
         
         .footer-bottom {
@@ -696,6 +715,7 @@
     <header>
         <div class="container header-container">
             <div class="logo">
+                <!-- LOGO大小已调整为60px -->
                 <img src="logo.png" alt="中商达祺科技集团">
                 <div class="logo-text">
                     <div class="brand">中商达祺科技集团</div>
@@ -736,6 +756,7 @@
                 <p>中商达祺科技集团致力于为企业提供全方位的商务服务，从公司注册到知识产权保护，助力企业在全球市场取得成功。</p>
                 <div class="hero-buttons">
                     <a href="services.html" class="btn">了解我们的服务</a>
+                    <!-- 免费咨询按钮样式已调整 -->
                     <a href="contact.html" class="btn btn-secondary">免费咨询</a>
                 </div>
             </div>
@@ -748,7 +769,7 @@
                         <i class="fas fa-file-contract"></i>
                     </div>
                     <div class="floating-element element-3">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-chart-line"></极简代码>
                     </div>
                 </div>
             </div>
@@ -844,7 +865,7 @@
                             <div class="feature-text">
                                 <h4>全球网络</h4>
                                 <p>覆盖主要国家和地区</p>
-                            </div>
+                            </极简代码>
                         </div>
                         <div class="feature-item">
                             <div class="feature-icon">
@@ -941,25 +962,25 @@
         </div>
     </section>
 
-    <!-- 页脚 -->
+    <!-- 页脚 - 添加QQ咨询和企业微信 -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>中商达祺科技集团</h3>
-                    <p>中商达祺科技（深圳）有限公司。</p>
-                    <p>中商达祺科技（佛山）有限公司。</p>
-                    <p>中商达祺科技（深圳）有限公司河南分公司。</p>
-                    <p>一点阳光企业管理（深圳）有限公司。</p>
-                    <p>一点阳光知识产权（深圳）有限公司。</p>
-                    <p>专业企业服务提供商，助力企业全球业务拓展。</p>
+                    <!-- 减小字体大小，避免换行 -->
+                    <p style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 0.5rem;">中商达祺科技（深圳）有限公司</p>
+                    <p style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 0.5rem;">中商达祺科技（佛山）有限公司</p>
+                    <p style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 0.5rem;">中商达祺科技（深圳）有限公司河南分公司</p>
+                    <p style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 0.5rem;">一点阳光企业管理（深圳）有限公司</p>
+                    <p style="font-size: 0.9rem; line-height: 1.4; margin-bottom: 0.5rem;">一点阳光知识产权（深圳）有限公司</p>
                 </div>
                 <div class="footer-column">
                     <h3>快速链接</h3>
                     <ul>
                         <li><a href="index.html">首页</a></li>
-                        <li><a href="services.html">业务领域</a></li>
                         <li><a href="about.html">关于我们</a></li>
+                        <li><a href="services.html">业务领域</a></li>
                         <li><a href="contact.html">联系我们</a></li>
                     </ul>
                 </div>
@@ -977,6 +998,13 @@
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
                         <li><i class="fas fa-phone"></i> 13265597317</li>
+                        <!-- 添加QQ咨询链接 -->
+                        <li><i class="fab fa-qq"></i> QQ: <a href="tencent://message/?uin=1687879340&Site=&Menu=yes" style="color: #ccc; text-decoration: none;">1687879340</a></li>
+                        <!-- 添加企业微信图片 -->
+                        <li>
+                            <i class="fas fa-comment-dots"></i> 企业微信: 
+                            <img src="qywx.png" alt="企业微信二维码" style="width: 100px; margin-top: 10px; display: block;">
+                        </li>
                         <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
                     </ul>
                 </div>
@@ -1048,9 +1076,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
