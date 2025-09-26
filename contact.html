@@ -384,7 +384,7 @@
             margin-bottom: 0.5rem;
         }
         
-        /* 导航栏样式 */
+        /* 导航栏样式 - 修正LOGO显示问题 */
         header {
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -407,13 +407,19 @@
             align-items: center;
         }
         
+        /* 修正LOGO大小 - 与主页保持一致 */
+        .logo img {
+            height: 60px; /* 统一LOGO大小 */
+            margin-right: 10px;
+        }
+        
         .logo-text {
             display: flex;
             flex-direction: column;
         }
         
         .logo-text .brand {
-            font-size: 1.8rem;
+            font-size: 1.8rem; /* 统一品牌名称大小 */
             font-weight: 700;
             color: var(--primary-color);
             line-height: 1.2;
@@ -441,13 +447,14 @@
             transition: color 0.3s;
             padding: 0.5rem 0;
             position: relative;
+            font-size: 1.05rem; /* 统一导航文字大小 */
         }
         
         nav a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 3px; /* 统一橙色下划线粗细 */
             bottom: 0;
             left: 0;
             background-color: var(--primary-color);
@@ -492,6 +499,7 @@
             display: block;
             padding: 0.8rem 1.5rem;
             border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem; /* 统一下拉菜单文字大小 */
         }
         
         .dropdown-menu a:hover {
@@ -510,6 +518,57 @@
             background: var(--dark-color);
             margin: 3px 0;
             transition: 0.3s;
+        }
+        
+        /* 页脚样式 - 与主页保持一致 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem; /* 统一页脚标题大小 */
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem; /* 统一页脚文字大小 */
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
         }
         
         /* 响应式设计 */
@@ -577,17 +636,27 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+            
+            /* 移动端调整logo大小 */
+            .logo img {
+                height: 45px;
+                margin-right: 8px;
+            }
+            
+            .logo-text .brand {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 导航栏 - 修正LOGO显示 -->
     <header>
         <div class="container header-container">
             <div class="logo">
+                <img src="logo.png" alt="中商达祺科技集团">
                 <div class="logo-text">
                     <div class="brand">中商达祺科技集团</div>
-                    <div class="company">中商达祺科技（深圳）有限公司</div>
                 </div>
             </div>
             <nav>
@@ -964,5 +1033,3 @@
     </script>
 </body>
 </html>
-
-
