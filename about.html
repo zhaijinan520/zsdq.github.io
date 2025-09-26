@@ -358,9 +358,11 @@
         }
         
         .logo-img {
-            height: 50px;
+            height: 50px; /* 统一Logo高度 */
             width: auto;
+            max-width: 150px; /* 限制最大宽度 */
             margin-right: 10px;
+            transition: all 0.3s ease; /* 添加过渡效果 */
         }
         
         .logo-text {
@@ -600,8 +602,26 @@
                 padding-right: 0;
             }
             
+            /* 移动端Logo大小调整 */
             .logo-img {
-                height: 40px; /* 移动端调整Logo大小 */
+                height: 40px; /* 移动端Logo高度 */
+                max-width: 120px; /* 移动端Logo最大宽度 */
+            }
+            
+            .logo-text .brand {
+                font-size: 1.5rem; /* 移动端品牌名称字体调整 */
+            }
+        }
+        
+        /* 超小屏幕设备优化 */
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 35px; /* 超小屏幕Logo高度 */
+                max-width: 100px; /* 超小屏幕Logo最大宽度 */
+            }
+            
+            .logo-text .brand {
+                font-size: 1.2rem; /* 超小屏幕品牌名称字体调整 */
             }
         }
     </style>
@@ -894,4 +914,3 @@
     </script>
 </body>
 </html>
-
