@@ -96,13 +96,13 @@
         
         .btn-secondary {
             background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
+            border: 2px solid white;
+            color: white;
         }
         
         .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
+            background: white;
+            color: var(--primary-color);
         }
         
         /* 导航栏样式 */
@@ -129,7 +129,7 @@
         }
         
         .logo img {
-            height: 45px;
+            height: 60px; /* 从45px增加到60px */
             margin-right: 10px;
         }
         
@@ -562,7 +562,7 @@
         }
         
         .footer-column h3 {
-            font-size:0.8rem;
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
             color: var(--primary-color);
         }
@@ -573,6 +573,8 @@
         
         .footer-column ul li {
             margin-bottom: 0.8rem;
+            font-size: 0.85rem; /* 减小字体大小避免换行 */
+            white-space: nowrap; /* 防止文字换行 */
         }
         
         .footer-column ul li a {
@@ -591,6 +593,23 @@
             border-top: 1px solid #444;
             color: #999;
             font-size: 0.9rem;
+        }
+        
+        /* QQ和企业微信样式 */
+        .contact-qq {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .qywx-qr {
+            margin-top: 1rem;
+        }
+        
+        .qywx-qr img {
+            width: 120px;
+            height: 120px;
+            border-radius: 5px;
         }
         
         /* 响应式设计 */
@@ -687,6 +706,10 @@
             .footer-column {
                 margin-bottom: 2rem;
                 padding-right: 0;
+            }
+            
+            .footer-column ul li {
+                white-space: normal; /* 在移动设备上允许换行 */
             }
         }
     </style>
@@ -913,6 +936,27 @@
                                 <p>1687879340@qq.com</p>
                             </div>
                         </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-qq"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>QQ咨询</h4>
+                                <p>1687879340</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>企业微信</h4>
+                                <p>扫描二维码添加</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="qywx-qr">
+                        <img src="qywx.png" alt="企业微信二维码">
                     </div>
                 </div>
                 <div class="contact-form">
@@ -947,11 +991,13 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>中商达祺科技集团</h3>
-                    <p>中商达祺科技（深圳）有限公司。</p>
-                    <p>中商达祺科技（佛山）有限公司。</p>
-                    <p>中商达祺科技（深圳）有限公司河南分公司。</p>
-                    <p>一点阳光企业管理（深圳）有限公司。</p>
-                    <p>一点阳光知识产权（深圳）有限公司。</p>
+                    <ul>
+                        <li>中商达祺科技（深圳）有限公司</li>
+                        <li>中商达祺科技（佛山）有限公司</li>
+                        <li>中商达祺科技（深圳）有限公司河南分公司</li>
+                        <li>一点阳光企业管理（深圳）有限公司</li>
+                        <li>一点阳光知识产权（深圳）有限公司</li>
+                    </ul>
                     <p>专业企业服务提供商，助力企业全球业务拓展。</p>
                 </div>
                 <div class="footer-column">
@@ -977,6 +1023,8 @@
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 深圳市龙岗区平湖街道禾花社区平吉大道北159号恒路E时代大厦402</li>
                         <li><i class="fas fa-phone"></i> 13265597317</li>
+                        <li><i class="fab fa-qq"></i> QQ: 1687879340</li>
+                        <li><i class="fas fa-comment"></i> 企业微信: 扫描二维码添加</li>
                         <li><i class="fas fa-envelope"></i> 1687879340@qq.com</li>
                     </ul>
                 </div>
