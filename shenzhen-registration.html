@@ -266,7 +266,7 @@
             display: block;
         }
         
-        /* 导航栏样式 */
+        /* 导航栏样式 - 已修复Logo和文字间距 */
         header {
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -284,26 +284,36 @@
             padding: 1rem 0;
         }
         
+        /* 修复Logo样式 - 与主页完全一致 */
         .logo {
             display: flex;
             align-items: center;
+            height: 60px; /* 固定高度确保垂直居中 */
+        }
+        
+        .logo-img {
+            height: 60px; /* 统一Logo高度 */
+            width: auto;
+            max-width: 150px;
+            margin-right: 10px; /* 统一间距为10px */
+            transition: all 0.3s ease;
+            object-fit: contain; /* 确保图片比例正确 */
         }
         
         .logo-text {
             display: flex;
             flex-direction: column;
+            justify-content: center; /* 文字垂直居中 */
+            height: 100%; /* 使用容器高度 */
+            margin-left: 0; /* 确保没有额外的左边距 */
         }
         
         .logo-text .brand {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary-color); /* 使用与首页相同的颜色 */
             line-height: 1.2;
-        }
-        
-        .logo-text .company {
-            font-size: 0.85rem;
-            color: #666;
+            margin: 0; /* 移除默认边距 */
         }
         
         nav ul {
@@ -497,14 +507,47 @@
             .page-hero h1 {
                 font-size: 2.2rem;
             }
+            
+            /* 移动端Logo大小调整 - 与首页保持一致 */
+            .logo {
+                height: 55px; /* 移动端固定高度 */
+            }
+            
+            .logo-img {
+                height: 45px; /* 移动端Logo高度 */
+                max-width: 130px;
+                margin-right: 10px; /* 保持一致的间距 */
+            }
+            
+            .logo-text .brand {
+                font-size: 1.6rem; /* 移动端品牌名称字体 */
+            }
+        }
+        
+        /* 超小屏幕设备优化 */
+        @media (max-width: 480px) {
+            .logo {
+                height: 50px; /* 超小屏幕固定高度 */
+            }
+            
+            .logo-img {
+                height: 40px; /* 超小屏幕Logo高度 */
+                max-width: 110px;
+                margin-right: 10px; /* 保持一致的间距 */
+            }
+            
+            .logo-text .brand {
+                font-size: 1.4rem; /* 超小屏幕品牌名称字体 */
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 导航栏 - 已修复Logo和文字间距 -->
     <header>
         <div class="container header-container">
             <div class="logo">
+                <img src="logo.png" alt="中商达祺科技集团Logo" class="logo-img">
                 <div class="logo-text">
                     <div class="brand">中商达祺科技集团</div>
                 </div>
@@ -766,5 +809,3 @@
     </script>
 </body>
 </html>
-
-
