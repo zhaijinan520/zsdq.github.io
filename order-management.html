@@ -1,48 +1,332 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>财税业务系统 - 实际可用版</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财税业务系统 - 专业增强版</title>
     <style>
         /* 基础样式 */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .card { background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; margin-bottom: 20px; }
-        .btn { background: #E67E22; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #E67E22;
+        }
+        
+        .btn {
+            background: #E67E22;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            margin: 2px;
+        }
+        
+        .btn:hover {
+            background: #D35400;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #E67E22;
+            color: #E67E22;
+        }
+        
+        .btn-outline:hover {
+            background: #E67E22;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-success {
+            background: #2ecc71;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        /* 筛选控件 */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        /* 状态标签 */
+        .status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-active { background: #e8f5e9; color: #2e7d32; }
+        .status-warning { background: #fff3e0; color: #ef6c00; }
+        .status-danger { background: #ffebee; color: #c62828; }
+        .status-expired { background: #f5f5f5; color: #757575; }
+        
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid #E67E22;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #E67E22;
+            margin: 0.5rem 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* 记账任务样式 */
+        .monthly-tasks {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .task-item {
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        
+        .task-pending { background: #fff3e0; border-color: #ffb74d; }
+        .task-completed { background: #e8f5e9; border-color: #66bb6a; }
+        .task-upcoming { background: #e3f2fd; border-color: #64b5f6; }
+        
+        /* 模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                width: 100%;
+            }
+            
+            .monthly-tasks {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>财税业务管理系统 - 实际生产版</h1>
-        
-        <!-- 数据备份/恢复功能 -->
+        <div class="header">
+            <h1>财税业务管理系统</h1>
+            <p>专业、高效、安全的财税服务管理平台</p>
+        </div>
+
+        <!-- 统计概览 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalClients">0</div>
+                <div class="stat-label">总客户数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="activeServices">0</div>
+                <div class="stat-label">活跃服务</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="expiringSoon">0</div>
+                <div class="stat-label">即将到期</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="pendingTasks">0</div>
+                <div class="stat-label">待办任务</div>
+            </div>
+        </div>
+
+        <!-- 数据管理 -->
         <div class="card">
-            <h3>数据管理</h3>
-            <button onclick="exportData()" class="btn">导出所有数据</button>
-            <button onclick="importData()" class="btn">导入数据</button>
-            <input type="file" id="importFile" accept=".json" style="display:none">
-            <p><small>提示：定期导出数据备份，防止浏览器数据丢失</small></p>
+            <h3>📊 数据管理</h3>
+            <div class="filters">
+                <button onclick="exportData()" class="btn btn-success">📥 导出所有数据</button>
+                <button onclick="importData()" class="btn btn-outline">📤 导入数据</button>
+                <button onclick="showBackupHistory()" class="btn btn-outline">🕐 备份历史</button>
+                <input type="file" id="importFile" accept=".json" style="display:none">
+            </div>
+            <p><small>💡 提示：建议每周导出数据备份，确保数据安全</small></p>
         </div>
 
         <!-- 客户管理 -->
         <div class="card">
-            <h3>客户管理</h3>
-            <form onsubmit="addClient(event)">
-                <input type="text" id="clientName" placeholder="客户名称" required>
-                <input type="text" id="clientContact" placeholder="联系人" required>
-                <input type="tel" id="clientPhone" placeholder="电话" required>
-                <select id="clientService" required>
-                    <option value="">选择服务</option>
-                    <option value="registration">公司注册</option>
-                    <option value="accounting">代理记账</option>
-                    <option value="change">公司变更</option>
-                    <option value="cancellation">公司注销</option>
-                </select>
-                <input type="date" id="expireDate" required>
-                <button type="submit" class="btn">添加客户</button>
-            </form>
-            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>👥 客户管理</h3>
+                <button onclick="showAddClientModal()" class="btn">➕ 添加客户</button>
+            </div>
+
+            <!-- 筛选控件 -->
+            <div class="filters">
+                <div class="filter-group">
+                    <input type="text" id="searchClient" class="filter-input" placeholder="搜索客户名称..." onkeyup="filterClients()">
+                </div>
+                <div class="filter-group">
+                    <select id="filterService" class="filter-input" onchange="filterClients()">
+                        <option value="">所有服务类型</option>
+                        <option value="registration">公司注册</option>
+                        <option value="accounting">代理记账</option>
+                        <option value="change">公司变更</option>
+                        <option value="cancellation">公司注销</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select id="filterStatus" class="filter-input" onchange="filterClients()">
+                        <option value="">所有状态</option>
+                        <option value="active">正常</option>
+                        <option value="warning">即将到期</option>
+                        <option value="danger">已过期</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <button onclick="clearFilters()" class="btn btn-outline">清除筛选</button>
+                </div>
+            </div>
+
             <table id="clientsTable">
                 <thead>
                     <tr>
@@ -51,6 +335,8 @@
                         <th>电话</th>
                         <th>服务类型</th>
                         <th>到期时间</th>
+                        <th>剩余天数</th>
+                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -60,15 +346,67 @@
 
         <!-- 记账服务管理 -->
         <div class="card">
-            <h3>代理记账服务跟踪</h3>
-            <div id="accountingServices">
-                <!-- 记账服务列表 -->
+            <h3>📈 代理记账服务跟踪</h3>
+            <div id="accountingServices"></div>
+        </div>
+
+        <!-- 到期提醒 -->
+        <div class="card">
+            <h3>⏰ 服务到期提醒</h3>
+            <div id="expiryAlerts"></div>
+        </div>
+    </div>
+
+    <!-- 添加客户模态框 -->
+    <div class="modal" id="clientModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">添加新客户</h3>
+                <button onclick="closeModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="clientForm" onsubmit="saveClient(event)">
+                    <div class="form-group">
+                        <label>客户名称 *</label>
+                        <input type="text" id="modalClientName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>联系人 *</label>
+                        <input type="text" id="modalClientContact" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>电话 *</label>
+                        <input type="tel" id="modalClientPhone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>服务类型 *</label>
+                        <select id="modalClientService" class="form-control" required onchange="toggleExpiryDate()">
+                            <option value="">请选择服务类型</option>
+                            <option value="registration">公司注册</option>
+                            <option value="accounting">代理记账</option>
+                            <option value="change">公司变更</option>
+                            <option value="cancellation">公司注销</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="expiryDateGroup">
+                        <label>服务到期日 *</label>
+                        <input type="date" id="modalExpireDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>备注信息</label>
+                        <textarea id="modalClientNotes" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+                        <button type="button" class="btn btn-outline" onclick="closeModal()">取消</button>
+                        <button type="submit" class="btn">保存客户</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <script>
-        // 使用localStorage持久化存储数据
+        // 数据管理
         function getStorageData(key) {
             const data = localStorage.getItem(key);
             return data ? JSON.parse(data) : [];
@@ -76,47 +414,118 @@
 
         function setStorageData(key, data) {
             localStorage.setItem(key, JSON.stringify(data));
+            updateStatistics();
         }
 
         // 初始化数据
         let clients = getStorageData('clients') || [];
         let accountingServices = getStorageData('accountingServices') || [];
-        let tasks = getStorageData('tasks') || [];
+        let backupHistory = getStorageData('backupHistory') || [];
 
-        // 添加客户
-        function addClient(event) {
-            event.preventDefault();
-            const client = {
-                id: Date.now(),
-                name: document.getElementById('clientName').value,
-                contact: document.getElementById('clientContact').value,
-                phone: document.getElementById('clientPhone').value,
-                service: document.getElementById('clientService').value,
-                expireDate: document.getElementById('expireDate').value,
-                status: 'active',
-                createTime: new Date().toISOString()
-            };
+        // 更新统计信息
+        function updateStatistics() {
+            const now = new Date();
+            const sevenDaysLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
             
-            clients.push(client);
-            setStorageData('clients', clients);
-            renderClients();
-            event.target.reset();
+            const expiringSoon = clients.filter(client => {
+                const expireDate = new Date(client.expireDate);
+                return expireDate <= sevenDaysLater && expireDate >= now;
+            }).length;
             
-            // 如果是记账服务，自动创建记账任务
-            if (client.service === 'accounting') {
-                addAccountingService(client);
+            const expired = clients.filter(client => new Date(client.expireDate) < now).length;
+            
+            document.getElementById('totalClients').textContent = clients.length;
+            document.getElementById('activeServices').textContent = clients.filter(c => c.status !== 'expired').length;
+            document.getElementById('expiringSoon').textContent = expiringSoon;
+            document.getElementById('pendingTasks').textContent = accountingServices.reduce((acc, service) => 
+                acc + service.monthlyTasks.filter(task => task.status === 'pending').length, 0);
+        }
+
+        // 添加/编辑客户
+        let editingClientId = null;
+
+        function showAddClientModal(clientId = null) {
+            editingClientId = clientId;
+            const modal = document.getElementById('clientModal');
+            const form = document.getElementById('clientForm');
+            
+            if (clientId) {
+                // 编辑模式
+                document.getElementById('modalTitle').textContent = '编辑客户信息';
+                const client = clients.find(c => c.id === clientId);
+                if (client) {
+                    document.getElementById('modalClientName').value = client.name;
+                    document.getElementById('modalClientContact').value = client.contact;
+                    document.getElementById('modalClientPhone').value = client.phone;
+                    document.getElementById('modalClientService').value = client.service;
+                    document.getElementById('modalExpireDate').value = client.expireDate;
+                    document.getElementById('modalClientNotes').value = client.notes || '';
+                }
+            } else {
+                // 添加模式
+                document.getElementById('modalTitle').textContent = '添加新客户';
+                form.reset();
+                document.getElementById('modalExpireDate').valueAsDate = new Date();
+            }
+            
+            modal.style.display = 'flex';
+            toggleExpiryDate();
+        }
+
+        function toggleExpiryDate() {
+            const service = document.getElementById('modalClientService').value;
+            const expiryGroup = document.getElementById('expiryDateGroup');
+            if (service === 'registration' || service === 'cancellation') {
+                expiryGroup.style.display = 'none';
+            } else {
+                expiryGroup.style.display = 'block';
             }
         }
 
-        // 添加记账服务
+        function saveClient(event) {
+            event.preventDefault();
+            
+            const clientData = {
+                id: editingClientId || Date.now(),
+                name: document.getElementById('modalClientName').value,
+                contact: document.getElementById('modalClientContact').value,
+                phone: document.getElementById('modalClientPhone').value,
+                service: document.getElementById('modalClientService').value,
+                expireDate: document.getElementById('modalExpireDate').value || new Date().toISOString().split('T')[0],
+                notes: document.getElementById('modalClientNotes').value,
+                status: 'active',
+                createTime: new Date().toISOString(),
+                updateTime: new Date().toISOString()
+            };
+            
+            if (editingClientId) {
+                // 更新现有客户
+                const index = clients.findIndex(c => c.id === editingClientId);
+                if (index !== -1) {
+                    clients[index] = { ...clients[index], ...clientData };
+                }
+            } else {
+                // 添加新客户
+                clients.push(clientData);
+                
+                // 如果是记账服务，自动创建记账任务
+                if (clientData.service === 'accounting') {
+                    addAccountingService(clientData);
+                }
+            }
+            
+            setStorageData('clients', clients);
+            renderClients();
+            closeModal();
+        }
+
         function addAccountingService(client) {
             const service = {
                 id: Date.now(),
                 clientId: client.id,
                 clientName: client.name,
                 startDate: new Date().toISOString().split('T')[0],
-                // 默认一年服务期
-                endDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                endDate: client.expireDate,
                 monthlyTasks: generateMonthlyTasks(client.id, client.name),
                 status: 'active'
             };
@@ -126,32 +535,224 @@
             renderAccountingServices();
         }
 
-        // 生成月度记账任务
         function generateMonthlyTasks(clientId, clientName) {
             const tasks = [];
             const now = new Date();
+            const startDate = new Date(now.getFullYear(), now.getMonth(), 1);
             
             for (let i = 0; i < 12; i++) {
-                const month = new Date(now.getFullYear(), now.getMonth() + i, 15);
+                const taskDate = new Date(startDate.getFullYear(), startDate.getMonth() + i, 15);
                 tasks.push({
-                    month: month.toISOString().split('T')[0],
+                    month: taskDate.toISOString().split('T')[0],
                     status: i === 0 ? 'pending' : 'upcoming',
                     completed: false,
-                    accountant: ''
+                    accountant: '',
+                    completeDate: null
                 });
             }
             
             return tasks;
         }
 
-        // 数据导出
+        // 删除客户
+        function deleteClient(clientId) {
+            if (confirm('确定要删除这个客户吗？此操作不可恢复！')) {
+                clients = clients.filter(c => c.id !== clientId);
+                accountingServices = accountingServices.filter(s => s.clientId !== clientId);
+                setStorageData('clients', clients);
+                setStorageData('accountingServices', accountingServices);
+                renderClients();
+                renderAccountingServices();
+            }
+        }
+
+        // 完成记账任务
+        function completeTask(serviceId, taskMonth) {
+            const service = accountingServices.find(s => s.id === serviceId);
+            if (service) {
+                const task = service.monthlyTasks.find(t => t.month === taskMonth);
+                if (task) {
+                    task.status = 'completed';
+                    task.completed = true;
+                    task.completeDate = new Date().toISOString();
+                    task.accountant = '当前用户'; // 实际应用中应该记录真实用户
+                    
+                    setStorageData('accountingServices', accountingServices);
+                    renderAccountingServices();
+                    updateStatistics();
+                }
+            }
+        }
+
+        // 筛选功能
+        function filterClients() {
+            const searchTerm = document.getElementById('searchClient').value.toLowerCase();
+            const serviceFilter = document.getElementById('filterService').value;
+            const statusFilter = document.getElementById('filterStatus').value;
+            
+            const filteredClients = clients.filter(client => {
+                const matchesSearch = client.name.toLowerCase().includes(searchTerm) || 
+                                    client.contact.toLowerCase().includes(searchTerm);
+                const matchesService = !serviceFilter || client.service === serviceFilter;
+                
+                let matchesStatus = true;
+                if (statusFilter) {
+                    const expireDate = new Date(client.expireDate);
+                    const now = new Date();
+                    const sevenDaysLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+                    
+                    if (statusFilter === 'active') {
+                        matchesStatus = expireDate > sevenDaysLater;
+                    } else if (statusFilter === 'warning') {
+                        matchesStatus = expireDate <= sevenDaysLater && expireDate >= now;
+                    } else if (statusFilter === 'danger') {
+                        matchesStatus = expireDate < now;
+                    }
+                }
+                
+                return matchesSearch && matchesService && matchesStatus;
+            });
+            
+            renderClients(filteredClients);
+        }
+
+        function clearFilters() {
+            document.getElementById('searchClient').value = '';
+            document.getElementById('filterService').value = '';
+            document.getElementById('filterStatus').value = '';
+            renderClients();
+        }
+
+        // 渲染函数
+        function renderClients(clientsToRender = clients) {
+            const tbody = document.querySelector('#clientsTable tbody');
+            const now = new Date();
+            const sevenDaysLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+            
+            tbody.innerHTML = clientsToRender.map(client => {
+                const expireDate = new Date(client.expireDate);
+                const daysLeft = Math.ceil((expireDate - now) / (1000 * 60 * 60 * 24));
+                
+                let statusClass = 'status-active';
+                let statusText = '正常';
+                
+                if (expireDate < now) {
+                    statusClass = 'status-danger';
+                    statusText = '已过期';
+                } else if (expireDate <= sevenDaysLater) {
+                    statusClass = 'status-warning';
+                    statusText = `${daysLeft}天后到期`;
+                }
+                
+                return `
+                    <tr>
+                        <td><strong>${client.name}</strong>${client.notes ? '<br><small>' + client.notes + '</small>' : ''}</td>
+                        <td>${client.contact}</td>
+                        <td>${client.phone}</td>
+                        <td>${getServiceText(client.service)}</td>
+                        <td>${client.expireDate}</td>
+                        <td>${daysLeft > 0 ? daysLeft + '天' : '已过期'}</td>
+                        <td><span class="status ${statusClass}">${statusText}</span></td>
+                        <td>
+                            <button onclick="showAddClientModal(${client.id})" class="btn btn-outline">编辑</button>
+                            <button onclick="deleteClient(${client.id})" class="btn btn-danger">删除</button>
+                            ${client.service === 'accounting' ? 
+                             `<button onclick="viewAccountingTasks(${client.id})" class="btn">记账</button>` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            
+            // 更新到期提醒
+            renderExpiryAlerts();
+        }
+
+        function renderAccountingServices() {
+            const container = document.getElementById('accountingServices');
+            container.innerHTML = accountingServices.map(service => {
+                const pendingTasks = service.monthlyTasks.filter(task => task.status === 'pending').length;
+                const completedTasks = service.monthlyTasks.filter(task => task.status === 'completed').length;
+                
+                return `
+                    <div class="card" style="margin: 1rem 0; padding: 1.5rem;">
+                        <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 1rem;">
+                            <h4>${service.clientName} - 代理记账服务</h4>
+                            <span class="status ${pendingTasks > 0 ? 'status-warning' : 'status-active'}">
+                                ${pendingTasks}个待办 / ${completedTasks}个完成
+                            </span>
+                        </div>
+                        <p>服务期: ${service.startDate} 至 ${service.endDate}</p>
+                        <div class="monthly-tasks">
+                            ${service.monthlyTasks.map(task => `
+                                <div class="task-item task-${task.status}">
+                                    <div><strong>${new Date(task.month).getMonth() + 1}月</strong></div>
+                                    <div class="status">${getTaskStatusText(task.status)}</div>
+                                    ${task.status === 'pending' ? 
+                                     `<button onclick="completeTask(${service.id}, '${task.month}')" class="btn btn-success" style="margin-top: 0.5rem;">完成</button>` : 
+                                     task.completeDate ? `<small>完成于: ${task.completeDate.split('T')[0]}</small>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderExpiryAlerts() {
+            const container = document.getElementById('expiryAlerts');
+            const now = new Date();
+            const thirtyDaysLater = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+            
+            const expiringClients = clients.filter(client => {
+                const expireDate = new Date(client.expireDate);
+                return expireDate <= thirtyDaysLater && expireDate >= now;
+            }).sort((a, b) => new Date(a.expireDate) - new Date(b.expireDate));
+            
+            const expiredClients = clients.filter(client => new Date(client.expireDate) < now);
+            
+            if (expiringClients.length === 0 && expiredClients.length === 0) {
+                container.innerHTML = '<p>🎉 暂无到期服务提醒</p>';
+                return;
+            }
+            
+            let html = '';
+            if (expiringClients.length > 0) {
+                html += `<h4>⚠️ 即将到期服务 (${expiringClients.length}个)</h4>`;
+                html += expiringClients.map(client => {
+                    const daysLeft = Math.ceil((new Date(client.expireDate) - now) / (1000 * 60 * 60 * 24));
+                    return `<p>${client.name} - ${getServiceText(client.service)} (剩余${daysLeft}天)</p>`;
+                }).join('');
+            }
+            
+            if (expiredClients.length > 0) {
+                html += `<h4 style="color: #e74c3c; margin-top: 1rem;">❌ 已过期服务 (${expiredClients.length}个)</h4>`;
+                html += expiredClients.map(client => {
+                    return `<p>${client.name} - ${getServiceText(client.service)}</p>`;
+                }).join('');
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // 数据导入导出
         function exportData() {
             const data = {
                 clients: clients,
                 accountingServices: accountingServices,
-                tasks: tasks,
-                exportTime: new Date().toISOString()
+                exportTime: new Date().toISOString(),
+                version: '1.0'
             };
+            
+            // 记录备份历史
+            backupHistory.unshift({
+                time: new Date().toISOString(),
+                clientCount: clients.length,
+                serviceCount: accountingServices.length
+            });
+            
+            // 只保留最近10次备份记录
+            backupHistory = backupHistory.slice(0, 10);
+            setStorageData('backupHistory', backupHistory);
             
             const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
             const url = URL.createObjectURL(blob);
@@ -160,79 +761,44 @@
             a.download = `财税系统备份_${new Date().toISOString().split('T')[0]}.json`;
             a.click();
             URL.revokeObjectURL(url);
+            
+            alert(`数据导出成功！共导出${clients.length}个客户，${accountingServices.length}个记账服务。`);
         }
 
-        // 数据导入
         function importData() {
             document.getElementById('importFile').click();
         }
 
         document.getElementById('importFile').addEventListener('change', function(e) {
             const file = e.target.files[0];
-            const reader = new FileReader();
+            if (!file) return;
             
+            const reader = new FileReader();
             reader.onload = function(e) {
                 try {
                     const data = JSON.parse(e.target.result);
-                    if (confirm('确认导入数据？这将覆盖当前所有数据！')) {
+                    if (confirm(`确认导入数据？这将导入${data.clients?.length || 0}个客户，覆盖当前所有数据！`)) {
                         clients = data.clients || [];
                         accountingServices = data.accountingServices || [];
-                        tasks = data.tasks || [];
                         
                         setStorageData('clients', clients);
                         setStorageData('accountingServices', accountingServices);
-                        setStorageData('tasks', tasks);
                         
                         renderClients();
                         renderAccountingServices();
                         alert('数据导入成功！');
                     }
                 } catch (error) {
-                    alert('文件格式错误！');
+                    alert('文件格式错误，请选择正确的备份文件！');
                 }
             };
-            
             reader.readAsText(file);
         });
 
-        // 渲染函数
-        function renderClients() {
-            const tbody = document.querySelector('#clientsTable tbody');
-            tbody.innerHTML = clients.map(client => `
-                <tr>
-                    <td>${client.name}</td>
-                    <td>${client.contact}</td>
-                    <td>${client.phone}</td>
-                    <td>${getServiceText(client.service)}</td>
-                    <td>${client.expireDate}</td>
-                    <td>
-                        <button onclick="editClient(${client.id})">编辑</button>
-                        <button onclick="deleteClient(${client.id})">删除</button>
-                        ${client.service === 'accounting' ? 
-                         `<button onclick="viewAccountingTasks(${client.id})">查看记账</button>` : ''}
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function renderAccountingServices() {
-            const container = document.getElementById('accountingServices');
-            container.innerHTML = accountingServices.map(service => `
-                <div class="service-item">
-                    <h4>${service.clientName} - 记账服务</h4>
-                    <p>服务期: ${service.startDate} 至 ${service.endDate}</p>
-                    <div class="monthly-tasks">
-                        ${service.monthlyTasks.map(task => `
-                            <div class="task ${task.status}">
-                                ${task.month}月记账 
-                                <span class="status">${getTaskStatusText(task.status)}</span>
-                                ${task.status === 'pending' ? 
-                                 `<button onclick="completeTask(${service.id}, '${task.month}')">完成</button>` : ''}
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
+        function showBackupHistory() {
+            alert(`最近备份记录：\n${backupHistory.map(backup => 
+                `${new Date(backup.time).toLocaleString()} - 客户:${backup.clientCount} 服务:${backup.serviceCount}`
+            ).join('\n')}`);
         }
 
         // 工具函数
@@ -255,9 +821,25 @@
             return map[status] || status;
         }
 
-        // 初始化渲染
-        renderClients();
-        renderAccountingServices();
+        function closeModal() {
+            document.getElementById('clientModal').style.display = 'none';
+            editingClientId = null;
+        }
+
+        // 初始化
+        function init() {
+            renderClients();
+            renderAccountingServices();
+            updateStatistics();
+            
+            // 点击模态框外部关闭
+            document.getElementById('clientModal').addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
