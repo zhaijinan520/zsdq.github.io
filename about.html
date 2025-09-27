@@ -351,15 +351,15 @@
             padding: 1rem 0;
         }
         
+        /* 修改Logo样式 - 与首页保持一致 */
         .logo {
             display: flex;
             align-items: center;
-            text-decoration: none;
             height: 60px; /* 固定高度确保垂直居中 */
         }
         
         .logo-img {
-            height: 50px; /* 统一Logo高度 */
+            height: 60px; /* 统一Logo高度，与首页保持一致 */
             width: auto;
             max-width: 150px;
             margin-right: 15px;
@@ -647,16 +647,16 @@
     </style>
 </head>
 <body>
-    <!-- 导航栏 - 已修复Logo和文字对齐 -->
+    <!-- 导航栏 - 已修正Logo结构与首页保持一致 -->
     <header>
+        <div class="container header-container">
+            <!-- 修改为与首页相同的结构 -->
             <div class="logo">
                 <img src="logo.png" alt="中商达祺科技集团" class="logo-img">
                 <div class="logo-text">
                     <div class="brand">中商达祺科技集团</div>
                 </div>
-             </div>
-                
-            </a>
+            </div>
             <nav>
                 <ul>
                     <li><a href="index.html">首页</a></li>
@@ -934,5 +934,3 @@
     </script>
 </body>
 </html>
-
-
