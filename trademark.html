@@ -419,20 +419,26 @@
             align-items: center;
         }
         
+        /* 修复Logo和标题大小问题 */
+        .logo-img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
         .logo-text {
             display: flex;
             flex-direction: column;
         }
         
         .logo-text .brand {
-            font-size: 1.8rem;
+            font-size: 1.5rem; /* 调整Logo标题大小 */
             font-weight: 700;
             color: var(--primary-color);
             line-height: 1.2;
         }
         
         .logo-text .company {
-            font-size: 0.85rem;
+            font-size: 0.75rem; /* 调整公司名称大小 */
             color: #666;
         }
         
@@ -524,6 +530,57 @@
             transition: 0.3s;
         }
         
+        /* 页脚样式 */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-column i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
         /* 响应式设计 */
         @media (max-width: 992px) {
             .detail-content {
@@ -582,6 +639,15 @@
             .page-hero h1 {
                 font-size: 2.2rem;
             }
+            
+            /* 移动端Logo调整 */
+            .logo-text .brand {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text .company {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
@@ -590,8 +656,11 @@
     <header>
         <div class="container header-container">
             <div class="logo">
+                <!-- 添加Logo图片 -->
+                <img src="https://via.placeholder.com/50x50?text=Logo" alt="中商达祺科技集团" class="logo-img">
                 <div class="logo-text">
                     <div class="brand">中商达祺科技集团</div>
+                    <div class="company">中商达祺科技（深圳）有限公司</div>
                 </div>
             </div>
             <nav>
@@ -1025,6 +1094,4 @@
         });
     </script>
 </body>
-
 </html>
-
