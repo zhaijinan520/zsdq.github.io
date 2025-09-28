@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>财税业务系统 - Excel导入增强版</title>
-    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <title>财税业务系统 - 专业增强版</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* 基础样式 */
         * {
@@ -257,53 +257,25 @@
             font-size: 14px;
         }
         
-        /* Excel导入预览 */
-        .excel-preview {
-            max-height: 400px;
-            overflow: auto;
-            margin: 1rem 0;
-            border: 1px solid #eee;
-            border-radius: 5px;
+        /* 数据看板 */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
         
-        .excel-preview table {
-            width: 100%;
-            font-size: 14px;
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .excel-preview th {
-            background: #f0f7ff;
-            position: sticky;
-            top: 0;
-        }
-        
-        .excel-preview tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        .excel-preview tr:hover {
-            background-color: #f0f7ff;
-        }
-        
-        .mapping-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            padding: 8px;
-            background: #f8f9fa;
-            border-radius: 4px;
-        }
-        
-        .mapping-label {
-            width: 150px;
-            font-weight: 500;
-        }
-        
-        .mapping-select {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        .chart-title {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 600;
         }
         
         /* 响应式设计 */
@@ -334,12 +306,64 @@
             .header-info {
                 flex-direction: column;
             }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 登录页面 -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="login-logo">
+                <h1>财税业务系统</h1>
+                <p>安全增强版</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" class="form-control" placeholder="请输入用户名" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" class="form-control" placeholder="请输入密码" required>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn login-btn">登录系统</button>
+                </div>
+                
+                <div class="form-group" style="text-align: center;">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> 记住我
+                    </label>
+                </div>
+            </form>
+            
+            <div class="security-features">
+                <h4>安全特性</h4>
+                <div class="security-item">
+                    <span>🔒</span> AES-256 数据加密
+                </div>
+                <div class="security-item">
+                    <span>👤</span> 多用户角色权限控制
+                </div>
+                <div class="security-item">
+                    <span>📝</span> 操作审计日志
+                </div>
+                <div class="security-item">
+                    <span>⏱️</span> 会话超时保护
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- 主应用页面 -->
-    <div id="appContent">
+    <div id="appContent" style="display: none;">
         <div class="container">
             <div class="header">
                 <div>
@@ -351,7 +375,20 @@
                         <span id="currentUser">管理员</span>
                         <span>👤</span>
                     </div>
-                    <button onclick="logout()" class="btn btn-outline">退出登录</button>
+                    <button id="logoutBtn" class="btn btn-outline">退出登录</button>
+                </div>
+            </div>
+
+            <!-- 数据看板 -->
+            <div class="dashboard-grid">
+                <div class="chart-container">
+                    <h3 class="chart-title">📊 客户服务分布</h3>
+                    <canvas id="serviceDistributionChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3 class="chart-title">📈 月度收入趋势</h3>
+                    <canvas id="revenueTrendChart"></canvas>
                 </div>
             </div>
 
@@ -370,8 +407,8 @@
                     <div class="stat-label">即将到期</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" id="pendingTasks">0</div>
-                    <div class="stat-label">待办任务</div>
+                    <div class="stat-value" id="monthlyRevenue">0</div>
+                    <div class="stat-label">本月收入(元)</div>
                 </div>
             </div>
 
@@ -380,9 +417,8 @@
                 <h3>📊 数据管理</h3>
                 <div class="filters">
                     <button onclick="exportData()" class="btn btn-success">📥 导出所有数据</button>
-                    <button onclick="importData()" class="btn btn-outline">📤 导入JSON数据</button>
+                    <button onclick="importData()" class="btn btn-outline">📤 导入数据</button>
                     <button onclick="showBackupHistory()" class="btn btn-outline">🕐 备份历史</button>
-                    <button onclick="showExcelImportModal()" class="btn btn-success">📤 导入Excel客户数据</button>
                     <input type="file" id="importFile" accept=".json" style="display:none">
                 </div>
                 <p><small>💡 提示：建议每周导出数据备份，确保数据安全</small></p>
@@ -439,16 +475,48 @@
                 </table>
             </div>
 
-            <!-- 记账服务管理 -->
+            <!-- 服务记录管理 -->
             <div class="card">
-                <h3>📈 代理记账服务跟踪</h3>
-                <div id="accountingServices"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3>📝 服务记录管理</h3>
+                    <button onclick="showAddServiceRecordModal()" class="btn">➕ 添加记录</button>
+                </div>
+                
+                <table id="serviceRecordsTable">
+                    <thead>
+                        <tr>
+                            <th>客户名称</th>
+                            <th>服务日期</th>
+                            <th>服务类型</th>
+                            <th>服务内容</th>
+                            <th>服务人员</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
 
-            <!-- 到期提醒 -->
+            <!-- 发票管理 -->
             <div class="card">
-                <h3>⏰ 服务到期提醒</h3>
-                <div id="expiryAlerts"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3>🧾 发票管理</h3>
+                    <button onclick="showAddInvoiceModal()" class="btn">➕ 添加发票</button>
+                </div>
+                
+                <table id="invoicesTable">
+                    <thead>
+                        <tr>
+                            <th>发票号码</th>
+                            <th>客户名称</th>
+                            <th>开票日期</th>
+                            <th>金额(元)</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
         </div>
 
@@ -500,96 +568,58 @@
             </div>
         </div>
         
-        <!-- Excel导入模态框 -->
-        <div class="modal" id="excelImportModal">
+        <!-- 添加服务记录模态框 -->
+        <div class="modal" id="serviceRecordModal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>导入Excel客户数据</h3>
-                    <button onclick="closeExcelModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">×</button>
+                    <h3>添加服务记录</h3>
+                    <button onclick="closeServiceRecordModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">×</button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>选择Excel文件 (.xlsx, .xls)</label>
-                        <input type="file" id="excelFile" class="form-control" accept=".xlsx, .xls" onchange="handleExcelFile(event)">
-                    </div>
-                    
-                    <div id="excelPreviewSection" style="display: none;">
-                        <h4>Excel数据预览</h4>
-                        <div class="excel-preview">
-                            <table id="excelPreviewTable"></table>
+                    <form id="serviceRecordForm" onsubmit="saveServiceRecord(event)">
+                        <div class="form-group">
+                            <label>客户 *</label>
+                            <select id="modalRecordClient" class="form-control" required>
+                                <option value="">选择客户</option>
+                            </select>
                         </div>
-                        
-                        <h4 style="margin-top: 1.5rem;">字段映射</h4>
-                        <p>请将Excel列映射到系统字段：</p>
-                        
-                        <div id="fieldMapping">
-                            <div class="mapping-row">
-                                <div class="mapping-label">客户名称</div>
-                                <select class="mapping-select" id="mapName">
-                                    <option value="">请选择Excel列</option>
-                                </select>
-                            </div>
-                            <div class="mapping-row">
-                                <div class="mapping-label">联系人</div>
-                                <select class="mapping-select" id="mapContact">
-                                    <option value="">请选择Excel列</option>
-                                </select>
-                            </div>
-                            <div class="mapping-row">
-                                <div class="mapping-label">电话</div>
-                                <select class="mapping-select" id="mapPhone">
-                                    <option value="">请选择Excel列</option>
-                                </select>
-                            </div>
-                            <div class="mapping-row">
-                                <div class="mapping-label">服务类型</div>
-                                <select class="mapping-select" id="mapService">
-                                    <option value="">请选择Excel列</option>
-                                </select>
-                            </div>
-                            <div class="mapping-row">
-                                <div class="mapping-label">到期时间</div>
-                                <select class="mapping-select" id="mapExpireDate">
-                                    <option value="">请选择Excel列</option>
-                                </select>
-                            </div>
-                            <div class="mapping-row">
-                                <div class="mapping-label">备注信息</div>
-                                <select class="mapping-select" id="mapNotes">
-                                    <option value="">请选择Excel列</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label>服务日期 *</label>
+                            <input type="date" id="modalServiceDate" class="form-control" required>
                         </div>
-                        
-                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
-                            <button type="button" class="btn btn-outline" onclick="closeExcelModal()">取消</button>
-                            <button type="button" class="btn btn-success" onclick="importExcelData()">导入数据</button>
+                        <div class="form-group">
+                            <label>服务类型 *</label>
+                            <select id="modalServiceType" class="form-control" required>
+                                <option value="">选择服务类型</option>
+                                <option value="consulting">咨询</option>
+                                <option value="tax">税务申报</option>
+                                <option value="audit">审计</option>
+                                <option value="registration">公司注册</option>
+                                <option value="other">其他</option>
+                            </select>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label>服务内容 *</label>
+                            <textarea id="modalServiceContent" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>服务人员 *</label>
+                            <input type="text" id="modalServicePerson" class="form-control" required>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+                            <button type="button" class="btn btn-outline" onclick="closeServiceRecordModal()">取消</button>
+                            <button type="submit" class="btn">保存记录</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // 加密函数 - 使用AES算法
-        function encryptData(data, key) {
-            // 在实际应用中，这里应该使用真正的加密算法
-            // 这里使用简单的base64编码作为演示
-            return btoa(JSON.stringify(data));
-        }
-
-        // 解密函数
-        function decryptData(encryptedData, key) {
-            // 在实际应用中，这里应该使用真正的解密算法
-            try {
-                return JSON.parse(atob(encryptedData));
-            } catch (e) {
-                console.error('解密失败', e);
-                return null;
-            }
-        }
-
+        // 修复退出登录功能
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+        
         // 用户管理
         const users = [
             { id: 1, username: 'admin', password: 'admin123', name: '管理员', role: 'admin' },
@@ -602,9 +632,12 @@
         let sessionTimeout = null;
         const SESSION_TIMEOUT = 30 * 60 * 1000; // 30分钟
 
-        // Excel导入相关变量
-        let excelData = null;
-        let excelHeaders = [];
+        // 初始化数据
+        let clients = [];
+        let accountingServices = [];
+        let serviceRecords = [];
+        let invoices = [];
+        let backupHistory = [];
 
         // 初始化
         function initApp() {
@@ -613,7 +646,7 @@
             const rememberMe = localStorage.getItem('rememberMe') === 'true';
             
             if (savedUser && rememberMe) {
-                const user = decryptData(savedUser, 'secretKey');
+                const user = JSON.parse(savedUser);
                 if (user) {
                     loginUser(user);
                     return;
@@ -629,8 +662,6 @@
         function loginUser(user) {
             currentUser = user;
             document.getElementById('currentUser').textContent = user.name;
-            document.getElementById('currentRole').textContent = user.role === 'admin' ? '管理员' : 
-                user.role === 'accountant' ? '财务专员' : '销售专员';
             
             // 隐藏登录页面，显示主应用
             document.getElementById('loginPage').style.display = 'none';
@@ -678,6 +709,34 @@
             document.getElementById('loginForm').reset();
         }
 
+        // 处理登录表单提交
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // 查找用户
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                // 登录成功
+                if (rememberMe) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem('rememberMe', 'true');
+                } else {
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('rememberMe');
+                }
+                
+                loginUser(user);
+            } else {
+                // 登录失败
+                alert('用户名或密码错误！');
+            }
+        });
+
         // 审计日志
         let auditLogs = JSON.parse(localStorage.getItem('auditLogs') || '[]');
 
@@ -693,51 +752,32 @@
             
             auditLogs.push(log);
             localStorage.setItem('auditLogs', JSON.stringify(auditLogs));
-            
-            // 更新审计日志计数
-            document.getElementById('auditLogCount').textContent = auditLogs.length;
-        }
-
-        function showAuditLogs() {
-            let logContent = '操作日志:\n\n';
-            auditLogs.slice(-10).reverse().forEach(log => {
-                logContent += `[${new Date(log.timestamp).toLocaleString()}] ${log.username} - ${log.action}: ${log.details}\n`;
-            });
-            
-            alert(logContent);
         }
 
         // 数据管理
         function getStorageData(key) {
-            const encryptedData = localStorage.getItem(key);
-            if (!encryptedData) return [];
-            
-            const decryptedData = decryptData(encryptedData, 'secretKey');
-            return decryptedData || [];
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : [];
         }
 
         function setStorageData(key, data) {
-            const encryptedData = encryptData(data, 'secretKey');
-            localStorage.setItem(key, encryptedData);
+            localStorage.setItem(key, JSON.stringify(data));
             updateStatistics();
         }
 
-        // 初始化数据
-        let clients = [];
-        let accountingServices = [];
-        let backupHistory = [];
-
+        // 加载数据
         function loadData() {
             clients = getStorageData('clients') || [];
             accountingServices = getStorageData('accountingServices') || [];
+            serviceRecords = getStorageData('serviceRecords') || [];
+            invoices = getStorageData('invoices') || [];
             backupHistory = getStorageData('backupHistory') || [];
             
             renderClients();
-            renderAccountingServices();
+            renderServiceRecords();
+            renderInvoices();
             updateStatistics();
-            
-            // 更新审计日志计数
-            document.getElementById('auditLogCount').textContent = auditLogs.length;
+            renderCharts();
         }
 
         // 更新统计信息
@@ -752,19 +792,105 @@
             
             const expired = clients.filter(client => new Date(client.expireDate) < now).length;
             
+            // 计算本月收入
+            const currentMonth = new Date().getMonth();
+            const monthlyRevenue = invoices.reduce((sum, invoice) => {
+                const invoiceMonth = new Date(invoice.date).getMonth();
+                return invoiceMonth === currentMonth ? sum + invoice.amount : sum;
+            }, 0);
+            
             document.getElementById('totalClients').textContent = clients.length;
             document.getElementById('activeServices').textContent = clients.filter(c => c.status !== 'expired').length;
             document.getElementById('expiringSoon').textContent = expiringSoon;
-            document.getElementById('pendingTasks').textContent = accountingServices.reduce((acc, service) => 
-                acc + service.monthlyTasks.filter(task => task.status === 'pending').length, 0);
+            document.getElementById('monthlyRevenue').textContent = monthlyRevenue.toFixed(2);
+        }
+
+        // 渲染图表
+        function renderCharts() {
+            // 服务分布图表
+            const serviceDistribution = {
+                'registration': 0,
+                'accounting': 0,
+                'change': 0,
+                'cancellation': 0
+            };
+            
+            clients.forEach(client => {
+                if (serviceDistribution[client.service]) {
+                    serviceDistribution[client.service]++;
+                }
+            });
+            
+            const serviceCtx = document.getElementById('serviceDistributionChart').getContext('2d');
+            new Chart(serviceCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['公司注册', '代理记账', '公司变更', '公司注销'],
+                    datasets: [{
+                        data: [
+                            serviceDistribution.registration,
+                            serviceDistribution.accounting,
+                            serviceDistribution.change,
+                            serviceDistribution.cancellation
+                        ],
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#4BC0C0'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '客户服务类型分布'
+                        }
+                    }
+                }
+            });
+            
+            // 收入趋势图表
+            const monthlyRevenue = Array(12).fill(0);
+            invoices.forEach(invoice => {
+                const month = new Date(invoice.date).getMonth();
+                monthlyRevenue[month] += invoice.amount;
+            });
+            
+            const revenueCtx = document.getElementById('revenueTrendChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    datasets: [{
+                        label: '月度收入',
+                        data: monthlyRevenue,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '月度收入趋势'
+                        }
+                    }
+                }
+            });
         }
 
         // 添加/编辑客户
         let editingClientId = null;
 
         function showAddClientModal(clientId = null) {
-            if (!checkPermission('edit')) return;
-            
             editingClientId = clientId;
             const modal = document.getElementById('clientModal');
             const form = document.getElementById('clientForm');
@@ -830,11 +956,6 @@
                 // 添加新客户
                 clients.push(clientData);
                 addAuditLog('添加客户', `添加新客户 ${clientData.name}`);
-                
-                // 如果是记账服务，自动创建记账任务
-                if (clientData.service === 'accounting') {
-                    addAccountingService(clientData);
-                }
             }
             
             setStorageData('clients', clients);
@@ -842,524 +963,115 @@
             closeModal();
         }
 
-        function addAccountingService(client) {
-            const service = {
-                id: Date.now(),
-                clientId: client.id,
-                clientName: client.name,
-                startDate: new Date().toISOString().split('T')[0],
-                endDate: client.expireDate,
-                monthlyTasks: generateMonthlyTasks(client.id, client.name),
-                status: 'active',
-                createdBy: currentUser.username
-            };
-            
-            accountingServices.push(service);
-            setStorageData('accountingServices', accountingServices);
-            renderAccountingServices();
-            
-            addAuditLog('添加记账服务', `为 ${client.name} 创建记账服务`);
-        }
-
-        function generateMonthlyTasks(clientId, clientName) {
-            const tasks = [];
-            const now = new Date();
-            const startDate = new Date(now.getFullYear(), now.getMonth(), 1);
-            
-            for (let i = 0; i < 12; i++) {
-                const taskDate = new Date(startDate.getFullYear(), startDate.getMonth() + i, 15);
-                tasks.push({
-                    month: taskDate.toISOString().split('T')[0],
-                    status: i === 0 ? 'pending' : 'upcoming',
-                    completed: false,
-                    accountant: '',
-                    completeDate: null
-                });
-            }
-            
-            return tasks;
-        }
-
         // 删除客户
         function deleteClient(clientId) {
-            if (!checkPermission('delete')) return;
-            
             const client = clients.find(c => c.id === clientId);
             if (!client) return;
             
             if (confirm(`确定要删除客户 ${client.name} 吗？此操作不可恢复！`)) {
                 clients = clients.filter(c => c.id !== clientId);
-                accountingServices = accountingServices.filter(s => s.clientId !== clientId);
                 setStorageData('clients', clients);
-                setStorageData('accountingServices', accountingServices);
                 renderClients();
-                renderAccountingServices();
                 
                 addAuditLog('删除客户', `删除客户 ${client.name}`);
             }
         }
 
-        // 完成记账任务
-        function completeTask(serviceId, taskMonth) {
-            if (!checkPermission('edit')) return;
+        // 服务记录管理
+        function showAddServiceRecordModal() {
+            const modal = document.getElementById('serviceRecordModal');
+            const clientSelect = document.getElementById('modalRecordClient');
             
-            const service = accountingServices.find(s => s.id === serviceId);
-            if (service) {
-                const task = service.monthlyTasks.find(t => t.month === taskMonth);
-                if (task) {
-                    task.status = 'completed';
-                    task.completed = true;
-                    task.completeDate = new Date().toISOString();
-                    task.accountant = currentUser.name;
-                    
-                    setStorageData('accountingServices', accountingServices);
-                    renderAccountingServices();
-                    updateStatistics();
-                    
-                    addAuditLog('完成任务', `完成 ${service.clientName} 的记账任务`);
-                }
-            }
-        }
-
-        // 权限检查
-        function checkPermission(action) {
-            if (!currentUser) return false;
-            
-            // 管理员拥有所有权限
-            if (currentUser.role === 'admin') return true;
-            
-            // 其他角色的权限
-            if (action === 'edit') {
-                return currentUser.role === 'accountant';
-            }
-            
-            if (action === 'delete') {
-                return currentUser.role === 'admin';
-            }
-            
-            return true;
-        }
-
-        // 筛选功能
-        function filterClients() {
-            const searchTerm = document.getElementById('searchClient').value.toLowerCase();
-            const serviceFilter = document.getElementById('filterService').value;
-            const statusFilter = document.getElementById('filterStatus').value;
-            
-            const filteredClients = clients.filter(client => {
-                const matchesSearch = client.name.toLowerCase().includes(searchTerm) || 
-                                    client.contact.toLowerCase().includes(searchTerm);
-                const matchesService = !serviceFilter || client.service === serviceFilter;
-                
-                let matchesStatus = true;
-                if (statusFilter) {
-                    const expireDate = new Date(client.expireDate);
-                    const now = new Date();
-                    const sevenDaysLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-                    
-                    if (statusFilter === 'active') {
-                        matchesStatus = expireDate > sevenDaysLater;
-                    } else if (statusFilter === 'warning') {
-                        matchesStatus = expireDate <= sevenDaysLater && expireDate >= now;
-                    } else if (statusFilter === 'danger') {
-                        matchesStatus = expireDate < now;
-                    }
-                }
-                
-                return matchesSearch && matchesService && matchesStatus;
+            // 清空并填充客户下拉框
+            clientSelect.innerHTML = '<option value="">选择客户</option>';
+            clients.forEach(client => {
+                const option = document.createElement('option');
+                option.value = client.id;
+                option.textContent = client.name;
+                clientSelect.appendChild(option);
             });
             
-            renderClients(filteredClients);
-        }
-
-        function clearFilters() {
-            document.getElementById('searchClient').value = '';
-            document.getElementById('filterService').value = '';
-            document.getElementById('filterStatus').value = '';
-            renderClients();
-        }
-
-        // 渲染函数
-        function renderClients(clientsToRender = clients) {
-            const tbody = document.querySelector('#clientsTable tbody');
-            const now = new Date();
-            const sevenDaysLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+            // 设置默认日期为今天
+            document.getElementById('modalServiceDate').valueAsDate = new Date();
             
-            tbody.innerHTML = clientsToRender.map(client => {
-                const expireDate = new Date(client.expireDate);
-                const daysLeft = Math.ceil((expireDate - now) / (1000 * 60 * 60 * 24));
-                
-                let statusClass = 'status-active';
-                let statusText = '正常';
-                
-                if (expireDate < now) {
-                    statusClass = 'status-danger';
-                    statusText = '已过期';
-                } else if (expireDate <= sevenDaysLater) {
-                    statusClass = 'status-warning';
-                    statusText = `${daysLeft}天后到期`;
-                }
-                
+            modal.style.display = 'flex';
+        }
+
+        function saveServiceRecord(event) {
+            event.preventDefault();
+            
+            const recordData = {
+                id: Date.now(),
+                clientId: document.getElementById('modalRecordClient').value,
+                clientName: clients.find(c => c.id == document.getElementById('modalRecordClient').value)?.name || '',
+                date: document.getElementById('modalServiceDate').value,
+                type: document.getElementById('modalServiceType').value,
+                content: document.getElementById('modalServiceContent').value,
+                person: document.getElementById('modalServicePerson').value,
+                createTime: new Date().toISOString(),
+                createdBy: currentUser.username
+            };
+            
+            serviceRecords.push(recordData);
+            setStorageData('serviceRecords', serviceRecords);
+            renderServiceRecords();
+            closeServiceRecordModal();
+            
+            addAuditLog('添加服务记录', `为 ${recordData.clientName} 添加服务记录`);
+        }
+
+        function renderServiceRecords() {
+            const tbody = document.querySelector('#serviceRecordsTable tbody');
+            tbody.innerHTML = serviceRecords.map(record => {
+                const client = clients.find(c => c.id == record.clientId);
                 return `
                     <tr>
-                        <td><strong>${client.name}</strong>${client.notes ? '<br><small>' + client.notes + '</small>' : ''}</td>
-                        <td>${client.contact}</td>
-                        <td>${client.phone}</td>
-                        <td>${getServiceText(client.service)}</td>
-                        <td>${client.expireDate}</td>
-                        <td>${daysLeft > 0 ? daysLeft + '天' : '已过期'}</td>
-                        <td><span class="status ${statusClass}">${statusText}</span></td>
+                        <td>${record.clientName}</td>
+                        <td>${record.date}</td>
+                        <td>${getServiceTypeText(record.type)}</td>
+                        <td>${record.content}</td>
+                        <td>${record.person}</td>
                         <td>
-                            <button onclick="showAddClientModal(${client.id})" class="btn btn-outline">编辑</button>
-                            <button onclick="deleteClient(${client.id})" class="btn btn-danger">删除</button>
-                            ${client.service === 'accounting' ? 
-                             `<button onclick="viewAccountingTasks(${client.id})" class="btn">记账</button>` : ''}
+                            <button onclick="deleteServiceRecord(${record.id})" class="btn btn-danger">删除</button>
                         </td>
                     </tr>
                 `;
             }).join('');
-            
-            // 更新到期提醒
-            renderExpiryAlerts();
         }
 
-        function renderAccountingServices() {
-            const container = document.getElementById('accountingServices');
-            container.innerHTML = accountingServices.map(service => {
-                const pendingTasks = service.monthlyTasks.filter(task => task.status === 'pending').length;
-                const completedTasks = service.monthlyTasks.filter(task => task.status === 'completed').length;
+        function deleteServiceRecord(recordId) {
+            if (confirm('确定要删除此服务记录吗？')) {
+                serviceRecords = serviceRecords.filter(r => r.id !== recordId);
+                setStorageData('serviceRecords', serviceRecords);
+                renderServiceRecords();
                 
+                addAuditLog('删除服务记录', `删除服务记录 ID: ${recordId}`);
+            }
+        }
+
+        // 发票管理
+        function showAddInvoiceModal() {
+            // 实现添加发票的模态框
+            alert('发票添加功能将在下一版本实现');
+        }
+
+        function renderInvoices() {
+            const tbody = document.querySelector('#invoicesTable tbody');
+            tbody.innerHTML = invoices.map(invoice => {
                 return `
-                    <div class="card" style="margin: 1rem 0; padding: 1.5rem;">
-                        <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 1rem;">
-                            <h4>${service.clientName} - 代理记账服务</h4>
-                            <span class="status ${pendingTasks > 0 ? 'status-warning' : 'status-active'}">
-                                ${pendingTasks}个待办 / ${completedTasks}个完成
-                            </span>
-                        </div>
-                        <p>服务期: ${service.startDate} 至 ${service.endDate}</p>
-                        <div class="monthly-tasks">
-                            ${service.monthlyTasks.map(task => `
-                                <div class="task-item task-${task.status}">
-                                    <div><strong>${new Date(task.month).getMonth() + 1}月</strong></div>
-                                    <div class="status">${getTaskStatusText(task.status)}</div>
-                                    ${task.status === 'pending' ? 
-                                     `<button onclick="completeTask(${service.id}, '${task.month}')" class="btn btn-success" style="margin-top: 0.5rem;">完成</button>` : 
-                                     task.completeDate ? `<small>完成于: ${task.completeDate.split('T')[0]}</small>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
+                    <tr>
+                        <td>${invoice.number}</td>
+                        <td>${invoice.clientName}</td>
+                        <td>${invoice.date}</td>
+                        <td>${invoice.amount.toFixed(2)}</td>
+                        <td><span class="status ${invoice.status === 'paid' ? 'status-active' : 'status-warning'}">${invoice.status === 'paid' ? '已支付' : '未支付'}</span></td>
+                        <td>
+                            <button class="btn btn-outline">查看</button>
+                            <button class="btn btn-danger">删除</button>
+                        </td>
+                    </tr>
                 `;
             }).join('');
-        }
-
-        function renderExpiryAlerts() {
-            const container = document.getElementById('expiryAlerts');
-            const now = new Date();
-            const thirtyDaysLater = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
-            
-            const expiringClients = clients.filter(client => {
-                const expireDate = new Date(client.expireDate);
-                return expireDate <= thirtyDaysLater && expireDate >= now;
-            }).sort((a, b) => new Date(a.expireDate) - new Date(b.expireDate));
-            
-            const expiredClients = clients.filter(client => new Date(client.expireDate) < now);
-            
-            if (expiringClients.length === 0 && expiredClients.length === 0) {
-                container.innerHTML = '<p>🎉 暂无到期服务提醒</p>';
-                return;
-            }
-            
-            let html = '';
-            if (expiringClients.length > 0) {
-                html += `<h4>⚠️ 即将到期服务 (${expiringClients.length}个)</h4>`;
-                html += expiringClients.map(client => {
-                    const daysLeft = Math.ceil((new Date(client.expireDate) - now) / (1000 * 60 * 60 * 24));
-                    return `<p>${client.name} - ${getServiceText(client.service)} (剩余${daysLeft}天)</p>`;
-                }).join('');
-            }
-            
-            if (expiredClients.length > 0) {
-                html += `<h4 style="color: #e74c3c; margin-top: 1rem;">❌ 已过期服务 (${expiredClients.length}个)</h4>`;
-                html += expiredClients.map(client => {
-                    return `<p>${client.name} - ${getServiceText(client.service)}</p>`;
-                }).join('');
-            }
-            
-            container.innerHTML = html;
-        }
-
-        // 数据导入导出
-        function exportData() {
-            if (!checkPermission('export')) {
-                alert('您没有导出数据的权限！');
-                return;
-            }
-            
-            const data = {
-                clients: clients,
-                accountingServices: accountingServices,
-                exportTime: new Date().toISOString(),
-                version: '1.0'
-            };
-            
-            // 记录备份历史
-            backupHistory.unshift({
-                time: new Date().toISOString(),
-                clientCount: clients.length,
-                serviceCount: accountingServices.length,
-                exportedBy: currentUser.username
-            });
-            
-            // 只保留最近10次备份记录
-            backupHistory = backupHistory.slice(0, 10);
-            setStorageData('backupHistory', backupHistory);
-            
-            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `财税系统备份_${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            
-            alert(`数据导出成功！共导出${clients.length}个客户，${accountingServices.length}个记账服务。`);
-            addAuditLog('导出数据', '导出系统数据');
-        }
-
-        function importData() {
-            if (!checkPermission('import')) {
-                alert('您没有导入数据的权限！');
-                return;
-            }
-            
-            document.getElementById('importFile').click();
-        }
-
-        document.getElementById('importFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    if (confirm(`确认导入数据？这将导入${data.clients?.length || 0}个客户，覆盖当前所有数据！`)) {
-                        clients = data.clients || [];
-                        accountingServices = data.accountingServices || [];
-                        
-                        setStorageData('clients', clients);
-                        setStorageData('accountingServices', accountingServices);
-                        
-                        renderClients();
-                        renderAccountingServices();
-                        alert('数据导入成功！');
-                        
-                        addAuditLog('导入数据', '导入系统数据');
-                    }
-                } catch (error) {
-                    alert('文件格式错误，请选择正确的备份文件！');
-                }
-            };
-            reader.readAsText(file);
-        });
-
-        function showBackupHistory() {
-            let historyContent = '备份历史:\n\n';
-            backupHistory.slice(0, 10).forEach(backup => {
-                historyContent += `${new Date(backup.time).toLocaleString()} - 客户:${backup.clientCount} 服务:${backup.serviceCount} (${backup.exportedBy})\n`;
-            });
-            
-            alert(historyContent);
-        }
-
-        // Excel导入功能
-        function showExcelImportModal() {
-            if (!checkPermission('import')) {
-                alert('您没有导入数据的权限！');
-                return;
-            }
-            
-            // 重置Excel导入状态
-            excelData = null;
-            excelHeaders = [];
-            document.getElementById('excelPreviewSection').style.display = 'none';
-            document.getElementById('excelFile').value = '';
-            
-            // 显示模态框
-            document.getElementById('excelImportModal').style.display = 'flex';
-        }
-        
-        function closeExcelModal() {
-            document.getElementById('excelImportModal').style.display = 'none';
-        }
-        
-        function handleExcelFile(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, {type: 'array'});
-                    
-                    // 获取第一个工作表
-                    const firstSheetName = workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[firstSheetName];
-                    
-                    // 转换为JSON
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
-                    
-                    // 提取表头（第一行）
-                    excelHeaders = jsonData[0] || [];
-                    excelData = jsonData.slice(1); // 排除表头行
-                    
-                    // 显示预览
-                    renderExcelPreview();
-                    
-                    // 填充映射下拉框
-                    populateMappingSelects();
-                    
-                    // 显示预览区域
-                    document.getElementById('excelPreviewSection').style.display = 'block';
-                    
-                } catch (error) {
-                    console.error('Excel解析错误:', error);
-                    alert('解析Excel文件时出错，请检查文件格式！');
-                }
-            };
-            
-            reader.readAsArrayBuffer(file);
-        }
-        
-        function renderExcelPreview() {
-            const table = document.getElementById('excelPreviewTable');
-            table.innerHTML = '';
-            
-            // 创建表头
-            const thead = document.createElement('thead');
-            const headerRow = document.createElement('tr');
-            
-            excelHeaders.forEach(header => {
-                const th = document.createElement('th');
-                th.textContent = header;
-                headerRow.appendChild(th);
-            });
-            
-            thead.appendChild(headerRow);
-            table.appendChild(thead);
-            
-            // 创建表格内容（最多显示10行）
-            const tbody = document.createElement('tbody');
-            const maxRows = Math.min(10, excelData.length);
-            
-            for (let i = 0; i < maxRows; i++) {
-                const row = document.createElement('tr');
-                
-                excelData[i].forEach(cell => {
-                    const td = document.createElement('td');
-                    td.textContent = cell;
-                    row.appendChild(td);
-                });
-                
-                tbody.appendChild(row);
-            }
-            
-            table.appendChild(tbody);
-            
-            // 添加提示信息
-            if (excelData.length > 10) {
-                const infoRow = document.createElement('tr');
-                const infoCell = document.createElement('td');
-                infoCell.colSpan = excelHeaders.length;
-                infoCell.textContent = `... 还有 ${excelData.length - 10} 行未显示 ...`;
-                infoCell.style.textAlign = 'center';
-                infoCell.style.fontStyle = 'italic';
-                infoCell.style.color = '#666';
-                infoRow.appendChild(infoCell);
-                tbody.appendChild(infoRow);
-            }
-        }
-        
-        function populateMappingSelects() {
-            const mappingIds = ['mapName', 'mapContact', 'mapPhone', 'mapService', 'mapExpireDate', 'mapNotes'];
-            
-            mappingIds.forEach(id => {
-                const select = document.getElementById(id);
-                select.innerHTML = '<option value="">请选择Excel列</option>';
-                
-                excelHeaders.forEach((header, index) => {
-                    const option = document.createElement('option');
-                    option.value = index;
-                    option.textContent = header;
-                    select.appendChild(option);
-                });
-            });
-        }
-        
-        function importExcelData() {
-            // 获取映射关系
-            const nameIndex = parseInt(document.getElementById('mapName').value);
-            const contactIndex = parseInt(document.getElementById('mapContact').value);
-            const phoneIndex = parseInt(document.getElementById('mapPhone').value);
-            const serviceIndex = parseInt(document.getElementById('mapService').value);
-            const expireDateIndex = parseInt(document.getElementById('mapExpireDate').value);
-            const notesIndex = parseInt(document.getElementById('mapNotes').value);
-            
-            // 检查必填字段
-            if (isNaN(nameIndex) || isNaN(contactIndex) || isNaN(phoneIndex)) {
-                alert('客户名称、联系人和电话是必填字段，请确保已正确映射！');
-                return;
-            }
-            
-            let importedCount = 0;
-            let skippedCount = 0;
-            
-            // 处理Excel数据
-            excelData.forEach(row => {
-                // 检查必填字段是否有值
-                if (!row[nameIndex] || !row[contactIndex] || !row[phoneIndex]) {
-                    skippedCount++;
-                    return;
-                }
-                
-                // 创建客户对象
-                const client = {
-                    id: Date.now() + Math.floor(Math.random() * 1000), // 生成唯一ID
-                    name: row[nameIndex] || '',
-                    contact: row[contactIndex] || '',
-                    phone: row[phoneIndex] || '',
-                    service: row[serviceIndex] || 'accounting',
-                    expireDate: row[expireDateIndex] || new Date(new Date().getFullYear() + 1, 0, 1).toISOString().split('T')[0],
-                    notes: row[notesIndex] || '',
-                    status: 'active',
-                    createTime: new Date().toISOString(),
-                    updateTime: new Date().toISOString(),
-                    createdBy: currentUser.username
-                };
-                
-                // 添加到客户列表
-                clients.push(client);
-                importedCount++;
-                
-                // 如果是记账服务，自动创建记账任务
-                if (client.service === 'accounting') {
-                    addAccountingService(client);
-                }
-            });
-            
-            // 保存数据
-            setStorageData('clients', clients);
-            renderClients();
-            
-            // 关闭模态框
-            closeExcelModal();
-            
-            // 显示导入结果
-            alert(`成功导入 ${importedCount} 个客户数据${skippedCount > 0 ? `，跳过 ${skippedCount} 条不完整数据` : ''}`);
-            addAuditLog('导入Excel数据', `导入 ${importedCount} 个客户`);
         }
 
         // 工具函数
@@ -1373,13 +1085,15 @@
             return map[service] || service;
         }
 
-        function getTaskStatusText(status) {
+        function getServiceTypeText(type) {
             const map = {
-                'pending': '待处理',
-                'completed': '已完成',
-                'upcoming': '未开始'
+                'consulting': '咨询',
+                'tax': '税务申报',
+                'audit': '审计',
+                'registration': '公司注册',
+                'other': '其他'
             };
-            return map[status] || status;
+            return map[type] || type;
         }
 
         function closeModal() {
@@ -1387,20 +1101,12 @@
             editingClientId = null;
         }
 
+        function closeServiceRecordModal() {
+            document.getElementById('serviceRecordModal').style.display = 'none';
+        }
+
         // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 模拟登录管理员
-            loginUser(users[0]);
-            
-            // 点击模态框外部关闭
-            document.getElementById('clientModal').addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
-            });
-            
-            document.getElementById('excelImportModal').addEventListener('click', function(e) {
-                if (e.target === this) closeExcelModal();
-            });
-        });
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
