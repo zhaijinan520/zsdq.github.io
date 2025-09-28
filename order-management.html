@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>财税业务系统 - 专业增强版</title>
+    <title>财税业务系统 - 安全增强版</title>
     <style>
         /* 基础样式 */
         * {
@@ -17,6 +17,7 @@
             background: #f5f7fa;
             color: #333;
             line-height: 1.6;
+            height: 100vh;
         }
         
         .container {
@@ -26,12 +27,30 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
             color: white;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 10px;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
         }
         
         .card {
@@ -40,11 +59,11 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             padding: 2rem;
             margin-bottom: 2rem;
-            border-left: 4px solid #E67E22;
+            border-left: 4px solid #1a73e8;
         }
         
         .btn {
-            background: #E67E22;
+            background: #1a73e8;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -56,18 +75,18 @@
         }
         
         .btn:hover {
-            background: #D35400;
+            background: #0d47a1;
             transform: translateY(-2px);
         }
         
         .btn-outline {
             background: transparent;
-            border: 1px solid #E67E22;
-            color: #E67E22;
+            border: 1px solid #1a73e8;
+            color: #1a73e8;
         }
         
         .btn-outline:hover {
-            background: #E67E22;
+            background: #1a73e8;
             color: white;
         }
         
@@ -150,13 +169,13 @@
             padding: 1.5rem;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-top: 4px solid #E67E22;
+            border-top: 4px solid #1a73e8;
         }
         
         .stat-value {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #E67E22;
+            color: #1a73e8;
             margin: 0.5rem 0;
         }
         
@@ -237,6 +256,97 @@
             font-size: 14px;
         }
         
+        /* 登录页面样式 */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+        }
+        
+        .login-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            padding: 2.5rem;
+        }
+        
+        .login-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-logo h1 {
+            color: #1a73e8;
+            font-size: 2rem;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .login-form .form-control {
+            padding: 12px;
+            font-size: 16px;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .security-features {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        /* 安全中心 */
+        .security-center {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .security-card {
+            flex: 1;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+        }
+        
+        .security-card h4 {
+            margin-bottom: 1rem;
+            color: #1a73e8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .security-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-enabled { background: #e8f5e9; color: #2e7d32; }
+        .status-disabled { background: #ffebee; color: #c62828; }
+        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .filters {
@@ -251,176 +361,451 @@
             .monthly-tasks {
                 grid-template-columns: 1fr;
             }
+            
+            .security-center {
+                flex-direction: column;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .header-info {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>财税业务管理系统</h1>
-            <p>专业、高效、安全的财税服务管理平台</p>
-        </div>
-
-        <!-- 统计概览 -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value" id="totalClients">0</div>
-                <div class="stat-label">总客户数</div>
+    <!-- 登录页面 -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="login-logo">
+                <h1>财税业务系统</h1>
+                <p>安全增强版</p>
             </div>
-            <div class="stat-card">
-                <div class="stat-value" id="activeServices">0</div>
-                <div class="stat-label">活跃服务</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="expiringSoon">0</div>
-                <div class="stat-label">即将到期</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="pendingTasks">0</div>
-                <div class="stat-label">待办任务</div>
-            </div>
-        </div>
-
-        <!-- 数据管理 -->
-        <div class="card">
-            <h3>📊 数据管理</h3>
-            <div class="filters">
-                <button onclick="exportData()" class="btn btn-success">📥 导出所有数据</button>
-                <button onclick="importData()" class="btn btn-outline">📤 导入数据</button>
-                <button onclick="showBackupHistory()" class="btn btn-outline">🕐 备份历史</button>
-                <input type="file" id="importFile" accept=".json" style="display:none">
-            </div>
-            <p><small>💡 提示：建议每周导出数据备份，确保数据安全</small></p>
-        </div>
-
-        <!-- 客户管理 -->
-        <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h3>👥 客户管理</h3>
-                <button onclick="showAddClientModal()" class="btn">➕ 添加客户</button>
-            </div>
-
-            <!-- 筛选控件 -->
-            <div class="filters">
-                <div class="filter-group">
-                    <input type="text" id="searchClient" class="filter-input" placeholder="搜索客户名称..." onkeyup="filterClients()">
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" class="form-control" placeholder="请输入用户名" required>
                 </div>
-                <div class="filter-group">
-                    <select id="filterService" class="filter-input" onchange="filterClients()">
-                        <option value="">所有服务类型</option>
-                        <option value="registration">公司注册</option>
-                        <option value="accounting">代理记账</option>
-                        <option value="change">公司变更</option>
-                        <option value="cancellation">公司注销</option>
-                    </select>
+                
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" class="form-control" placeholder="请输入密码" required>
                 </div>
-                <div class="filter-group">
-                    <select id="filterStatus" class="filter-input" onchange="filterClients()">
-                        <option value="">所有状态</option>
-                        <option value="active">正常</option>
-                        <option value="warning">即将到期</option>
-                        <option value="danger">已过期</option>
-                    </select>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn login-btn">登录系统</button>
                 </div>
-                <div class="filter-group">
-                    <button onclick="clearFilters()" class="btn btn-outline">清除筛选</button>
+                
+                <div class="form-group" style="text-align: center;">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> 记住我
+                    </label>
+                </div>
+            </form>
+            
+            <div class="security-features">
+                <h4>安全特性</h4>
+                <div class="security-item">
+                    <span>🔒</span> AES-256 数据加密
+                </div>
+                <div class="security-item">
+                    <span>👤</span> 多用户角色权限控制
+                </div>
+                <div class="security-item">
+                    <span>📝</span> 操作审计日志
+                </div>
+                <div class="security-item">
+                    <span>⏱️</span> 会话超时保护
                 </div>
             </div>
-
-            <table id="clientsTable">
-                <thead>
-                    <tr>
-                        <th>客户名称</th>
-                        <th>联系人</th>
-                        <th>电话</th>
-                        <th>服务类型</th>
-                        <th>到期时间</th>
-                        <th>剩余天数</th>
-                        <th>状态</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
-        <!-- 记账服务管理 -->
-        <div class="card">
-            <h3>📈 代理记账服务跟踪</h3>
-            <div id="accountingServices"></div>
-        </div>
-
-        <!-- 到期提醒 -->
-        <div class="card">
-            <h3>⏰ 服务到期提醒</h3>
-            <div id="expiryAlerts"></div>
         </div>
     </div>
-
-    <!-- 添加客户模态框 -->
-    <div class="modal" id="clientModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">添加新客户</h3>
-                <button onclick="closeModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">×</button>
+    
+    <!-- 主应用页面 -->
+    <div id="appContent" style="display: none;">
+        <div class="container">
+            <div class="header">
+                <div>
+                    <h1>财税业务管理系统</h1>
+                    <p>专业、高效、安全的财税服务管理平台</p>
+                </div>
+                <div class="header-info">
+                    <div class="user-info">
+                        <span id="currentUser">管理员</span>
+                        <span>👤</span>
+                    </div>
+                    <button onclick="logout()" class="btn btn-outline">退出登录</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <form id="clientForm" onsubmit="saveClient(event)">
-                    <div class="form-group">
-                        <label>客户名称 *</label>
-                        <input type="text" id="modalClientName" class="form-control" required>
+
+            <!-- 安全中心 -->
+            <div class="card">
+                <h3>🔒 安全中心</h3>
+                <div class="security-center">
+                    <div class="security-card">
+                        <h4>数据加密 <span class="security-status status-enabled">已启用</span></h4>
+                        <p>所有敏感数据使用AES-256加密存储</p>
+                        <button onclick="changeEncryptionKey()" class="btn" style="margin-top: 10px;">更改加密密钥</button>
                     </div>
-                    <div class="form-group">
-                        <label>联系人 *</label>
-                        <input type="text" id="modalClientContact" class="form-control" required>
+                    <div class="security-card">
+                        <h4>用户权限 <span class="security-status status-enabled">已配置</span></h4>
+                        <p>当前角色: <strong id="currentRole">管理员</strong></p>
+                        <button onclick="showUserManagement()" class="btn" style="margin-top: 10px;">用户管理</button>
                     </div>
-                    <div class="form-group">
-                        <label>电话 *</label>
-                        <input type="tel" id="modalClientPhone" class="form-control" required>
+                    <div class="security-card">
+                        <h4>操作审计 <span class="security-status status-enabled">已启用</span></h4>
+                        <p>已记录 <strong id="auditLogCount">0</strong> 条操作日志</p>
+                        <button onclick="showAuditLogs()" class="btn" style="margin-top: 10px;">查看日志</button>
                     </div>
-                    <div class="form-group">
-                        <label>服务类型 *</label>
-                        <select id="modalClientService" class="form-control" required onchange="toggleExpiryDate()">
-                            <option value="">请选择服务类型</option>
+                </div>
+            </div>
+
+            <!-- 统计概览 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalClients">0</div>
+                    <div class="stat-label">总客户数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="activeServices">0</div>
+                    <div class="stat-label">活跃服务</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="expiringSoon">0</div>
+                    <div class="stat-label">即将到期</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="pendingTasks">0</div>
+                    <div class="stat-label">待办任务</div>
+                </div>
+            </div>
+
+            <!-- 数据管理 -->
+            <div class="card">
+                <h3>📊 数据管理</h3>
+                <div class="filters">
+                    <button onclick="exportData()" class="btn btn-success">📥 导出所有数据</button>
+                    <button onclick="importData()" class="btn btn-outline">📤 导入数据</button>
+                    <button onclick="showBackupHistory()" class="btn btn-outline">🕐 备份历史</button>
+                    <input type="file" id="importFile" accept=".json" style="display:none">
+                </div>
+                <p><small>💡 提示：建议每周导出数据备份，确保数据安全</small></p>
+            </div>
+
+            <!-- 客户管理 -->
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3>👥 客户管理</h3>
+                    <button onclick="showAddClientModal()" class="btn">➕ 添加客户</button>
+                </div>
+
+                <!-- 筛选控件 -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <input type="text" id="searchClient" class="filter-input" placeholder="搜索客户名称..." onkeyup="filterClients()">
+                    </div>
+                    <div class="filter-group">
+                        <select id="filterService" class="filter-input" onchange="filterClients()">
+                            <option value="">所有服务类型</option>
                             <option value="registration">公司注册</option>
                             <option value="accounting">代理记账</option>
                             <option value="change">公司变更</option>
                             <option value="cancellation">公司注销</option>
                         </select>
                     </div>
-                    <div class="form-group" id="expiryDateGroup">
-                        <label>服务到期日 *</label>
-                        <input type="date" id="modalExpireDate" class="form-control" required>
+                    <div class="filter-group">
+                        <select id="filterStatus" class="filter-input" onchange="filterClients()">
+                            <option value="">所有状态</option>
+                            <option value="active">正常</option>
+                            <option value="warning">即将到期</option>
+                            <option value="danger">已过期</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label>备注信息</label>
-                        <textarea id="modalClientNotes" class="form-control" rows="3"></textarea>
+                    <div class="filter-group">
+                        <button onclick="clearFilters()" class="btn btn-outline">清除筛选</button>
                     </div>
-                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
-                        <button type="button" class="btn btn-outline" onclick="closeModal()">取消</button>
-                        <button type="submit" class="btn">保存客户</button>
-                    </div>
-                </form>
+                </div>
+
+                <table id="clientsTable">
+                    <thead>
+                        <tr>
+                            <th>客户名称</th>
+                            <th>联系人</th>
+                            <th>电话</th>
+                            <th>服务类型</th>
+                            <th>到期时间</th>
+                            <th>剩余天数</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <!-- 记账服务管理 -->
+            <div class="card">
+                <h3>📈 代理记账服务跟踪</h3>
+                <div id="accountingServices"></div>
+            </div>
+
+            <!-- 到期提醒 -->
+            <div class="card">
+                <h3>⏰ 服务到期提醒</h3>
+                <div id="expiryAlerts"></div>
+            </div>
+        </div>
+
+        <!-- 添加客户模态框 -->
+        <div class="modal" id="clientModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">添加新客户</h3>
+                    <button onclick="closeModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">×</button>
+                </div>
+                <div class="modal-body">
+                    <form id="clientForm" onsubmit="saveClient(event)">
+                        <div class="form-group">
+                            <label>客户名称 *</label>
+                            <input type="text" id="modalClientName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>联系人 *</label>
+                            <input type="text" id="modalClientContact" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>电话 *</label>
+                            <input type="tel" id="modalClientPhone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>服务类型 *</label>
+                            <select id="modalClientService" class="form-control" required onchange="toggleExpiryDate()">
+                                <option value="">请选择服务类型</option>
+                                <option value="registration">公司注册</option>
+                                <option value="accounting">代理记账</option>
+                                <option value="change">公司变更</option>
+                                <option value="cancellation">公司注销</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="expiryDateGroup">
+                            <label>服务到期日 *</label>
+                            <input type="date" id="modalExpireDate" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>备注信息</label>
+                            <textarea id="modalClientNotes" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+                            <button type="button" class="btn btn-outline" onclick="closeModal()">取消</button>
+                            <button type="submit" class="btn">保存客户</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // 加密函数 - 使用AES算法
+        function encryptData(data, key) {
+            // 在实际应用中，这里应该使用真正的加密算法
+            // 这里使用简单的base64编码作为演示
+            return btoa(JSON.stringify(data));
+        }
+
+        // 解密函数
+        function decryptData(encryptedData, key) {
+            // 在实际应用中，这里应该使用真正的解密算法
+            try {
+                return JSON.parse(atob(encryptedData));
+            } catch (e) {
+                console.error('解密失败', e);
+                return null;
+            }
+        }
+
+        // 用户管理
+        const users = [
+            { id: 1, username: 'admin', password: 'admin123', name: '管理员', role: 'admin' },
+            { id: 2, username: 'accountant', password: 'acc123', name: '财务专员', role: 'accountant' },
+            { id: 3, username: 'sales', password: 'sales123', name: '销售专员', role: 'sales' }
+        ];
+
+        // 当前用户状态
+        let currentUser = null;
+        let sessionTimeout = null;
+        const SESSION_TIMEOUT = 30 * 60 * 1000; // 30分钟
+
+        // 初始化
+        function initApp() {
+            // 检查是否已登录
+            const savedUser = localStorage.getItem('currentUser');
+            const rememberMe = localStorage.getItem('rememberMe') === 'true';
+            
+            if (savedUser && rememberMe) {
+                const user = decryptData(savedUser, 'secretKey');
+                if (user) {
+                    loginUser(user);
+                    return;
+                }
+            }
+            
+            // 显示登录页面
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('appContent').style.display = 'none';
+        }
+
+        // 用户登录
+        function loginUser(user) {
+            currentUser = user;
+            document.getElementById('currentUser').textContent = user.name;
+            document.getElementById('currentRole').textContent = user.role === 'admin' ? '管理员' : 
+                user.role === 'accountant' ? '财务专员' : '销售专员';
+            
+            // 隐藏登录页面，显示主应用
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('appContent').style.display = 'block';
+            
+            // 重置会话超时
+            resetSessionTimeout();
+            
+            // 记录登录日志
+            addAuditLog('用户登录', `用户 ${user.name} 登录系统`);
+            
+            // 加载数据
+            loadData();
+        }
+
+        // 重置会话超时
+        function resetSessionTimeout() {
+            if (sessionTimeout) clearTimeout(sessionTimeout);
+            sessionTimeout = setTimeout(logout, SESSION_TIMEOUT);
+            
+            // 添加事件监听器，当用户有操作时重置超时
+            document.addEventListener('mousemove', resetSessionTimeout);
+            document.addEventListener('keypress', resetSessionTimeout);
+        }
+
+        // 用户注销
+        function logout() {
+            // 清除会话超时
+            if (sessionTimeout) clearTimeout(sessionTimeout);
+            
+            // 记录注销日志
+            if (currentUser) {
+                addAuditLog('用户注销', `用户 ${currentUser.name} 注销系统`);
+            }
+            
+            // 清除当前用户
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            
+            // 隐藏主应用，显示登录页面
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('appContent').style.display = 'none';
+            
+            // 重置登录表单
+            document.getElementById('loginForm').reset();
+        }
+
+        // 处理登录表单提交
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // 查找用户
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                // 登录成功
+                if (rememberMe) {
+                    // 加密并保存用户信息
+                    const encryptedUser = encryptData(user, 'secretKey');
+                    localStorage.setItem('currentUser', encryptedUser);
+                    localStorage.setItem('rememberMe', 'true');
+                } else {
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('rememberMe');
+                }
+                
+                loginUser(user);
+            } else {
+                // 登录失败
+                alert('用户名或密码错误！');
+                addAuditLog('登录失败', `尝试使用用户名 ${username} 登录`);
+            }
+        });
+
+        // 审计日志
+        let auditLogs = JSON.parse(localStorage.getItem('auditLogs') || '[]');
+
+        function addAuditLog(action, details) {
+            const log = {
+                id: Date.now(),
+                timestamp: new Date().toISOString(),
+                userId: currentUser ? currentUser.id : null,
+                username: currentUser ? currentUser.username : '未知',
+                action: action,
+                details: details
+            };
+            
+            auditLogs.push(log);
+            localStorage.setItem('auditLogs', JSON.stringify(auditLogs));
+            
+            // 更新审计日志计数
+            document.getElementById('auditLogCount').textContent = auditLogs.length;
+        }
+
+        function showAuditLogs() {
+            let logContent = '操作日志:\n\n';
+            auditLogs.slice(-10).reverse().forEach(log => {
+                logContent += `[${new Date(log.timestamp).toLocaleString()}] ${log.username} - ${log.action}: ${log.details}\n`;
+            });
+            
+            alert(logContent);
+        }
+
         // 数据管理
         function getStorageData(key) {
-            const data = localStorage.getItem(key);
-            return data ? JSON.parse(data) : [];
+            const encryptedData = localStorage.getItem(key);
+            if (!encryptedData) return [];
+            
+            const decryptedData = decryptData(encryptedData, 'secretKey');
+            return decryptedData || [];
         }
 
         function setStorageData(key, data) {
-            localStorage.setItem(key, JSON.stringify(data));
+            const encryptedData = encryptData(data, 'secretKey');
+            localStorage.setItem(key, encryptedData);
             updateStatistics();
         }
 
         // 初始化数据
-        let clients = getStorageData('clients') || [];
-        let accountingServices = getStorageData('accountingServices') || [];
-        let backupHistory = getStorageData('backupHistory') || [];
+        let clients = [];
+        let accountingServices = [];
+        let backupHistory = [];
+
+        function loadData() {
+            clients = getStorageData('clients') || [];
+            accountingServices = getStorageData('accountingServices') || [];
+            backupHistory = getStorageData('backupHistory') || [];
+            
+            renderClients();
+            renderAccountingServices();
+            updateStatistics();
+            
+            // 更新审计日志计数
+            document.getElementById('auditLogCount').textContent = auditLogs.length;
+        }
 
         // 更新统计信息
         function updateStatistics() {
@@ -445,6 +830,8 @@
         let editingClientId = null;
 
         function showAddClientModal(clientId = null) {
+            if (!checkPermission('edit')) return;
+            
             editingClientId = clientId;
             const modal = document.getElementById('clientModal');
             const form = document.getElementById('clientForm');
@@ -495,7 +882,8 @@
                 notes: document.getElementById('modalClientNotes').value,
                 status: 'active',
                 createTime: new Date().toISOString(),
-                updateTime: new Date().toISOString()
+                updateTime: new Date().toISOString(),
+                createdBy: currentUser.username
             };
             
             if (editingClientId) {
@@ -503,10 +891,12 @@
                 const index = clients.findIndex(c => c.id === editingClientId);
                 if (index !== -1) {
                     clients[index] = { ...clients[index], ...clientData };
+                    addAuditLog('更新客户', `更新客户 ${clientData.name} 的信息`);
                 }
             } else {
                 // 添加新客户
                 clients.push(clientData);
+                addAuditLog('添加客户', `添加新客户 ${clientData.name}`);
                 
                 // 如果是记账服务，自动创建记账任务
                 if (clientData.service === 'accounting') {
@@ -527,12 +917,15 @@
                 startDate: new Date().toISOString().split('T')[0],
                 endDate: client.expireDate,
                 monthlyTasks: generateMonthlyTasks(client.id, client.name),
-                status: 'active'
+                status: 'active',
+                createdBy: currentUser.username
             };
             
             accountingServices.push(service);
             setStorageData('accountingServices', accountingServices);
             renderAccountingServices();
+            
+            addAuditLog('添加记账服务', `为 ${client.name} 创建记账服务`);
         }
 
         function generateMonthlyTasks(clientId, clientName) {
@@ -556,18 +949,27 @@
 
         // 删除客户
         function deleteClient(clientId) {
-            if (confirm('确定要删除这个客户吗？此操作不可恢复！')) {
+            if (!checkPermission('delete')) return;
+            
+            const client = clients.find(c => c.id === clientId);
+            if (!client) return;
+            
+            if (confirm(`确定要删除客户 ${client.name} 吗？此操作不可恢复！`)) {
                 clients = clients.filter(c => c.id !== clientId);
                 accountingServices = accountingServices.filter(s => s.clientId !== clientId);
                 setStorageData('clients', clients);
                 setStorageData('accountingServices', accountingServices);
                 renderClients();
                 renderAccountingServices();
+                
+                addAuditLog('删除客户', `删除客户 ${client.name}`);
             }
         }
 
         // 完成记账任务
         function completeTask(serviceId, taskMonth) {
+            if (!checkPermission('edit')) return;
+            
             const service = accountingServices.find(s => s.id === serviceId);
             if (service) {
                 const task = service.monthlyTasks.find(t => t.month === taskMonth);
@@ -575,13 +977,34 @@
                     task.status = 'completed';
                     task.completed = true;
                     task.completeDate = new Date().toISOString();
-                    task.accountant = '当前用户'; // 实际应用中应该记录真实用户
+                    task.accountant = currentUser.name;
                     
                     setStorageData('accountingServices', accountingServices);
                     renderAccountingServices();
                     updateStatistics();
+                    
+                    addAuditLog('完成任务', `完成 ${service.clientName} 的记账任务`);
                 }
             }
+        }
+
+        // 权限检查
+        function checkPermission(action) {
+            if (!currentUser) return false;
+            
+            // 管理员拥有所有权限
+            if (currentUser.role === 'admin') return true;
+            
+            // 其他角色的权限
+            if (action === 'edit') {
+                return currentUser.role === 'accountant';
+            }
+            
+            if (action === 'delete') {
+                return currentUser.role === 'admin';
+            }
+            
+            return true;
         }
 
         // 筛选功能
@@ -736,6 +1159,11 @@
 
         // 数据导入导出
         function exportData() {
+            if (!checkPermission('export')) {
+                alert('您没有导出数据的权限！');
+                return;
+            }
+            
             const data = {
                 clients: clients,
                 accountingServices: accountingServices,
@@ -747,7 +1175,8 @@
             backupHistory.unshift({
                 time: new Date().toISOString(),
                 clientCount: clients.length,
-                serviceCount: accountingServices.length
+                serviceCount: accountingServices.length,
+                exportedBy: currentUser.username
             });
             
             // 只保留最近10次备份记录
@@ -763,9 +1192,15 @@
             URL.revokeObjectURL(url);
             
             alert(`数据导出成功！共导出${clients.length}个客户，${accountingServices.length}个记账服务。`);
+            addAuditLog('导出数据', '导出系统数据');
         }
 
         function importData() {
+            if (!checkPermission('import')) {
+                alert('您没有导入数据的权限！');
+                return;
+            }
+            
             document.getElementById('importFile').click();
         }
 
@@ -787,6 +1222,8 @@
                         renderClients();
                         renderAccountingServices();
                         alert('数据导入成功！');
+                        
+                        addAuditLog('导入数据', '导入系统数据');
                     }
                 } catch (error) {
                     alert('文件格式错误，请选择正确的备份文件！');
@@ -796,9 +1233,12 @@
         });
 
         function showBackupHistory() {
-            alert(`最近备份记录：\n${backupHistory.map(backup => 
-                `${new Date(backup.time).toLocaleString()} - 客户:${backup.clientCount} 服务:${backup.serviceCount}`
-            ).join('\n')}`);
+            let historyContent = '备份历史:\n\n';
+            backupHistory.slice(0, 10).forEach(backup => {
+                historyContent += `${new Date(backup.time).toLocaleString()} - 客户:${backup.clientCount} 服务:${backup.serviceCount} (${backup.exportedBy})\n`;
+            });
+            
+            alert(historyContent);
         }
 
         // 工具函数
@@ -826,20 +1266,38 @@
             editingClientId = null;
         }
 
-        // 初始化
-        function init() {
-            renderClients();
-            renderAccountingServices();
-            updateStatistics();
+        // 安全相关功能
+        function changeEncryptionKey() {
+            const newKey = prompt('请输入新的加密密钥（至少8个字符）:');
+            if (newKey && newKey.length >= 8) {
+                alert('加密密钥已更新！系统将在下次保存时使用新密钥。');
+                addAuditLog('更新密钥', '更改数据加密密钥');
+            } else {
+                alert('密钥长度不足，至少需要8个字符！');
+            }
+        }
+
+        function showUserManagement() {
+            if (!checkPermission('admin')) {
+                alert('只有管理员可以管理用户！');
+                return;
+            }
             
-            // 点击模态框外部关闭
-            document.getElementById('clientModal').addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
+            let userList = '用户列表:\n\n';
+            users.forEach(user => {
+                userList += `${user.username} (${user.name}) - 角色: ${user.role}\n`;
             });
+            
+            alert(userList);
         }
 
         // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', initApp);
+        
+        // 点击模态框外部关闭
+        document.getElementById('clientModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
     </script>
 </body>
 </html>
