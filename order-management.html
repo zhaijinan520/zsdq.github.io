@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>财税业务系统 - 安全增强版</title>
+    <title>财税业务系统 - Excel导入增强版</title>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <style>
         /* 基础样式 */
         * {
@@ -221,7 +222,7 @@
             background: white;
             border-radius: 10px;
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -256,96 +257,54 @@
             font-size: 14px;
         }
         
-        /* 登录页面样式 */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
-        }
-        
-        .login-box {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-            padding: 2.5rem;
-        }
-        
-        .login-logo {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .login-logo h1 {
-            color: #1a73e8;
-            font-size: 2rem;
-        }
-        
-        .login-form .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .login-form .form-control {
-            padding: 12px;
-            font-size: 16px;
-        }
-        
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .security-features {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-        }
-        
-        .security-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            color: #666;
-        }
-        
-        /* 安全中心 */
-        .security-center {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-        
-        .security-card {
-            flex: 1;
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
+        /* Excel导入预览 */
+        .excel-preview {
+            max-height: 400px;
+            overflow: auto;
+            margin: 1rem 0;
             border: 1px solid #eee;
+            border-radius: 5px;
         }
         
-        .security-card h4 {
-            margin-bottom: 1rem;
-            color: #1a73e8;
+        .excel-preview table {
+            width: 100%;
+            font-size: 14px;
+        }
+        
+        .excel-preview th {
+            background: #f0f7ff;
+            position: sticky;
+            top: 0;
+        }
+        
+        .excel-preview tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .excel-preview tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .mapping-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
         }
         
-        .security-status {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
+        .mapping-label {
+            width: 150px;
             font-weight: 500;
         }
         
-        .status-enabled { background: #e8f5e9; color: #2e7d32; }
-        .status-disabled { background: #ffebee; color: #c62828; }
+        .mapping-select {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
         
         /* 响应式设计 */
         @media (max-width: 768px) {
@@ -379,56 +338,8 @@
     </style>
 </head>
 <body>
-    <!-- 登录页面 -->
-    <div class="login-container" id="loginPage">
-        <div class="login-box">
-            <div class="login-logo">
-                <h1>财税业务系统</h1>
-                <p>安全增强版</p>
-            </div>
-            
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label for="username">用户名</label>
-                    <input type="text" id="username" class="form-control" placeholder="请输入用户名" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">密码</label>
-                    <input type="password" id="password" class="form-control" placeholder="请输入密码" required>
-                </div>
-                
-                <div class="form-group">
-                    <button type="submit" class="btn login-btn">登录系统</button>
-                </div>
-                
-                <div class="form-group" style="text-align: center;">
-                    <label>
-                        <input type="checkbox" id="rememberMe"> 记住我
-                    </label>
-                </div>
-            </form>
-            
-            <div class="security-features">
-                <h4>安全特性</h4>
-                <div class="security-item">
-                    <span>🔒</span> AES-256 数据加密
-                </div>
-                <div class="security-item">
-                    <span>👤</span> 多用户角色权限控制
-                </div>
-                <div class="security-item">
-                    <span>📝</span> 操作审计日志
-                </div>
-                <div class="security-item">
-                    <span>⏱️</span> 会话超时保护
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- 主应用页面 -->
-    <div id="appContent" style="display: none;">
+    <div id="appContent">
         <div class="container">
             <div class="header">
                 <div>
@@ -441,28 +352,6 @@
                         <span>👤</span>
                     </div>
                     <button onclick="logout()" class="btn btn-outline">退出登录</button>
-                </div>
-            </div>
-
-            <!-- 安全中心 -->
-            <div class="card">
-                <h3>🔒 安全中心</h3>
-                <div class="security-center">
-                    <div class="security-card">
-                        <h4>数据加密 <span class="security-status status-enabled">已启用</span></h4>
-                        <p>所有敏感数据使用AES-256加密存储</p>
-                        <button onclick="changeEncryptionKey()" class="btn" style="margin-top: 10px;">更改加密密钥</button>
-                    </div>
-                    <div class="security-card">
-                        <h4>用户权限 <span class="security-status status-enabled">已配置</span></h4>
-                        <p>当前角色: <strong id="currentRole">管理员</strong></p>
-                        <button onclick="showUserManagement()" class="btn" style="margin-top: 10px;">用户管理</button>
-                    </div>
-                    <div class="security-card">
-                        <h4>操作审计 <span class="security-status status-enabled">已启用</span></h4>
-                        <p>已记录 <strong id="auditLogCount">0</strong> 条操作日志</p>
-                        <button onclick="showAuditLogs()" class="btn" style="margin-top: 10px;">查看日志</button>
-                    </div>
                 </div>
             </div>
 
@@ -491,8 +380,9 @@
                 <h3>📊 数据管理</h3>
                 <div class="filters">
                     <button onclick="exportData()" class="btn btn-success">📥 导出所有数据</button>
-                    <button onclick="importData()" class="btn btn-outline">📤 导入数据</button>
+                    <button onclick="importData()" class="btn btn-outline">📤 导入JSON数据</button>
                     <button onclick="showBackupHistory()" class="btn btn-outline">🕐 备份历史</button>
+                    <button onclick="showExcelImportModal()" class="btn btn-success">📤 导入Excel客户数据</button>
                     <input type="file" id="importFile" accept=".json" style="display:none">
                 </div>
                 <p><small>💡 提示：建议每周导出数据备份，确保数据安全</small></p>
@@ -609,6 +499,76 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Excel导入模态框 -->
+        <div class="modal" id="excelImportModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>导入Excel客户数据</h3>
+                    <button onclick="closeExcelModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>选择Excel文件 (.xlsx, .xls)</label>
+                        <input type="file" id="excelFile" class="form-control" accept=".xlsx, .xls" onchange="handleExcelFile(event)">
+                    </div>
+                    
+                    <div id="excelPreviewSection" style="display: none;">
+                        <h4>Excel数据预览</h4>
+                        <div class="excel-preview">
+                            <table id="excelPreviewTable"></table>
+                        </div>
+                        
+                        <h4 style="margin-top: 1.5rem;">字段映射</h4>
+                        <p>请将Excel列映射到系统字段：</p>
+                        
+                        <div id="fieldMapping">
+                            <div class="mapping-row">
+                                <div class="mapping-label">客户名称</div>
+                                <select class="mapping-select" id="mapName">
+                                    <option value="">请选择Excel列</option>
+                                </select>
+                            </div>
+                            <div class="mapping-row">
+                                <div class="mapping-label">联系人</div>
+                                <select class="mapping-select" id="mapContact">
+                                    <option value="">请选择Excel列</option>
+                                </select>
+                            </div>
+                            <div class="mapping-row">
+                                <div class="mapping-label">电话</div>
+                                <select class="mapping-select" id="mapPhone">
+                                    <option value="">请选择Excel列</option>
+                                </select>
+                            </div>
+                            <div class="mapping-row">
+                                <div class="mapping-label">服务类型</div>
+                                <select class="mapping-select" id="mapService">
+                                    <option value="">请选择Excel列</option>
+                                </select>
+                            </div>
+                            <div class="mapping-row">
+                                <div class="mapping-label">到期时间</div>
+                                <select class="mapping-select" id="mapExpireDate">
+                                    <option value="">请选择Excel列</option>
+                                </select>
+                            </div>
+                            <div class="mapping-row">
+                                <div class="mapping-label">备注信息</div>
+                                <select class="mapping-select" id="mapNotes">
+                                    <option value="">请选择Excel列</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
+                            <button type="button" class="btn btn-outline" onclick="closeExcelModal()">取消</button>
+                            <button type="button" class="btn btn-success" onclick="importExcelData()">导入数据</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -641,6 +601,10 @@
         let currentUser = null;
         let sessionTimeout = null;
         const SESSION_TIMEOUT = 30 * 60 * 1000; // 30分钟
+
+        // Excel导入相关变量
+        let excelData = null;
+        let excelHeaders = [];
 
         // 初始化
         function initApp() {
@@ -713,37 +677,6 @@
             // 重置登录表单
             document.getElementById('loginForm').reset();
         }
-
-        // 处理登录表单提交
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            
-            // 查找用户
-            const user = users.find(u => u.username === username && u.password === password);
-            
-            if (user) {
-                // 登录成功
-                if (rememberMe) {
-                    // 加密并保存用户信息
-                    const encryptedUser = encryptData(user, 'secretKey');
-                    localStorage.setItem('currentUser', encryptedUser);
-                    localStorage.setItem('rememberMe', 'true');
-                } else {
-                    localStorage.removeItem('currentUser');
-                    localStorage.removeItem('rememberMe');
-                }
-                
-                loginUser(user);
-            } else {
-                // 登录失败
-                alert('用户名或密码错误！');
-                addAuditLog('登录失败', `尝试使用用户名 ${username} 登录`);
-            }
-        });
 
         // 审计日志
         let auditLogs = JSON.parse(localStorage.getItem('auditLogs') || '[]');
@@ -1241,6 +1174,194 @@
             alert(historyContent);
         }
 
+        // Excel导入功能
+        function showExcelImportModal() {
+            if (!checkPermission('import')) {
+                alert('您没有导入数据的权限！');
+                return;
+            }
+            
+            // 重置Excel导入状态
+            excelData = null;
+            excelHeaders = [];
+            document.getElementById('excelPreviewSection').style.display = 'none';
+            document.getElementById('excelFile').value = '';
+            
+            // 显示模态框
+            document.getElementById('excelImportModal').style.display = 'flex';
+        }
+        
+        function closeExcelModal() {
+            document.getElementById('excelImportModal').style.display = 'none';
+        }
+        
+        function handleExcelFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, {type: 'array'});
+                    
+                    // 获取第一个工作表
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    
+                    // 转换为JSON
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
+                    
+                    // 提取表头（第一行）
+                    excelHeaders = jsonData[0] || [];
+                    excelData = jsonData.slice(1); // 排除表头行
+                    
+                    // 显示预览
+                    renderExcelPreview();
+                    
+                    // 填充映射下拉框
+                    populateMappingSelects();
+                    
+                    // 显示预览区域
+                    document.getElementById('excelPreviewSection').style.display = 'block';
+                    
+                } catch (error) {
+                    console.error('Excel解析错误:', error);
+                    alert('解析Excel文件时出错，请检查文件格式！');
+                }
+            };
+            
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function renderExcelPreview() {
+            const table = document.getElementById('excelPreviewTable');
+            table.innerHTML = '';
+            
+            // 创建表头
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            
+            excelHeaders.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+            
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+            
+            // 创建表格内容（最多显示10行）
+            const tbody = document.createElement('tbody');
+            const maxRows = Math.min(10, excelData.length);
+            
+            for (let i = 0; i < maxRows; i++) {
+                const row = document.createElement('tr');
+                
+                excelData[i].forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    row.appendChild(td);
+                });
+                
+                tbody.appendChild(row);
+            }
+            
+            table.appendChild(tbody);
+            
+            // 添加提示信息
+            if (excelData.length > 10) {
+                const infoRow = document.createElement('tr');
+                const infoCell = document.createElement('td');
+                infoCell.colSpan = excelHeaders.length;
+                infoCell.textContent = `... 还有 ${excelData.length - 10} 行未显示 ...`;
+                infoCell.style.textAlign = 'center';
+                infoCell.style.fontStyle = 'italic';
+                infoCell.style.color = '#666';
+                infoRow.appendChild(infoCell);
+                tbody.appendChild(infoRow);
+            }
+        }
+        
+        function populateMappingSelects() {
+            const mappingIds = ['mapName', 'mapContact', 'mapPhone', 'mapService', 'mapExpireDate', 'mapNotes'];
+            
+            mappingIds.forEach(id => {
+                const select = document.getElementById(id);
+                select.innerHTML = '<option value="">请选择Excel列</option>';
+                
+                excelHeaders.forEach((header, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = header;
+                    select.appendChild(option);
+                });
+            });
+        }
+        
+        function importExcelData() {
+            // 获取映射关系
+            const nameIndex = parseInt(document.getElementById('mapName').value);
+            const contactIndex = parseInt(document.getElementById('mapContact').value);
+            const phoneIndex = parseInt(document.getElementById('mapPhone').value);
+            const serviceIndex = parseInt(document.getElementById('mapService').value);
+            const expireDateIndex = parseInt(document.getElementById('mapExpireDate').value);
+            const notesIndex = parseInt(document.getElementById('mapNotes').value);
+            
+            // 检查必填字段
+            if (isNaN(nameIndex) || isNaN(contactIndex) || isNaN(phoneIndex)) {
+                alert('客户名称、联系人和电话是必填字段，请确保已正确映射！');
+                return;
+            }
+            
+            let importedCount = 0;
+            let skippedCount = 0;
+            
+            // 处理Excel数据
+            excelData.forEach(row => {
+                // 检查必填字段是否有值
+                if (!row[nameIndex] || !row[contactIndex] || !row[phoneIndex]) {
+                    skippedCount++;
+                    return;
+                }
+                
+                // 创建客户对象
+                const client = {
+                    id: Date.now() + Math.floor(Math.random() * 1000), // 生成唯一ID
+                    name: row[nameIndex] || '',
+                    contact: row[contactIndex] || '',
+                    phone: row[phoneIndex] || '',
+                    service: row[serviceIndex] || 'accounting',
+                    expireDate: row[expireDateIndex] || new Date(new Date().getFullYear() + 1, 0, 1).toISOString().split('T')[0],
+                    notes: row[notesIndex] || '',
+                    status: 'active',
+                    createTime: new Date().toISOString(),
+                    updateTime: new Date().toISOString(),
+                    createdBy: currentUser.username
+                };
+                
+                // 添加到客户列表
+                clients.push(client);
+                importedCount++;
+                
+                // 如果是记账服务，自动创建记账任务
+                if (client.service === 'accounting') {
+                    addAccountingService(client);
+                }
+            });
+            
+            // 保存数据
+            setStorageData('clients', clients);
+            renderClients();
+            
+            // 关闭模态框
+            closeExcelModal();
+            
+            // 显示导入结果
+            alert(`成功导入 ${importedCount} 个客户数据${skippedCount > 0 ? `，跳过 ${skippedCount} 条不完整数据` : ''}`);
+            addAuditLog('导入Excel数据', `导入 ${importedCount} 个客户`);
+        }
+
         // 工具函数
         function getServiceText(service) {
             const map = {
@@ -1266,37 +1387,19 @@
             editingClientId = null;
         }
 
-        // 安全相关功能
-        function changeEncryptionKey() {
-            const newKey = prompt('请输入新的加密密钥（至少8个字符）:');
-            if (newKey && newKey.length >= 8) {
-                alert('加密密钥已更新！系统将在下次保存时使用新密钥。');
-                addAuditLog('更新密钥', '更改数据加密密钥');
-            } else {
-                alert('密钥长度不足，至少需要8个字符！');
-            }
-        }
-
-        function showUserManagement() {
-            if (!checkPermission('admin')) {
-                alert('只有管理员可以管理用户！');
-                return;
-            }
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 模拟登录管理员
+            loginUser(users[0]);
             
-            let userList = '用户列表:\n\n';
-            users.forEach(user => {
-                userList += `${user.username} (${user.name}) - 角色: ${user.role}\n`;
+            // 点击模态框外部关闭
+            document.getElementById('clientModal').addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
             });
             
-            alert(userList);
-        }
-
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', initApp);
-        
-        // 点击模态框外部关闭
-        document.getElementById('clientModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
+            document.getElementById('excelImportModal').addEventListener('click', function(e) {
+                if (e.target === this) closeExcelModal();
+            });
         });
     </script>
 </body>
